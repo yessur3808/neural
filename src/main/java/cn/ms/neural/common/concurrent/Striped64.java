@@ -2,6 +2,7 @@ package cn.ms.neural.common.concurrent;
 
 import java.util.Random;
 
+@SuppressWarnings("restriction")
 abstract class Striped64 extends Number {
 
     private static final long serialVersionUID = -3403386352761423917L;
@@ -14,13 +15,13 @@ abstract class Striped64 extends Number {
      * JVM intrinsics note: It would be possible to use a release-only
      * form of CAS here, if it were provided.
      */
-    static final class Cell {
+	static final class Cell {
         volatile long p0, p1, p2, p3, p4, p5, p6;
         volatile long value;
         volatile long q0, q1, q2, q3, q4, q5, q6;
         Cell(long x) { value = x; }
 
-        final boolean cas(long cmp, long val) {
+		final boolean cas(long cmp, long val) {
             return UNSAFE.compareAndSwapLong(this, valueOffset, cmp, val);
         }
 
@@ -96,14 +97,14 @@ abstract class Striped64 extends Number {
     /**
      * CASes the base field.
      */
-    final boolean casBase(long cmp, long val) {
+	final boolean casBase(long cmp, long val) {
         return UNSAFE.compareAndSwapLong(this, baseOffset, cmp, val);
     }
 
     /**
      * CASes the busy field from 0 to 1 to acquire lock.
      */
-    final boolean casBusy() {
+	final boolean casBusy() {
         return UNSAFE.compareAndSwapInt(this, busyOffset, 0, 1);
     }
 
