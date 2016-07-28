@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG" monitorInterval="1800">
+
+	<properties>
+		<!-- 日志目录 -->
+		<property name="LOG_HOME">logs</property>
+		<!-- 日志备份目录 -->
+		<property name="LOG_BAK_HOME">${LOG_HOME}/bak</property>
+		<property name="LOG_FORMAT">%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%t] %c[%L] - %msg%n</property>
+		<property name="PF_P_SBTP_SIZ">99 MB</property>
+	</properties>
+
+	<Appenders>
+		<!-- 系统默认日志 -->
+		<RollingFile name="sys.default" fileName="${LOG_HOME}/sys-default.log" filePattern="${LOG_BAK_HOME}/sys-default-%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout>
+				<Pattern>${LOG_FORMAT}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${PF_P_SBTP_SIZ}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<!-- 系统启动日志 -->
+		<RollingFile name="sys.boot" fileName="${LOG_HOME}/sys-boot.log" filePattern="${LOG_BAK_HOME}/sys-boot-%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout>
+				<Pattern>${LOG_FORMAT}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${PF_P_SBTP_SIZ}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<!-- 系统指标日志 -->
+		<RollingFile name="sys.metrics" fileName="${LOG_HOME}/sys-metrics.log" filePattern="${LOG_BAK_HOME}/sys-metrics-%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout>
+				<Pattern>${LOG_FORMAT}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${PF_P_SBTP_SIZ}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<!-- 系统性能日志 -->
+		<RollingFile name="sys.perf" fileName="${LOG_HOME}/sys-perf.log" filePattern="${LOG_BAK_HOME}/sys-perf-%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout>
+				<Pattern>${LOG_FORMAT}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${PF_P_SBTP_SIZ}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<!-- 系统错误日志 -->
+		<RollingFile name="sys.error" fileName="${LOG_HOME}/sys-error.log" filePattern="${LOG_BAK_HOME}/sys-error-%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout>
+				<Pattern>${LOG_FORMAT}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${PF_P_SBTP_SIZ}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+
+
+		<!-- 业务默认日志 -->
+		<RollingFile name="biz.default" fileName="${LOG_HOME}/biz-default.log" filePattern="${LOG_BAK_HOME}/biz-default-%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout>
+				<Pattern>${LOG_FORMAT}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${PF_P_SBTP_SIZ}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<!-- 业务指标日志 -->
+		<RollingFile name="biz.metrics" fileName="${LOG_HOME}/biz-metrics.log" filePattern="${LOG_BAK_HOME}/biz-metrics-%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout>
+				<Pattern>${LOG_FORMAT}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${PF_P_SBTP_SIZ}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<!-- 业务性能日志 -->
+		<RollingFile name="biz.perf" fileName="${LOG_HOME}/biz-perf.log" filePattern="${LOG_BAK_HOME}/biz-perf-%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout>
+				<Pattern>${LOG_FORMAT}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${PF_P_SBTP_SIZ}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<!-- 业务错误日志 -->
+		<RollingFile name="biz.error" fileName="${LOG_HOME}/biz-error.log" filePattern="${LOG_BAK_HOME}/biz-error-%d{yyyy-MM-dd}_%i.log.gz">
+			<PatternLayout>
+				<Pattern>${LOG_FORMAT}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="${PF_P_SBTP_SIZ}" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+
+
+		<!-- 定义控制台输出 -->
+		<Console name="console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_FORMAT}" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<!-- 系统默认日志 -->
+		<logger name="sys-default" level="DEBUG" additivity="false">
+			<appender-ref ref="sys.default" />
+		</logger>
+		<!-- 系统启动日志 -->
+		<logger name="sys-boot" level="DEBUG" additivity="false">
+			<appender-ref ref="sys.boot" />
+		</logger>
+		<!-- 系统指标日志 -->
+		<logger name="sys-metrics" level="DEBUG" additivity="false">
+			<appender-ref ref="sys.metrics" />
+		</logger>
+		<!-- 系统性能日志 -->
+		<logger name="sys-perf" level="DEBUG" additivity="false">
+			<appender-ref ref="sys.perf" />
+		</logger>
+		<!-- 系统错误日志 -->
+		<logger name="sys-error" level="ERROR" additivity="false">
+			<appender-ref ref="sys.error" />
+		</logger>
+
+
+		<!-- 业务默认日志 -->
+		<logger name="biz-default" level="DEBUG" additivity="false">
+			<appender-ref ref="biz.default" />
+		</logger>
+		<!-- 业务指标日志 -->
+		<logger name="biz-metrics" level="DEBUG" additivity="false">
+			<appender-ref ref="biz.metrics" />
+		</logger>
+		<!-- 业务性能日志 -->
+		<logger name="biz-perf" level="DEBUG" additivity="false">
+			<appender-ref ref="biz.perf" />
+		</logger>
+		<!-- 业务错误日志 -->
+		<logger name="biz-error" level="ERROR" additivity="false">
+			<appender-ref ref="biz.error" />
+		</logger>
+
+
+		<Root level="DEBUG">
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>

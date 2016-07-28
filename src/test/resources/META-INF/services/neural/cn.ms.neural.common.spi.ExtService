@@ -1,0 +1,3 @@
+default=cn.ms.neural.common.spi.impl.ExtServiceImpl1
+impl2=cn.ms.neural.common.spi.impl.ExtServiceImpl2
+impl3=cn.ms.neural.common.spi.impl.ExtServiceImpl3
