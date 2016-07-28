@@ -38,4 +38,9 @@ public class Conf {
 	 */
 	public static final String FLOWRATE = "flowrate";
 	
+	/**
+	 * 服务降级模块
+	 */
+	public static final String DEGRADE = "degrade";
+	
 }

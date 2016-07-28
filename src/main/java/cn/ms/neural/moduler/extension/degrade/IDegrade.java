@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.extension.degrade;
 
-import cn.ms.neural.Adaptor;
-import cn.ms.neural.moduler.extension.degrade.conf.DegradeConf;
+import cn.ms.neural.common.exception.degrade.DegradeException;
+import cn.ms.neural.moduler.IModuler;
 import cn.ms.neural.moduler.extension.degrade.processor.IBizDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
 
@@ -21,18 +21,18 @@ import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
  * 
  * @author lry
  */
-public interface IDegrade<REQ, RES> extends Adaptor {
+public interface IDegrade<REQ, RES> extends IModuler<REQ, RES> {
 
 	/**
-	 * 服务降级处理器
+	 * 服务降级
 	 * 
-	 * @param degradeConf
-	 * @param degradeREQ
-	 * @param bizDegradeHandler
-	 * @param degradeHandler
+	 * @param req
+	 * @param processor
+	 * @param bizprocessor
+	 * @param args
 	 * @return
-	 * @throws Throwable
+	 * @throws DegradeException
 	 */
-	RES degrade(DegradeConf degradeConf, REQ degradeREQ, IBizDegradeProcessor<REQ, RES> bizDegradeHandler, IDegradeProcessor<REQ, RES> degradeHandler) throws Throwable;
+	RES degrade(REQ req, IDegradeProcessor<REQ, RES> processor, IBizDegradeProcessor<REQ, RES> bizprocessor, Object...args) throws DegradeException;
 	
 }

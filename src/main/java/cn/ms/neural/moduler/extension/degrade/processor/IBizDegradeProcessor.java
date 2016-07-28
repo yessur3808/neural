@@ -1,6 +1,6 @@
 package cn.ms.neural.moduler.extension.degrade.processor;
 
-import cn.ms.neural.moduler.extension.degrade.conf.DegradeConf;
+import cn.ms.neural.common.exception.degrade.DegradeException;
 
 /**
  * 业务服务降级
@@ -12,12 +12,12 @@ public interface IBizDegradeProcessor<REQ, RES> {
 	/**
 	 * 业务降级处理器
 	 * 
-	 * @param bizDegradeConf
-	 * @param bizDegradeREQ
-	 * @param runner
+	 * @param req
+	 * @param processor
+	 * @param args
 	 * @return
 	 * @throws Throwable
 	 */
-	RES processor(DegradeConf bizDegradeConf, REQ bizDegradeREQ, IDegradeProcessor<REQ, RES> runner) throws Throwable;
+	RES processor(REQ req, IDegradeProcessor<REQ, RES> processor, Object... args) throws DegradeException;
 	
 }
