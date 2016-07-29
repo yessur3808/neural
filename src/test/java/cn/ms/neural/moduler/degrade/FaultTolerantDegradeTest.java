@@ -14,27 +14,22 @@ import cn.ms.neural.moduler.extension.degrade.type.DegradeType;
 import cn.ms.neural.moduler.extension.degrade.type.StrategyType;
 
 /**
- * 服务降级测试
+ * 容错降级测试
  * 
  * @author lry
  */
-public class DegradeTest {
+public class FaultTolerantDegradeTest {
 
-	String reqRoute="这是请求报文信息";
-	final String resRoute="这是Route服务的响应报文信息";
-	final String resMock="这是Mock服务的响应报文信息";
-	final String resBiz="这是业务降级";
-	
 	@SuppressWarnings("unchecked")
 	IDegrade<String, String> degrade=ExtensionLoader.getExtensionLoader(IDegrade.class).getAdaptiveExtension();
 	
 	@Test
-	public void degrade_SHIELDING_NULL() throws Throwable {
+	public void degrade_FAULTTOLERANT_NULL() throws Throwable {
 		try {
 			Moduler<String, String> moduler=new Moduler<>();
 			moduler.setUrl(URL.valueOf("http://127.0.0.1:8080/degrade/?"
 					+ "degrade.switch=true&"
-					+ "degrade.degradetype="+DegradeType.SHIELDING
+					+ "degrade.degradetype="+DegradeType.FAULTTOLERANT
 					+ "&degrade.strategytype="+StrategyType.NULL));
 			
 			degrade.setModuler(moduler);
@@ -42,14 +37,14 @@ public class DegradeTest {
 			String res=degrade.degrade("请求报文", new IDegradeProcessor<String, String>() {
 				@Override
 				public String processor(String req, Object... args) throws ProcessorException {
-					return "这是响应报文";
+					throw new RuntimeException("模拟容错失败");
 				}
 				@Override
 				public String mock(String req, Object... args) throws DegradeException {
 					return "这是MOCK响应报文";
 				}
 			}, null);
-			
+
 			Assert.assertEquals(null, res);
 		} catch (Throwable t) {
 			Assert.assertTrue(false);
@@ -57,12 +52,12 @@ public class DegradeTest {
 	}
 	
 	@Test
-	public void degrade_SHIELDING_EXCEPTION() throws Throwable {
+	public void degrade_FAULTTOLERANT_EXCEPTION() throws Throwable {
 		try {
 			Moduler<String, String> moduler=new Moduler<>();
 			moduler.setUrl(URL.valueOf("http://127.0.0.1:8080/degrade/?"
 					+ "degrade.switch=true&"
-					+ "degrade.degradetype="+DegradeType.SHIELDING
+					+ "degrade.degradetype="+DegradeType.FAULTTOLERANT
 					+ "&degrade.strategytype="+StrategyType.EXCEPTION));
 			
 			degrade.setModuler(moduler);
@@ -70,7 +65,7 @@ public class DegradeTest {
 			degrade.degrade("请求报文", new IDegradeProcessor<String, String>() {
 				@Override
 				public String processor(String req, Object... args) throws ProcessorException {
-					return "这是响应报文";
+					throw new RuntimeException("模拟容错失败");
 				}
 				@Override
 				public String mock(String req, Object... args) throws DegradeException {
@@ -80,6 +75,7 @@ public class DegradeTest {
 			
 			Assert.assertTrue(false);
 		} catch (Throwable t) {
+			t.printStackTrace();
 			if(t instanceof DegradeException){
 				Assert.assertTrue(true);
 			}else{
@@ -89,12 +85,12 @@ public class DegradeTest {
 	}
 	
 	@Test
-	public void degrade_SHIELDING_MOCK() throws Throwable {
+	public void degrade_FAULTTOLERANT_MOCK() throws Throwable {
 		try {
 			Moduler<String, String> moduler=new Moduler<>();
 			moduler.setUrl(URL.valueOf("http://127.0.0.1:8080/degrade/?"
 					+ "degrade.switch=true&"
-					+ "degrade.degradetype="+DegradeType.SHIELDING
+					+ "degrade.degradetype="+DegradeType.FAULTTOLERANT
 					+ "&degrade.strategytype="+StrategyType.MOCK));
 			
 			degrade.setModuler(moduler);
@@ -102,7 +98,7 @@ public class DegradeTest {
 			String res=degrade.degrade("请求报文", new IDegradeProcessor<String, String>() {
 				@Override
 				public String processor(String req, Object... args) throws ProcessorException {
-					return "这是响应报文";
+					throw new RuntimeException("模拟容错失败");
 				}
 				@Override
 				public String mock(String req, Object... args) throws DegradeException {
