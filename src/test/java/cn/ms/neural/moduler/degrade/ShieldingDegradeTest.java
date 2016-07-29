@@ -14,11 +14,11 @@ import cn.ms.neural.moduler.extension.degrade.type.DegradeType;
 import cn.ms.neural.moduler.extension.degrade.type.StrategyType;
 
 /**
- * 服务降级测试
+ * 屏蔽降级测试
  * 
  * @author lry
  */
-public class DegradeTest {
+public class ShieldingDegradeTest {
 
 	String reqRoute="这是请求报文信息";
 	final String resRoute="这是Route服务的响应报文信息";
