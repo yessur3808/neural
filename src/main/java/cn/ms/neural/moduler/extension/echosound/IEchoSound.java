@@ -1,7 +1,9 @@
 package cn.ms.neural.moduler.extension.echosound;
 
-import cn.ms.neural.moduler.extension.echosound.conf.EchoSoundConf;
+import cn.ms.neural.common.exception.EchoSoundException;
+import cn.ms.neural.moduler.IModuler;
 import cn.ms.neural.moduler.extension.echosound.processor.IEchoSoundProcessor;
+import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 
 /**
  * 回声探测
@@ -10,19 +12,8 @@ import cn.ms.neural.moduler.extension.echosound.processor.IEchoSoundProcessor;
  * 2.所有服务自动实现EchoService接口，只需将任意服务引用强制转型为EchoService，即可使用。
  * @author lry
  */
-public interface IEchoSound<REQ, RES> {
+public interface IEchoSound<REQ, RES> extends IModuler<REQ, RES> {
 
-	Object $echo(Object req) throws Throwable;
-	
-	/**
-	 * 探测反弹
-	 * 
-	 * @param echoSoundConf
-	 * @param echoSoundHandler
-	 * @param echoSoundREQ
-	 * @return
-	 * @throws Throwable
-	 */
-	Object rebound(EchoSoundConf echoSoundConf, IEchoSoundProcessor<REQ, RES> echoSoundHandler, REQ echoSoundREQ) throws Throwable;
+	RES echosound(EchoSoundType echoSoundType, REQ req, IEchoSoundProcessor<REQ, RES> processor, IEcho<REQ, RES> echo, Object...args) throws EchoSoundException;
 	
 }

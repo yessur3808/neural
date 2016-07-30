@@ -47,5 +47,10 @@ public class Conf {
 	 * 幂等模块
 	 */
 	public static final String IDEMPOTENT="idempotent";
+
+	/**
+	 * 回声探测模块
+	 */
+	public static final String ECHOSOUND = "echosound";
 	
 }

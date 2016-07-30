@@ -2,14 +2,7 @@ package cn.ms.neural.moduler.extension.echosound.conf;
 
 public class EchoSoundConf {
 
-	private boolean echoSound=false;
+	public static final String SWITCH_KEY = "switch";
+	public static final boolean SWITCH_DEF_VAL=true;
 
-	public boolean isEchoSound() {
-		return echoSound;
-	}
-
-	public void setEchoSound(boolean echoSound) {
-		this.echoSound = echoSound;
-	}
-	
 }
