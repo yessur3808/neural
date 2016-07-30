@@ -33,7 +33,7 @@ public class NeuralFactory<REQ, RES> implements IModuler<REQ, RES>,INotify<URL> 
 	 * 配置变更后广播事件
 	 */
 	@Override
-	public void notifyConf(URL msg) {
+	public void notify(URL msg) {
 		moduler.setUrl(msg);
 		setModuler(moduler);
 	}

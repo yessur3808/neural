@@ -7,6 +7,6 @@ package cn.ms.neural;
  */
 public interface INotify<MSG> {
 
-	void notifyConf(MSG msg);
+	void notify(MSG msg);
 	
 }

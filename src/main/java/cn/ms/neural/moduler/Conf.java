@@ -1,4 +1,4 @@
-package cn.ms.neural.moduler.conf;
+package cn.ms.neural.moduler;
 
 /**
  * 公共配置模块
