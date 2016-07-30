@@ -18,6 +18,7 @@ import cn.ms.neural.moduler.neure.INeure;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;
 import cn.ms.neural.moduler.neure.handler.INeureHandler;
 import cn.ms.neural.moduler.neure.handler.support.NeureHandler;
+import cn.ms.neural.moduler.neure.support.NeureSupport;
 
 /**
  * 神经元
@@ -28,11 +29,13 @@ import cn.ms.neural.moduler.neure.handler.support.NeureHandler;
 public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 
 	Moduler<REQ, RES> moduler;
-	NeureEntity neureEntity=new NeureEntity();
+	NeureEntity neureEntity;
 	
 	@Override
 	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
+		
+		neureEntity=NeureSupport.convert(this.moduler.getUrl());
 	}
 	
 	@Override

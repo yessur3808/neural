@@ -52,5 +52,10 @@ public class Conf {
 	 * 回声探测模块
 	 */
 	public static final String ECHOSOUND = "echosound";
+
+	/**
+	 * 微服务神经元模块
+	 */
+	public static final String NEURE = "neure";
 	
 }

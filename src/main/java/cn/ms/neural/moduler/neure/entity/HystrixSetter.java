@@ -5,21 +5,21 @@ public class HystrixSetter {
 	private String commandGroupKey="neural-command-group-key";//Command分组KEY
 	private String commandKey="neural-command-key";//Command KEY
 	
-	private int executionIsolationThreadTimeoutInMilliseconds=1000;//执行隔离线程超时毫秒,默认为1000ms
-	private int executionTimeoutInMilliseconds=1000;//执行超时时间,默认为1000ms
+	private int eitTimeout=1000;//执行隔离线程超时毫秒,默认为1000ms
+	private int eTimeout=1000;//执行超时时间,默认为1000ms
 
 	//调用线程允许请求HystrixCommand.GetFallback()的最大数量，默认10。超出时将会有异常抛出，注意：该项配置对于THREAD隔离模式也起作用
-	private int fallbackIsolationSemaphoreMaxConcurrentRequests=10;
+	private int fismRequests=10;
 	
 	////$NON-NLS-断路器$
-	private int circuitBreakerRequestVolumeThreshold=20;//当在配置时间窗口内达到此数量的失败后,进行短路,默认20个
-	private int circuitBreakerSleepWindowInMilliseconds=5;//短路多久以后开始尝试是否恢复,默认5s
-	private int circuitBreakerErrorThresholdPercentage=50;//出错百分比阈值,当达到此阈值后,开始短路,默认50%
+	private int cbRequests=20;//当在配置时间窗口内达到此数量的失败后,进行短路,默认20个
+	private int cbSleepWindow=5;//短路多久以后开始尝试是否恢复,默认5s
+	private int cbErrorRate=50;//出错百分比阈值,当达到此阈值后,开始短路,默认50%
 	
 	////$NON-NLS-线程池KEY$
 	private String threadPoolKey="neural-threadpool-key";//线程池KEY
 	private int threadPoolCoreSize=10;//线程池设置:线程池核心线程数,默认为10
-	private int threadPoolQueueSizeRejectionThreshold=5;//排队线程数量阈值，默认为5，达到时拒绝，如果配置了该选项，队列的大小是该队列
+	private int threadPoolQueueSize=5;//排队线程数量阈值，默认为5，达到时拒绝，如果配置了该选项，队列的大小是该队列
 	
 	//$NON-NLS-默认参数$
 	/**
@@ -44,20 +44,18 @@ public class HystrixSetter {
 		return new HystrixSetter(80000, 80000, 50, 50, 100, 15);
 	}
 	
+	public HystrixSetter(int eitTimeout, int eTimeout, 
+			int cbRequests, int cbErrorRate,int threadPoolCoreSize,
+			int threadPoolQueueSize) {
+		this.eitTimeout = eitTimeout;
+		this.eTimeout = eTimeout;
+		this.cbRequests = cbRequests;
+		this.cbErrorRate = cbErrorRate;
+		this.threadPoolCoreSize = threadPoolCoreSize;
+		this.threadPoolQueueSize = threadPoolQueueSize;
+	}
 	public HystrixSetter() {
 	}
-	public HystrixSetter(int executionIsolationThreadTimeoutInMilliseconds, int executionTimeoutInMilliseconds, 
-			int circuitBreakerRequestVolumeThreshold, int circuitBreakerErrorThresholdPercentage, 
-			int threadPoolCoreSize, int threadPoolQueueSizeRejectionThreshold) {
-		this.executionIsolationThreadTimeoutInMilliseconds = executionIsolationThreadTimeoutInMilliseconds;
-		this.executionTimeoutInMilliseconds = executionTimeoutInMilliseconds;
-		this.circuitBreakerRequestVolumeThreshold = circuitBreakerRequestVolumeThreshold;
-		this.circuitBreakerErrorThresholdPercentage = circuitBreakerErrorThresholdPercentage;
-		this.threadPoolCoreSize = threadPoolCoreSize;
-		this.threadPoolQueueSizeRejectionThreshold = threadPoolQueueSizeRejectionThreshold;
-	}
-	
-	
 	public String getCommandGroupKey() {
 		return commandGroupKey;
 	}
@@ -70,41 +68,41 @@ public class HystrixSetter {
 	public void setCommandKey(String commandKey) {
 		this.commandKey = commandKey;
 	}
-	public int getExecutionIsolationThreadTimeoutInMilliseconds() {
-		return executionIsolationThreadTimeoutInMilliseconds;
+	public int getEitTimeout() {
+		return eitTimeout;
 	}
-	public void setExecutionIsolationThreadTimeoutInMilliseconds(int executionIsolationThreadTimeoutInMilliseconds) {
-		this.executionIsolationThreadTimeoutInMilliseconds = executionIsolationThreadTimeoutInMilliseconds;
+	public void setEitTimeout(int eitTimeout) {
+		this.eitTimeout = eitTimeout;
 	}
-	public int getExecutionTimeoutInMilliseconds() {
-		return executionTimeoutInMilliseconds;
+	public int geteTimeout() {
+		return eTimeout;
 	}
-	public void setExecutionTimeoutInMilliseconds(int executionTimeoutInMilliseconds) {
-		this.executionTimeoutInMilliseconds = executionTimeoutInMilliseconds;
+	public void seteTimeout(int eTimeout) {
+		this.eTimeout = eTimeout;
 	}
-	public int getFallbackIsolationSemaphoreMaxConcurrentRequests() {
-		return fallbackIsolationSemaphoreMaxConcurrentRequests;
+	public int getFismRequests() {
+		return fismRequests;
 	}
-	public void setFallbackIsolationSemaphoreMaxConcurrentRequests(int fallbackIsolationSemaphoreMaxConcurrentRequests) {
-		this.fallbackIsolationSemaphoreMaxConcurrentRequests = fallbackIsolationSemaphoreMaxConcurrentRequests;
+	public void setFismRequests(int fismRequests) {
+		this.fismRequests = fismRequests;
 	}
-	public int getCircuitBreakerRequestVolumeThreshold() {
-		return circuitBreakerRequestVolumeThreshold;
+	public int getCbRequests() {
+		return cbRequests;
 	}
-	public void setCircuitBreakerRequestVolumeThreshold(int circuitBreakerRequestVolumeThreshold) {
-		this.circuitBreakerRequestVolumeThreshold = circuitBreakerRequestVolumeThreshold;
+	public void setCbRequests(int cbRequests) {
+		this.cbRequests = cbRequests;
 	}
-	public int getCircuitBreakerSleepWindowInMilliseconds() {
-		return circuitBreakerSleepWindowInMilliseconds;
+	public int getCbSleepWindow() {
+		return cbSleepWindow;
 	}
-	public void setCircuitBreakerSleepWindowInMilliseconds(int circuitBreakerSleepWindowInMilliseconds) {
-		this.circuitBreakerSleepWindowInMilliseconds = circuitBreakerSleepWindowInMilliseconds;
+	public void setCbSleepWindow(int cbSleepWindow) {
+		this.cbSleepWindow = cbSleepWindow;
 	}
-	public int getCircuitBreakerErrorThresholdPercentage() {
-		return circuitBreakerErrorThresholdPercentage;
+	public int getCbErrorRate() {
+		return cbErrorRate;
 	}
-	public void setCircuitBreakerErrorThresholdPercentage(int circuitBreakerErrorThresholdPercentage) {
-		this.circuitBreakerErrorThresholdPercentage = circuitBreakerErrorThresholdPercentage;
+	public void setCbErrorRate(int cbErrorRate) {
+		this.cbErrorRate = cbErrorRate;
 	}
 	public String getThreadPoolKey() {
 		return threadPoolKey;
@@ -118,24 +116,11 @@ public class HystrixSetter {
 	public void setThreadPoolCoreSize(int threadPoolCoreSize) {
 		this.threadPoolCoreSize = threadPoolCoreSize;
 	}
-	public int getThreadPoolQueueSizeRejectionThreshold() {
-		return threadPoolQueueSizeRejectionThreshold;
+	public int getThreadPoolQueueSize() {
+		return threadPoolQueueSize;
 	}
-	public void setThreadPoolQueueSizeRejectionThreshold(int threadPoolQueueSizeRejectionThreshold) {
-		this.threadPoolQueueSizeRejectionThreshold = threadPoolQueueSizeRejectionThreshold;
-	}
-	
-	@Override
-	public String toString() {
-		return "HystrixSetter [commandGroupKey=" + commandGroupKey + ", commandKey=" + commandKey
-				+ ", executionIsolationThreadTimeoutInMilliseconds=" + executionIsolationThreadTimeoutInMilliseconds
-				+ ", executionTimeoutInMilliseconds=" + executionTimeoutInMilliseconds
-				+ ", fallbackIsolationSemaphoreMaxConcurrentRequests=" + fallbackIsolationSemaphoreMaxConcurrentRequests
-				+ ", circuitBreakerRequestVolumeThreshold=" + circuitBreakerRequestVolumeThreshold
-				+ ", circuitBreakerSleepWindowInMilliseconds=" + circuitBreakerSleepWindowInMilliseconds
-				+ ", circuitBreakerErrorThresholdPercentage=" + circuitBreakerErrorThresholdPercentage
-				+ ", threadPoolKey=" + threadPoolKey + ", threadPoolCoreSize=" + threadPoolCoreSize
-				+ ", threadPoolQueueSizeRejectionThreshold=" + threadPoolQueueSizeRejectionThreshold + "]";
+	public void setThreadPoolQueueSize(int threadPoolQueueSize) {
+		this.threadPoolQueueSize = threadPoolQueueSize;
 	}
 	
 }
