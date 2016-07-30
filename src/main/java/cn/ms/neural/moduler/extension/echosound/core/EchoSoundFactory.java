@@ -2,6 +2,7 @@ package cn.ms.neural.moduler.extension.echosound.core;
 
 import cn.ms.neural.common.exception.EchoSoundException;
 import cn.ms.neural.moduler.Conf;
+//github.com/yu120/neural
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.echosound.IEcho;
 import cn.ms.neural.moduler.extension.echosound.IEchoSound;
@@ -28,7 +29,7 @@ public class EchoSoundFactory<REQ, RES> implements IEchoSound<REQ, RES> {
 	@Override
 	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
-		
+
 		echoSoundSwitch=this.moduler.getUrl().getModulerParameter(Conf.ECHOSOUND, EchoSoundConf.SWITCH_KEY, EchoSoundConf.SWITCH_DEF_VAL);
 	}
 
