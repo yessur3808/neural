@@ -7,12 +7,12 @@ public enum GraceStopStatusType implements ITypeAdaptor {
 	/**
 	 * 在线
 	 */
-	ONLINE("online","This is online."),
+	ONLINE("ONLINE","This is online."),
 	
 	/**
 	 * 离线
 	 */
-	OFFLINE("offline","This is offline.");
+	OFFLINE("OFFLINE","This is offline.");
 	
 	String val;
 	String msg;
