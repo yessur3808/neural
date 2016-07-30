@@ -39,7 +39,6 @@ public class NeureHandler<REQ, RES> extends HystrixCommand<RES> {
 	//线程参数
 	private final Map<String, String> threadContextMap=ThreadContext.getContext();
 	
-	
 	public NeureHandler(REQ req, NeureEntity neureEntity, INeureHandler<REQ, RES> handler, Object...args) {
 		super(neureEntity.getSetter());
 		this.req = req;
