@@ -31,7 +31,7 @@ public class BlackWhiteTest {
 				+ "10.24.1.11:WHITE:false:ip,"//离线白名单
 				+ "10.24.1.12:BLACK:true:ip,"//在线黑名单
 				+ "10.24.1.13:BLACK:false:ip"));//离线黑名单
-		blackWhite.setModuler(moduler);
+		blackWhite.notify(moduler);
 	}
 	
 	/**

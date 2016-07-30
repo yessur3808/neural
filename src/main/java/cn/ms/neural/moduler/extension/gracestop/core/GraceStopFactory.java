@@ -31,7 +31,7 @@ public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 	private final LongAdder longAdder = new LongAdder();
 	
 	@Override
-	public void setModuler(Moduler<REQ, RES> moduler) {
+	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
 		
 		//每次变更通知后进行检查

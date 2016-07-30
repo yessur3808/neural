@@ -18,7 +18,7 @@ public class NeuralFactory<REQ, RES> implements IModuler<REQ, RES>,INotify<URL> 
 	 * 设置模块中心
 	 */
 	@Override
-	public void setModuler(Moduler<REQ, RES> moduler) {
+	public void notify(Moduler<REQ, RES> moduler) {
 		if(moduler==null){
 			this.moduler=new Moduler<REQ, RES>();
 		}else{
@@ -26,7 +26,7 @@ public class NeuralFactory<REQ, RES> implements IModuler<REQ, RES>,INotify<URL> 
 		}
 		
 		//$NON-NLS-按照顺序$
-		this.moduler.getGraceStop().setModuler(this.moduler);
+		this.moduler.getGraceStop().notify(this.moduler);
 	}
 	
 	/**
@@ -35,7 +35,7 @@ public class NeuralFactory<REQ, RES> implements IModuler<REQ, RES>,INotify<URL> 
 	@Override
 	public void notify(URL msg) {
 		moduler.setUrl(msg);
-		setModuler(moduler);
+		notify(moduler);
 	}
 	
 	

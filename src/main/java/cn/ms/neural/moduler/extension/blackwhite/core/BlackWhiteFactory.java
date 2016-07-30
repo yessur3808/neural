@@ -47,7 +47,7 @@ public class BlackWhiteFactory<REQ, RES> implements IBlackWhite<REQ, RES> {
 	 * http://127.0.0.1:8080/service/?blackwhite.blacklist=172.18.0.1:true:ip,172.18.0.2:true:ip&blackwhite.whitelist=172.18.0.12:true:ip,172.18.0.21:true:ip
 	 */
 	@Override
-	public void setModuler(Moduler<REQ, RES> moduler) {
+	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
 		blackwhiteSwitch=this.moduler.getUrl().getModulerParameter(Conf.BLACKWHITE, BlackWhiteConf.SWITCH_KEY, BlackWhiteConf.SWITCH_DEF_VALUE);
 		disableRecordSwitch=this.moduler.getUrl().getModulerParameter(Conf.BLACKWHITE, BlackWhiteConf.DISABLE_RECORD_SWITCH_KEY, BlackWhiteConf.DISABLE_RECORD_SWITCH_DEF_VALUE);

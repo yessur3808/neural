@@ -31,7 +31,7 @@ public class BusinessDegradeTest {
 					+ "degrade.switch=true&"
 					+ "degrade.degradetype="+DegradeType.BUSINESS));
 			
-			degrade.setModuler(moduler);
+			degrade.notify(moduler);
 			
 			String res=degrade.degrade("请求报文", new IDegradeProcessor<String, String>() {
 				@Override
@@ -63,7 +63,7 @@ public class BusinessDegradeTest {
 					+ "degrade.switch=true&"
 					+ "degrade.degradetype="+DegradeType.BUSINESS));
 			
-			degrade.setModuler(moduler);
+			degrade.notify(moduler);
 			
 			String res=degrade.degrade("请求报文", new IDegradeProcessor<String, String>() {
 				@Override
@@ -99,7 +99,7 @@ public class BusinessDegradeTest {
 					+ "degrade.switch=true&"
 					+ "degrade.degradetype="+DegradeType.BUSINESS));
 			
-			degrade.setModuler(moduler);
+			degrade.notify(moduler);
 			
 			String res=degrade.degrade("请求报文", new IDegradeProcessor<String, String>() {
 				@Override

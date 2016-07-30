@@ -4,6 +4,6 @@ import cn.ms.neural.Adaptor;
 
 public interface IModuler<REQ, RES> extends Adaptor {
 	
-	void setModuler(Moduler<REQ, RES> moduler);
+	void notify(Moduler<REQ, RES> moduler);
 	
 }

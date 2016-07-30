@@ -12,7 +12,7 @@ public class NeuralTest {
 		moduler.setUrl(URL.valueOf("http://127.0.0.1:8080/test/?a=1&b=2"));
 		
 		Neural<String, String> neural=new Neural<String, String>();
-		neural.setModuler(moduler);
+		neural.notify(moduler);
 		neural.init();
 		System.out.println("开始前:"+moduler.getUrl().toString());
 		for (int i = 0; i < 10; i++) {

@@ -35,7 +35,7 @@ public class DegradeFactory<REQ, RES> implements IDegrade<REQ, RES> {
 	StrategyType strategyType;
 	
 	@Override
-	public void setModuler(Moduler<REQ, RES> moduler) {
+	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
 		
 		degradeSwitch=this.moduler.getUrl().getModulerParameter(Conf.DEGRADE, DegradeConf.SWITCH_KEY, DegradeConf.SWITCH_DEF_VALUE);

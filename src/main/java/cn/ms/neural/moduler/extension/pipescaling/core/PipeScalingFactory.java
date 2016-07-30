@@ -21,7 +21,7 @@ public class PipeScalingFactory<REQ, RES> implements IPipeScaling<REQ, RES> {
 	
 
 	@Override
-	public void setModuler(Moduler<REQ, RES> moduler) {
+	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
 		
 		pipeScalingSwitch=this.moduler.getUrl().getModulerParameter(Conf.PIPESCALING, PipeScalingConf.SCALING_SWITCH_KEY, PipeScalingConf.SCALING_SWITCH_DEF_KEY);

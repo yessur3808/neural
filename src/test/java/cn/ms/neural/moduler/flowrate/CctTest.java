@@ -32,7 +32,7 @@ public class CctTest {
 			Moduler<String, String> moduler=new Moduler<String, String>();
 			moduler.setUrl(URL.valueOf("http://127.0.0.1:8080/fr/?switch=true&cctswitch=true&flowrate.list=CCT:true:5:0:true:5000:KEY1"));
 			
-			flowRate.setModuler(moduler);
+			flowRate.notify(moduler);
 			final List<FlowRateData> flowRateKVData=new ArrayList<FlowRateData>();
 			flowRateKVData.add(new FlowRateData());
 			ExecutorService exec = Executors.newFixedThreadPool(10);

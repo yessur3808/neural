@@ -31,7 +31,7 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 	NeureEntity neureEntity;
 	
 	@Override
-	public void setModuler(Moduler<REQ, RES> moduler) {
+	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
 	}
 	

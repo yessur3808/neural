@@ -52,7 +52,7 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 	private boolean qpsSwitch=false;
 	
 	@Override
-	public void setModuler(Moduler<REQ, RES> moduler) {
+	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
 		
 		flowrateRuleMap.clear();

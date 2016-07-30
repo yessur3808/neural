@@ -15,7 +15,7 @@ public class GraceStopTest {
 		String reqData="请求报文";
 		@SuppressWarnings("unchecked")
 		IGraceStop<String, String> graceStop=ExtensionLoader.getExtensionLoader(IGraceStop.class).getAdaptiveExtension();
-		graceStop.setModuler(new Moduler<String, String>());//注入模块
+		graceStop.notify(new Moduler<String, String>());//注入模块
 		
 		String resData=graceStop.gracestop(reqData, new IGraceStopProcessor<String, String>() {
 			@Override

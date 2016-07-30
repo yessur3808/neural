@@ -32,7 +32,7 @@ public class FaultTolerantDegradeTest {
 					+ "degrade.degradetype="+DegradeType.FAULTTOLERANT
 					+ "&degrade.strategytype="+StrategyType.NULL));
 			
-			degrade.setModuler(moduler);
+			degrade.notify(moduler);
 			
 			String res=degrade.degrade("请求报文", new IDegradeProcessor<String, String>() {
 				@Override
@@ -60,7 +60,7 @@ public class FaultTolerantDegradeTest {
 					+ "degrade.degradetype="+DegradeType.FAULTTOLERANT
 					+ "&degrade.strategytype="+StrategyType.EXCEPTION));
 			
-			degrade.setModuler(moduler);
+			degrade.notify(moduler);
 			
 			degrade.degrade("请求报文", new IDegradeProcessor<String, String>() {
 				@Override
@@ -93,7 +93,7 @@ public class FaultTolerantDegradeTest {
 					+ "degrade.degradetype="+DegradeType.FAULTTOLERANT
 					+ "&degrade.strategytype="+StrategyType.MOCK));
 			
-			degrade.setModuler(moduler);
+			degrade.notify(moduler);
 			
 			String res=degrade.degrade("请求报文", new IDegradeProcessor<String, String>() {
 				@Override
