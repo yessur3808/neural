@@ -7,7 +7,9 @@ import cn.ms.neural.common.utils.NetUtils;
 import cn.ms.neural.moduler.extension.blackwhite.IBlackWhite;
 import cn.ms.neural.moduler.extension.degrade.IDegrade;
 import cn.ms.neural.moduler.extension.gracestop.IGraceStop;
+import cn.ms.neural.moduler.extension.idempotent.Idempotent;
 import cn.ms.neural.moduler.extension.pipescaling.IPipeScaling;
+import cn.ms.neural.moduler.neure.INeure;
 
 /**
  * 1.泛化引用、泛化实现<br>
@@ -39,51 +41,63 @@ public class Moduler<REQ, RES> {
 	 */
 	@SuppressWarnings("unchecked")
 	IPipeScaling<REQ, RES> pipeScaling=ExtensionLoader.getExtensionLoader(IPipeScaling.class).getAdaptiveExtension();
-	
 	/**
 	 * 服务降级
 	 */
 	@SuppressWarnings("unchecked")
-	IDegrade<String, String> degrade=ExtensionLoader.getExtensionLoader(IDegrade.class).getAdaptiveExtension();
+	IDegrade<REQ, RES> degrade=ExtensionLoader.getExtensionLoader(IDegrade.class).getAdaptiveExtension();
+	/**
+	 * 幂等模块
+	 */
+	@SuppressWarnings("unchecked")
+	Idempotent<REQ, RES> idempotent=ExtensionLoader.getExtensionLoader(Idempotent.class).getAdaptiveExtension();
+	/**
+	 * 容错内核
+	 */
+	@SuppressWarnings("unchecked")
+	INeure<REQ, RES> neure=ExtensionLoader.getExtensionLoader(INeure.class).getAdaptiveExtension();
 	
 	public URL getUrl() {
 		return url;
 	}
-
 	public void setUrl(URL url) {
 		this.url = url;
 	}
-	
 	public IGraceStop<REQ, RES> getGraceStop() {
 		return graceStop;
 	}
-
 	public void setGraceStop(IGraceStop<REQ, RES> graceStop) {
 		this.graceStop = graceStop;
 	}
-
 	public IBlackWhite<REQ, RES> getBlackWhite() {
 		return blackWhite;
 	}
-
 	public void setBlackWhite(IBlackWhite<REQ, RES> blackWhite) {
 		this.blackWhite = blackWhite;
 	}
-
 	public IPipeScaling<REQ, RES> getPipeScaling() {
 		return pipeScaling;
 	}
-
 	public void setPipeScaling(IPipeScaling<REQ, RES> pipeScaling) {
 		this.pipeScaling = pipeScaling;
 	}
-
-	public IDegrade<String, String> getDegrade() {
+	public IDegrade<REQ, RES> getDegrade() {
 		return degrade;
 	}
-
-	public void setDegrade(IDegrade<String, String> degrade) {
+	public void setDegrade(IDegrade<REQ, RES> degrade) {
 		this.degrade = degrade;
+	}
+	public Idempotent<REQ, RES> getIdempotent() {
+		return idempotent;
+	}
+	public void setIdempotent(Idempotent<REQ, RES> idempotent) {
+		this.idempotent = idempotent;
+	}
+	public INeure<REQ, RES> getNeure() {
+		return neure;
+	}
+	public void setNeure(INeure<REQ, RES> neure) {
+		this.neure = neure;
 	}
 
 }

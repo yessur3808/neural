@@ -2,43 +2,21 @@ package cn.ms.neural.moduler.extension.idempotent.conf;
 
 public class IdempotentConf {
 	
-	private String idempotentId;
 	/**
-	 * 幂等机制开关
+	 * 幂等总开关
 	 */
-	private boolean idempotentEnable=false;
-	/**
-	 * 幂等数据过期周期
-	 */
-	private long expireCycle=1000*60*2;
-	/**
-	 * 幂等数据容量大小
-	 */
-	private int idempStorCapacity=10000;
+	public static final String IDEMPOTENT_SWITCH_KEY="switch";
+	public static final boolean IDEMPOTENT_SWITCH_DEF_VAL=false;
 	
-	public String getIdempotentId() {
-		return idempotentId;
-	}
-	public void setIdempotentId(String idempotentId) {
-		this.idempotentId = idempotentId;
-	}
-	public boolean isIdempotentEnable() {
-		return idempotentEnable;
-	}
-	public void setIdempotentEnable(boolean idempotentEnable) {
-		this.idempotentEnable = idempotentEnable;
-	}
-	public long getExpireCycle() {
-		return expireCycle;
-	}
-	public void setExpireCycle(long expireCycle) {
-		this.expireCycle = expireCycle;
-	}
-	public int getIdempStorCapacity() {
-		return idempStorCapacity;
-	}
-	public void setIdempStorCapacity(int idempStorCapacity) {
-		this.idempStorCapacity = idempStorCapacity;
-	}
+	/**
+	 * 持久化开关
+	 */
+	public static final String STORAGE_SWITCH_KEY="storageSwitch";
+	public static final boolean STORAGE_SWITCH_DEF_VAL=false;
 	
+	/**
+	 * 如果资源已存在是否抛异常进行处理,true则抛异常,false则不抛异常而获取结果
+	 */
+	public static final String EXCEPTION_RES_SWITCH_KEY="exceptionSwitch";
+	public static final boolean EXCEPTION_RES_SWITCH_DEF_VAL=false;	
 }

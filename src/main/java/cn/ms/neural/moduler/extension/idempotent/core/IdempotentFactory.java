@@ -1,20 +1,11 @@
 package cn.ms.neural.moduler.extension.idempotent.core;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import cn.ms.neural.common.NamedThreadFactory;
-import cn.ms.neural.common.SystemClock;
+import cn.ms.neural.common.exception.idempotent.IdempotentContainException;
+import cn.ms.neural.common.exception.idempotent.IdempotentException;
+import cn.ms.neural.moduler.Conf;
+import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.idempotent.Idempotent;
 import cn.ms.neural.moduler.extension.idempotent.conf.IdempotentConf;
-import cn.ms.neural.moduler.extension.idempotent.entity.IdempotentStorage;
 import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 
 /**
@@ -27,122 +18,62 @@ import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
  */
 public class IdempotentFactory<REQ, RES> implements Idempotent<REQ, RES>{
 
-	private static final Logger logger=LogManager.getLogger(IdempotentFactory.class);
+	Moduler<REQ, RES> moduler=null;
+	/**
+	 * 幂等总开关
+	 */
+	boolean idempotentSwitch=false;
+	/**
+	 * 持久化开关
+	 */
+	boolean storageSwitch=false;
+	/**
+	 * 如果资源已存在是否抛异常进行处理,true则抛异常,false则不抛异常而获取结果
+	 */
+	boolean exception=false;
 	
-	/**
-	 * 检查周期
-	 */
-	private long retryPeriod=1000*30;
-	/**
-	 * 过期周期
-	 */
-	private long expireCycle=1000*60*2;
-	/**
-	 * 容量大小
-	 */
-	private int idempStorCapacity=10000;
-	/**
-	 * 持久化仓库
-	 */
-	private ConcurrentHashMap<String, IdempotentStorage<RES>> idempotentStorage;
-	/**
-	 * 失败重试定时器，定时检查是否有请求失败，如有，无限次重试
-	 */
-    private ScheduledFuture<?> retryFuture;
-    /**
-     * 定时任务执行器
-     */
-    private final ScheduledExecutorService retryExecutor = Executors.newScheduledThreadPool(1, new NamedThreadFactory("IdempotentCleanFailedRetryTimer", true));
-    
-    /**
-     * @param expireCycle 过期周期
-     * @param idempStorCapacity 容量大小
-     */
-	public IdempotentFactory() {
-		try {
-			init();//初始化
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
+	@Override
+	public void notify(Moduler<REQ, RES> moduler) {
+		this.moduler=moduler;
+		
+		idempotentSwitch=this.moduler.getUrl().getModulerParameter(Conf.IDEMPOTENT, IdempotentConf.IDEMPOTENT_SWITCH_KEY, IdempotentConf.IDEMPOTENT_SWITCH_DEF_VAL);
+		storageSwitch=this.moduler.getUrl().getModulerParameter(Conf.IDEMPOTENT, IdempotentConf.STORAGE_SWITCH_KEY, IdempotentConf.STORAGE_SWITCH_DEF_VAL);
+		exception=this.moduler.getUrl().getModulerParameter(Conf.IDEMPOTENT, IdempotentConf.EXCEPTION_RES_SWITCH_KEY, IdempotentConf.EXCEPTION_RES_SWITCH_DEF_VAL);
+		
+	}
+	
+	@Override
+	public void init() throws Throwable {
+		
 	}
 
-	/**
-	 * 清理
-	 * 
-	 * @throws Throwable
-	 */
-	protected void cleanup() throws Throwable {
-		if(idempotentStorage.isEmpty()){
-			return;
+	@Override
+	public RES idempotent(String idempotentKEY, REQ req, IdempotentProcessor<REQ, RES> processor, Object... args) throws IdempotentException {
+		if(!idempotentSwitch){//幂等开关
+			return processor.processor(req, args);
 		}
 		
-		for (Map.Entry<String, IdempotentStorage<RES>> entry:idempotentStorage.entrySet()) {
-			IdempotentStorage<RES> isStorage=entry.getValue();
-			if(isStorage!=null){
-				if(SystemClock.now()-isStorage.getTime()>expireCycle){
-					idempotentStorage.remove(isStorage.getId());
+		if(processor.check(idempotentKEY)){//存在
+			if(exception){//抛异常进行重复请求的处理
+				throw new IdempotentContainException();
+			}else{//获取缓存结果进行重复请求的处理
+				return processor.get(idempotentKEY);
+			}
+		}else{//不存在
+			RES res=null;
+			try {
+				return res=processor.processor(req, args);				
+			} finally {
+				if(storageSwitch){//需要持久化
+					processor.storage(req, res, args);			
 				}
 			}
 		}
 	}
 
 	@Override
-	public void init() throws Throwable {
-		idempotentStorage=new ConcurrentHashMap<String, IdempotentStorage<RES>>(idempStorCapacity);
-		try {
-	        this.retryFuture = retryExecutor.scheduleWithFixedDelay(new Runnable() {
-	            public void run() {
-	                try {
-	                    cleanup();
-	                } catch (Throwable t) { // 防御性容错
-	                    logger.error("Unexpected error occur at failed retry, cause: " + t.getMessage(), t);
-	                }
-	            }
-	        }, retryPeriod, retryPeriod, TimeUnit.MILLISECONDS);
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
-	}
-
-	@Override
-	public RES idempotent(IdempotentConf idempotentConf, REQ idempotentREQ, IdempotentProcessor<REQ, RES> idempotentHandler) throws Throwable {
-		if(!idempotentConf.isIdempotentEnable()){//未开启开关
-			return idempotentHandler.handler(idempotentConf, idempotentREQ);
-		}
-		
-		IdempotentStorage<RES> storage= idempotentStorage.get(idempotentConf.getIdempotentId());
-		if(storage==null){//没有执行过,则执行
-			RES res = idempotentHandler.handler(idempotentConf, idempotentREQ);
-			if(res!=null){//幂等记录结果
-				this.storage(idempotentConf, idempotentREQ, res);
-			}
-			
-			return res;
-		}else{//有幂等结果,直接返回
-			
-			//TODO 待统计命中率
-			
-			return storage.getRes();			
-		}
-	}
-
-	@Override
-	public void storage(IdempotentConf idempotentConf, REQ idempotentREQ, RES idempotentRES) throws Throwable {
-		idempotentStorage.put(idempotentConf.getIdempotentId(), new IdempotentStorage<RES>(idempotentConf.getIdempotentId(), SystemClock.now(), idempotentRES));
-	}
-	
-	@Override
 	public void destory() throws Throwable{
-		try {
-			if(idempotentStorage!=null){
-				idempotentStorage.clear();	
-			}
-			if(retryFuture!=null){
-				retryFuture.cancel(true);	
-			}
-        } catch (Throwable t) {
-            logger.warn(t.getMessage(), t);
-        }
+		
 	}
 
 }

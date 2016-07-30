@@ -4,9 +4,11 @@ import java.util.Map;
 
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.blackwhite.BlackWhiteListException;
+import cn.ms.neural.common.exception.neure.NeureException;
 import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
 import cn.ms.neural.moduler.extension.gracestop.processor.IGraceStopProcessor;
 import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcessor;
+import cn.ms.neural.moduler.neure.handler.INeureHandler;
 
 /**
  * 微服务神经元 <br>
@@ -74,6 +76,19 @@ public class Neural<REQ, RES> extends NeuralFactory<REQ, RES>{
 				return null;
 			}
 		}, args);
+	}
+	
+	/**
+	 * 容错内核
+	 * 
+	 * @param req
+	 * @param neureHandler
+	 * @param args
+	 * @return
+	 * @throws NeureException
+	 */
+	public RES neure(REQ req, INeureHandler<REQ, RES> neureHandler, Object... args) throws NeureException {
+		return moduler.getNeure().neure(req, neureHandler, args);
 	}
 	
 }

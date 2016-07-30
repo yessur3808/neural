@@ -43,4 +43,9 @@ public class Conf {
 	 */
 	public static final String DEGRADE = "degrade";
 	
+	/**
+	 * 幂等模块
+	 */
+	public static final String IDEMPOTENT="idempotent";
+	
 }

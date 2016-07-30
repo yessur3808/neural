@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.extension.idempotent;
 
-import cn.ms.neural.Adaptor;
-import cn.ms.neural.moduler.extension.idempotent.conf.IdempotentConf;
+import cn.ms.neural.common.exception.idempotent.IdempotentException;
+import cn.ms.neural.moduler.IModuler;
 import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 
 /**
@@ -18,27 +18,8 @@ import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
  * 
  * @author lry
  */
-public interface Idempotent<REQ, RES> extends Adaptor {
+public interface Idempotent<REQ, RES> extends IModuler<REQ, RES> {
 	
-	/**
-	 * 幂等获取
-	 * 
-	 * @param idempotentConf
-	 * @param idempotentREQ
-	 * @param idempotentHandler
-	 * @return
-	 * @throws Throwable
-	 */
-	RES idempotent(IdempotentConf idempotentConf, REQ idempotentREQ, IdempotentProcessor<REQ, RES> idempotentHandler) throws Throwable;
+	RES idempotent(String idempotentKEY, REQ req, IdempotentProcessor<REQ, RES> processor, Object...args) throws IdempotentException;
 	
-	/**
-	 * 记录存储
-	 * 
-	 * @param idempotentConf
-	 * @param idempotentREQ
-	 * @param idempotentRES
-	 * @throws Throwable
-	 */
-	void storage(IdempotentConf idempotentConf, REQ idempotentREQ, RES idempotentRES) throws Throwable;
-
 }
