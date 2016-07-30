@@ -5,7 +5,7 @@ import java.util.Map;
 
 import cn.ms.neural.common.URL;
 import cn.ms.neural.common.utils.StringUtils;
-import cn.ms.neural.moduler.conf.Conf;
+import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.extension.flowrate.conf.FlowRateConf;
 import cn.ms.neural.moduler.extension.flowrate.entity.FlowRateEntity;
 import cn.ms.neural.moduler.extension.flowrate.type.FlowRateType;

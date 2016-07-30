@@ -3,8 +3,8 @@ package cn.ms.neural.moduler.extension.pipescaling.core;
 import java.util.Random;
 
 import cn.ms.neural.common.exception.PipeScalingException;
+import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.Moduler;
-import cn.ms.neural.moduler.conf.Conf;
 import cn.ms.neural.moduler.extension.pipescaling.IPipeScaling;
 import cn.ms.neural.moduler.extension.pipescaling.conf.PipeScalingConf;
 import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcessor;
