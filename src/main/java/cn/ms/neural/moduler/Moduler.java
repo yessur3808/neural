@@ -9,6 +9,14 @@ import cn.ms.neural.moduler.extension.degrade.IDegrade;
 import cn.ms.neural.moduler.extension.gracestop.IGraceStop;
 import cn.ms.neural.moduler.extension.pipescaling.IPipeScaling;
 
+/**
+ * 1.泛化引用、泛化实现<br>
+ * 2.链路追踪、容量规划、实时监控<br>
+ * 3.优雅停机→黑白名单→管道缩放→流量控制→资源鉴权→服务降级→幂等保障→灰度路由→回声探测→[熔断拒绝→超时控制→舱壁隔离→服务容错→慢性尝试]<br>
+ * 
+ * @author lry
+ * @version v1.0
+ */
 public class Moduler<REQ, RES> {
 	
 	/**
