@@ -6,7 +6,6 @@ import cn.ms.neural.moduler.neure.handler.INeureHandler;
 
 public interface INeure<REQ, RES> extends IModuler<REQ, RES> {
 
-	
 	RES neure(REQ req, INeureHandler<REQ, RES> handler, Object...args) throws NeureException;
 	
 }

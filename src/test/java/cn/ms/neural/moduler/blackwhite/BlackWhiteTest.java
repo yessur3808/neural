@@ -14,6 +14,7 @@ import cn.ms.neural.common.spi.ExtensionLoader;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.blackwhite.IBlackWhite;
 import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
+import cn.ms.neural.moduler.extension.blackwhite.type.BlackWhiteType;
 
 public class BlackWhiteTest {
 
@@ -27,10 +28,10 @@ public class BlackWhiteTest {
 				+ "blackwhite.disableRecordSwitch=true&"
 				+ "blackwhite.visitRecordSwitch=true&"
 				+ "blackwhite.list="
-				+ "10.24.1.10:WHITE:true:ip,"//在线白名单
-				+ "10.24.1.11:WHITE:false:ip,"//离线白名单
-				+ "10.24.1.12:BLACK:true:ip,"//在线黑名单
-				+ "10.24.1.13:BLACK:false:ip"));//离线黑名单
+				+ "10.24.1.10:"+BlackWhiteType.WHITE+":true:ip,"//在线白名单
+				+ "10.24.1.11:"+BlackWhiteType.WHITE+":false:ip,"//离线白名单
+				+ "10.24.1.12:"+BlackWhiteType.BLACK+":true:ip,"//在线黑名单
+				+ "10.24.1.13:"+BlackWhiteType.BLACK+":false:ip"));//离线黑名单
 		blackWhite.notify(moduler);
 	}
 	

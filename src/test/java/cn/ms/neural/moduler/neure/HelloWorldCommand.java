@@ -1,4 +1,4 @@
-package cn.ms.neural.moduler.kernel;
+package cn.ms.neural.moduler.neure;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

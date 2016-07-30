@@ -28,7 +28,7 @@ import cn.ms.neural.moduler.neure.handler.support.NeureHandler;
 public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 
 	Moduler<REQ, RES> moduler;
-	NeureEntity neureEntity;
+	NeureEntity neureEntity=new NeureEntity();
 	
 	@Override
 	public void notify(Moduler<REQ, RES> moduler) {

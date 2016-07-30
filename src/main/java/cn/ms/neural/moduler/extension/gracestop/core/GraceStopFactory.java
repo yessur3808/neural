@@ -77,7 +77,7 @@ public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 		
 	}
 	
-	private Boolean schedule(long delay) {
+	private boolean schedule(long delay) {
 		String bootOrStop=moduler.getUrl().getModulerParameter(Conf.GRACESTOP, 
     			GraceStopConf.SWITCH_KEY, GraceStopConf.SWITCH_DEFAULT_VALUE.getVal());
 		if (GraceStopBootType.BOOT.getVal().equals(bootOrStop)) {//正常开机
@@ -123,7 +123,4 @@ public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 		}
 	}
 	
-	public static void main(String[] args) throws Throwable{
-		System.out.println(new GraceStopFactory<>().schedule(1000));;
-	}
 }
