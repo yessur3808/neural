@@ -35,6 +35,7 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
 		
+		//变更通知
 		neureEntity=NeureSupport.convert(this.moduler.getUrl());
 	}
 	
