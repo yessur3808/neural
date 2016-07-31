@@ -41,17 +41,17 @@ public class EchoSoundFactory<REQ, RES> implements IEchoSound<REQ, RES> {
 	@Override
 	public RES echosound(EchoSoundType echoSoundType, REQ req, IEchoSoundProcessor<REQ, RES> processor, IEcho<REQ, RES> echo, Object... args) throws EchoSoundException {
 		if(!echoSoundSwitch){//开关校验
-			return processor.echosound(req, processor, args);
+			return processor.echosound(req, args);
 		}
 		
 		switch (echoSoundType) {
 		case REQ:
-			REQ echoREQ=echo.$echo(args);//模拟请求
-			return processor.echosound(echoREQ, processor, args);
+			REQ echoREQ=echo.$echo(req, args);//模拟请求
+			return processor.echosound(echoREQ, args);
 		case RES:
-			return echo.$rebound(args);//模拟响应
+			return echo.$rebound(req, args);//模拟响应
 		default:
-			return processor.echosound(req, processor, args);//费回声探测
+			return processor.echosound(req, args);//费回声探测
 		}
 	}
 	

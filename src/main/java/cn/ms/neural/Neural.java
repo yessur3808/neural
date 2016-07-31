@@ -2,6 +2,7 @@ package cn.ms.neural;
 
 import java.util.Map;
 
+import cn.ms.neural.common.exception.EchoSoundException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.blackwhite.BlackWhiteListException;
 import cn.ms.neural.common.exception.degrade.DegradeException;
@@ -10,6 +11,9 @@ import cn.ms.neural.common.exception.neure.NeureException;
 import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
 import cn.ms.neural.moduler.extension.degrade.processor.IBizDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
+import cn.ms.neural.moduler.extension.echosound.IEcho;
+import cn.ms.neural.moduler.extension.echosound.processor.IEchoSoundProcessor;
+import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 import cn.ms.neural.moduler.extension.gracestop.processor.IGraceStopProcessor;
 import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcessor;
@@ -141,8 +145,36 @@ public class Neural<REQ, RES> extends NeuralFactory<REQ, RES>{
 	}
 	
 	/**
-	 * 容错内核
+	 * 回声探测
 	 * 
+	 * @param echoSoundType
+	 * @param req
+	 * @param args
+	 * @return
+	 * @throws NeureException
+	 */
+	public RES echosound(EchoSoundType echoSoundType, REQ req, Object... args) throws NeureException {
+		return moduler.getEchoSound().echosound(echoSoundType, req, new IEchoSoundProcessor<REQ, RES>() {
+			@Override
+			public RES echosound(REQ req, Object... args) throws EchoSoundException {
+				return null;
+			}
+		}, new IEcho<REQ, RES>() {
+			@Override
+			public REQ $echo(REQ req, Object... args) throws EchoSoundException {
+				return null;
+			}
+			@Override
+			public RES $rebound(REQ req, Object... args) throws EchoSoundException {
+				return null;
+			}
+		}, args);
+	}
+	
+	/**
+	 * 容错内核
+	 * <br>
+	 * 包括:熔断拒绝→超时控制→舱壁隔离→服务容错→慢性尝试
 	 * @param req
 	 * @param args
 	 * @return
