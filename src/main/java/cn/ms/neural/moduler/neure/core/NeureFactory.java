@@ -13,6 +13,7 @@ import cn.ms.neural.common.exception.neure.NeureException;
 import cn.ms.neural.common.exception.neure.NeureNonFaultTolerantException;
 import cn.ms.neural.common.exception.neure.NeureTimeoutException;
 import cn.ms.neural.common.exception.neure.NeureUnknownException;
+import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.neure.INeure;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;
@@ -26,6 +27,7 @@ import cn.ms.neural.moduler.neure.support.NeureSupport;
  * @author lry
  * @version v1.0
  */
+@Adaptive
 public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 
 	Moduler<REQ, RES> moduler;

@@ -10,6 +10,7 @@ import cn.ms.neural.common.NamedThreadFactory;
 import cn.ms.neural.common.concurrent.LongAdder;
 import cn.ms.neural.common.exception.gracestop.GraceStopedException;
 import cn.ms.neural.common.exception.gracestop.GraceWaitStopException;
+import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.gracestop.IGraceStop;
@@ -18,6 +19,13 @@ import cn.ms.neural.moduler.extension.gracestop.processor.IGraceStopProcessor;
 import cn.ms.neural.moduler.extension.gracestop.type.GraceStopBootType;
 import cn.ms.neural.moduler.extension.gracestop.type.GraceStopStatusType;
 
+/**
+ * 优雅停机
+ * 
+ * @author lry
+ * @version v1.0
+ */
+@Adaptive
 public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 
 	/**
