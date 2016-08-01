@@ -1,6 +1,7 @@
 package cn.ms.neural.moduler.extension.echosound.core;
 
 import cn.ms.neural.common.exception.EchoSoundException;
+import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.moduler.Conf;
 //github.com/yu120/neural
 import cn.ms.neural.moduler.Moduler;
@@ -18,6 +19,7 @@ import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
  * @param <REQ>
  * @param <RES>
  */
+@Adaptive
 public class EchoSoundFactory<REQ, RES> implements IEchoSound<REQ, RES> {
 
 	Moduler<REQ, RES> moduler;

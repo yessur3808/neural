@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.common.spi.ExtensionFactory;
 import cn.ms.neural.common.spi.ExtensionLoader;
 
@@ -12,7 +13,7 @@ import cn.ms.neural.common.spi.ExtensionLoader;
  * 
  * @author lry
  */
-//@Adaptive
+@Adaptive
 public class AdaptiveExtensionFactory implements ExtensionFactory {
     
     private final List<ExtensionFactory> factories;

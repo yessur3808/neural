@@ -13,6 +13,7 @@ import com.google.common.util.concurrent.RateLimiter;
 
 import cn.ms.neural.common.exception.flowrate.FlowrateException;
 import cn.ms.neural.common.exception.flowrate.support.CCTRejectREQException;
+import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.common.utils.StringUtils;
 import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.Moduler;
@@ -25,10 +26,12 @@ import cn.ms.neural.moduler.extension.flowrate.processor.IFlowRateProcessor;
 import cn.ms.neural.moduler.extension.flowrate.type.FlowRateType;
 
 /**
+ * 流控中心
  * 
  * @author lry
  * @version v1.0
  */
+@Adaptive
 public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 
 	private static final Logger logger=LogManager.getLogger(FlowRateFactory.class);

@@ -2,6 +2,7 @@ package cn.ms.neural.moduler.extension.idempotent.core;
 
 import cn.ms.neural.common.exception.idempotent.IdempotentContainException;
 import cn.ms.neural.common.exception.idempotent.IdempotentException;
+import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.idempotent.Idempotent;
@@ -16,6 +17,7 @@ import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
  * @param <REQ>
  * @param <RES>
  */
+@Adaptive
 public class IdempotentFactory<REQ, RES> implements Idempotent<REQ, RES>{
 
 	Moduler<REQ, RES> moduler=null;
