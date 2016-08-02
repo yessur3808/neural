@@ -1,15 +1,63 @@
 package cn.ms.neural.moduler.neure.handler;
 
+/**
+ * 神经元处理
+ * 
+ * @author lry
+ * @version v1.0
+ */
 public interface INeureHandler<REQ, RES> {
 
+	/**
+	 * 路由服务
+	 * 
+	 * @param req
+	 * @param args
+	 * @return
+	 * @throws Throwable
+	 */
 	RES route(REQ req, Object...args) throws Throwable;
 
+	/**
+	 * 失败容错
+	 * 
+	 * @param req
+	 * @param args
+	 * @return
+	 */
 	RES faulttolerant(REQ req, Object...args);
 	
+	/**
+	 * 慢性尝试周期计算
+	 * <br>
+	 * 1.用于释放句柄资源<br>
+	 * 2.用于节约资源开销<br>
+	 * @param nowTimes
+	 * @param nowExpend
+	 * @param maxRetryNum
+	 * @param args
+	 * @return
+	 * @throws Throwable
+	 */
 	long breath(long nowTimes, long nowExpend, long maxRetryNum, Object...args) throws Throwable;
 	
+	/**
+	 * 回调服务
+	 * 
+	 * @param res
+	 * @param args
+	 * @throws Throwable
+	 */
 	void callback(RES res, Object...args) throws Throwable;
 	
+	/**
+	 * 告警通知
+	 * 
+	 * @param req
+	 * @param t
+	 * @param args
+	 * @throws Throwable
+	 */
 	void alarm(REQ req, Throwable t, Object...args) throws Throwable;
 	
 }

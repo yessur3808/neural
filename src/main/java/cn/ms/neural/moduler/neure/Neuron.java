@@ -1,4 +1,4 @@
-package cn.ms.neural.moduler.neure.handler.support;
+package cn.ms.neural.moduler.neure;
 
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
@@ -25,45 +25,44 @@ import cn.ms.neural.moduler.neure.handler.INeureHandler;
  * @param <REQ> 请求对象
  * @param <RES> 响应对象
  */
-public class NeureHandler<REQ, RES> extends HystrixCommand<RES> {
+public class Neuron<REQ, RES> extends HystrixCommand<RES> {
 
-	private static final Logger logger=LogManager.getLogger(NeureHandler.class);
+	private static final Logger logger=LogManager.getLogger(Neuron.class);
 	
 	private final REQ req;//请求对象
 	private final Object[] args;//其他参数
-	private final int maxRetryTimes;//最大重试次数(包括非重试次数)
+	private final int maxExecuteTimes;//最大执行次数(重试次数+默认执行次数)
 	private final NeureEntity neureEntity;//配置信息
 	private final INeureHandler<REQ, RES> handler;//路由器
-	private final CountDownLatch retryTimes;// 需要重试次数
+	private final CountDownLatch retryExecuteTimes;// 需要重试次数
 	
-	//线程参数
+	//线程参数:用于记录当前线程中的参数，以便于传递至其他线程中
 	private final Map<String, String> threadContextMap=ThreadContext.getContext();
 	
-	public NeureHandler(REQ req, NeureEntity neureEntity, INeureHandler<REQ, RES> handler, Object...args) {
+	public Neuron(REQ req, NeureEntity neureEntity, INeureHandler<REQ, RES> handler, Object...args) {
 		super(neureEntity.getSetter());
 		this.req = req;
 		this.neureEntity = neureEntity;
 		this.handler = handler;
 		this.args=args;
-		this.maxRetryTimes=neureEntity.getRetryTimes()+1;
-		this.retryTimes=new CountDownLatch(maxRetryTimes);
+		this.maxExecuteTimes=neureEntity.getMaxRetryTimes()+1;
+		this.retryExecuteTimes=new CountDownLatch(maxExecuteTimes);
 	}
 	
 	/**
-	 * 依赖模块
+	 * 执行器
 	 */
 	protected RES run() throws Exception {
-		if(neureEntity.isThreadContextSwitch()){
-			putThreadContext();//线程之间参数传递
-		}
 		RES res=null;
-		
 		try {
-			while (retryTimes.getCount()>0) {
-				long retryStart=System.currentTimeMillis();
+			if(neureEntity.isThreadContext()){
+				putThreadContextParameters();//线程之间参数传递
+			}
+			
+			while (retryExecuteTimes.getCount()>0) {
+				long retryStartTime=System.currentTimeMillis();
 				try {
-					res = handler.route(req, args);
-					return res;
+					return handler.route(req, args);//执行route
 				} catch (Throwable t) {
 					logger.error("The run-route is failure, error is:"+t.getCause(), t);
 					t.printStackTrace();
@@ -75,15 +74,15 @@ public class NeureHandler<REQ, RES> extends HystrixCommand<RES> {
 					}
 					
 					//最后一次重试,则向外抛异常
-					if(retryTimes.getCount()<2){
+					if(retryExecuteTimes.getCount()<2){
 						throw new Throwable(t.getMessage(), t);
 					}
 				} finally {
-					if(neureEntity.getRetryTimes()>0){//需要重试
-						long nowExpend=System.currentTimeMillis()-retryStart;//计算本次重试耗时
+					if(neureEntity.getMaxRetryTimes()>0){//需要重试
+						long nowExpend=System.currentTimeMillis()-retryStartTime;//计算本次重试耗时
 						try {
-							long breathTime=handler.breath(retryTimes.getCount(), nowExpend, maxRetryTimes, args);//计算慢性休眠时间
-							if(retryTimes.getCount()>1){//非最后一次重试,都需要休眠;相反,最后一次重试则快速失败,需要要休眠
+							long breathTime=handler.breath(retryExecuteTimes.getCount(), nowExpend, maxExecuteTimes, args);//计算慢性休眠时间
+							if(retryExecuteTimes.getCount()>1){//非最后一次重试,都需要休眠;相反,最后一次重试则快速失败,不需要休眠
 								Thread.sleep(breathTime);//休眠后重试						
 							}
 						} catch (Throwable t) {
@@ -91,18 +90,18 @@ public class NeureHandler<REQ, RES> extends HystrixCommand<RES> {
 						}
 					}
 					
-					retryTimes.countDown();//递减重试次数
+					retryExecuteTimes.countDown();//递减重试次数
 				}
 			}
 		}catch(Throwable t){//捕获重试完成后抛出的异常
-			if(neureEntity.isFallbackSwitch()){//需要降级
+			if(neureEntity.isFallback()){//需要降级
 				throw new NeureException(t.getMessage(), t);
 			}else{//不需要降级
 				throw new HystrixBadRequestException(t.getMessage(), t);
 			}
 		} finally {
-			if(neureEntity.isThreadContextSwitch()){
-				ThreadContext.clearAll();
+			if(neureEntity.isThreadContext()){
+				ThreadContext.clearAll();//清理本次传递数据
 			}
 		}
 		
@@ -115,8 +114,8 @@ public class NeureHandler<REQ, RES> extends HystrixCommand<RES> {
 	@Override
 	protected RES getFallback() {
 		try{
-			if(neureEntity.isThreadContextSwitch()){
-				putThreadContext();
+			if(neureEntity.isThreadContext()){
+				putThreadContextParameters();
 			}
 			
 			//容错处理
@@ -124,13 +123,16 @@ public class NeureHandler<REQ, RES> extends HystrixCommand<RES> {
 		}catch(Throwable t){
 			throw new NeureFaultTolerantException(t.getMessage(), t);
 		} finally {
-			if(neureEntity.isThreadContextSwitch()){
+			if(neureEntity.isThreadContext()){
 				ThreadContext.clearAll();
 			}
 		}
 	}
 	
-	private void putThreadContext() {
+	/**
+	 * 参数注入线程
+	 */
+	private void putThreadContextParameters() {
 		if(threadContextMap!=null){
 			if(!threadContextMap.isEmpty()){
 				for (Map.Entry<String, String> entry:threadContextMap.entrySet()) {

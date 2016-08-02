@@ -2,17 +2,29 @@ package cn.ms.neural.moduler.neure.conf;
 
 public class NeureConf {
 
+	/**
+	 * 核心开关
+	 */
 	public static final String SWITCH_KEY = "switch";
 	public static final boolean SWITCH_DEF_VAL = true;
 	
-	public static final String FALLBACK_SWITCH_KEY = "fallbackSwitch";
+	/**
+	 * 容错开关
+	 */
+	public static final String FALLBACK_SWITCH_KEY = "fallback";
 	public static final boolean FALLBACK_SWITCH_DEF_VAL = true;
 	
-	public static final String THREADCONTEXT_SWITCH_KEY = "threadContextSwitch";
+	/**
+	 * 线程之间参数传递开关
+	 */
+	public static final String THREADCONTEXT_SWITCH_KEY = "threadContext";
 	public static final boolean THREADCONTEXT_SWITCH_DEF_VAL = true;
 	
-	public static final String RETRYTIMES_KEY = "retryTimes";
-	public static final int RETRYTIMES_DEF_VAL = 0;
+	/**
+	 * 最大重试次数
+	 */
+	public static final String MAX_RETRYTIMES_KEY = "maxRetryTimes";
+	public static final int MAX_RETRYTIMES_DEF_VAL = 0;
 	
 	public static final String EITTIMEOUT_KEY = "eitTimeout";
 	public static final int EITTIMEOUT_DEF_VAL = 80000;

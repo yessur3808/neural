@@ -6,14 +6,14 @@ import cn.ms.neural.moduler.neure.conf.NeureConf;
 import cn.ms.neural.moduler.neure.entity.HystrixSetter;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;
 
-public class NeureSupport {
+public class NeureConvert {
 
 	public static NeureEntity convert(URL url) {
 		NeureEntity entity=new NeureEntity();
 		entity.setNeureSwitch(url.getModulerParameter(Conf.NEURE, NeureConf.SWITCH_KEY, NeureConf.SWITCH_DEF_VAL));
-		entity.setFallbackSwitch(url.getModulerParameter(Conf.NEURE, NeureConf.FALLBACK_SWITCH_KEY, NeureConf.FALLBACK_SWITCH_DEF_VAL));
-		entity.setThreadContextSwitch(url.getModulerParameter(Conf.NEURE, NeureConf.THREADCONTEXT_SWITCH_KEY, NeureConf.THREADCONTEXT_SWITCH_DEF_VAL));
-		entity.setRetryTimes(url.getModulerParameter(Conf.NEURE, NeureConf.RETRYTIMES_KEY, NeureConf.RETRYTIMES_DEF_VAL));
+		entity.setFallback(url.getModulerParameter(Conf.NEURE, NeureConf.FALLBACK_SWITCH_KEY, NeureConf.FALLBACK_SWITCH_DEF_VAL));
+		entity.setThreadContext(url.getModulerParameter(Conf.NEURE, NeureConf.THREADCONTEXT_SWITCH_KEY, NeureConf.THREADCONTEXT_SWITCH_DEF_VAL));
+		entity.setMaxRetryTimes(url.getModulerParameter(Conf.NEURE, NeureConf.MAX_RETRYTIMES_KEY, NeureConf.MAX_RETRYTIMES_DEF_VAL));
 		
 		HystrixSetter hystrixSetter=new HystrixSetter();
 		hystrixSetter.setEitTimeout(url.getModulerParameter(Conf.NEURE, NeureConf.EITTIMEOUT_KEY, NeureConf.EITTIMEOUT_DEF_VAL));

@@ -1,5 +1,11 @@
 package cn.ms.neural.moduler.neure.entity;
 
+/**
+ * 常用Hystrix参数
+ * 
+ * @author lry
+ * @version v1.0
+ */
 public class HystrixSetter {
 
 	private String commandGroupKey="neural-command-group-key";//Command分组KEY
@@ -44,6 +50,8 @@ public class HystrixSetter {
 		return new HystrixSetter(80000, 80000, 50, 50, 100, 15);
 	}
 	
+	public HystrixSetter() {
+	}
 	public HystrixSetter(int eitTimeout, int eTimeout, 
 			int cbRequests, int cbErrorRate,int threadPoolCoreSize,
 			int threadPoolQueueSize) {
@@ -54,8 +62,7 @@ public class HystrixSetter {
 		this.threadPoolCoreSize = threadPoolCoreSize;
 		this.threadPoolQueueSize = threadPoolQueueSize;
 	}
-	public HystrixSetter() {
-	}
+	
 	public String getCommandGroupKey() {
 		return commandGroupKey;
 	}

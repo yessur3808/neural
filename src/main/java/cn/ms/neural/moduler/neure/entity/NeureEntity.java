@@ -11,74 +11,63 @@ import cn.ms.neural.moduler.neure.support.HystrixSetterSupport;
  */
 public class NeureEntity {
 
+	private boolean neureSwitch=true;
+	/**
+	 * Log4j threadContext
+	 */
+	private boolean threadContext=true;
+	/**
+	 * 降级开关
+	 */
+	private boolean fallback=true;
+	/**
+	 * 最大重试次数
+	 */
+	private int maxRetryTimes=0;
+	/**
+	 * Hystrix设置
+	 */
+	private HystrixSetter hystrixSetter;
 	/**
 	 * 容错配置
 	 */
 	private Setter setter=HystrixSetterSupport.buildSetter();
 	
-	private boolean neureSwitch=true;
-	/**
-	 * Log4j threadContext Switch
-	 */
-	private boolean threadContextSwitch=true;
-	/**
-	 * 降级开关
-	 */
-	private boolean fallbackSwitch=true;
-	
-	/**
-	 * 重试次数
-	 */
-	private int retryTimes=0;
-	
-	private HystrixSetter hystrixSetter;
-
-	public Setter getSetter() {
-		return setter;
-	}
-
-	public void setSetter(Setter setter) {
-		this.setter = setter;
-	}
-
 	public boolean isNeureSwitch() {
 		return neureSwitch;
 	}
-
 	public void setNeureSwitch(boolean neureSwitch) {
 		this.neureSwitch = neureSwitch;
 	}
-
-	public boolean isThreadContextSwitch() {
-		return threadContextSwitch;
+	public boolean isThreadContext() {
+		return threadContext;
 	}
-
-	public void setThreadContextSwitch(boolean threadContextSwitch) {
-		this.threadContextSwitch = threadContextSwitch;
+	public void setThreadContext(boolean threadContext) {
+		this.threadContext = threadContext;
 	}
-
-	public boolean isFallbackSwitch() {
-		return fallbackSwitch;
+	public boolean isFallback() {
+		return fallback;
 	}
-
-	public void setFallbackSwitch(boolean fallbackSwitch) {
-		this.fallbackSwitch = fallbackSwitch;
+	public void setFallback(boolean fallback) {
+		this.fallback = fallback;
 	}
-
-	public int getRetryTimes() {
-		return retryTimes;
+	public int getMaxRetryTimes() {
+		return maxRetryTimes;
 	}
-
-	public void setRetryTimes(int retryTimes) {
-		this.retryTimes = retryTimes;
+	public void setMaxRetryTimes(int maxRetryTimes) {
+		this.maxRetryTimes = maxRetryTimes;
 	}
-
 	public HystrixSetter getHystrixSetter() {
 		return hystrixSetter;
 	}
-
 	public void setHystrixSetter(HystrixSetter hystrixSetter) {
 		this.hystrixSetter = hystrixSetter;
 	}
-
+	public Setter getSetter() {
+		return setter;
+	}
+	public void setSetter(Setter setter) {
+		this.setter = setter;
+	}
+	
 }

@@ -16,10 +16,10 @@ import cn.ms.neural.common.exception.neure.NeureUnknownException;
 import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.neure.INeure;
+import cn.ms.neural.moduler.neure.Neuron;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;
 import cn.ms.neural.moduler.neure.handler.INeureHandler;
-import cn.ms.neural.moduler.neure.handler.support.NeureHandler;
-import cn.ms.neural.moduler.neure.support.NeureSupport;
+import cn.ms.neural.moduler.neure.support.NeureConvert;
 
 /**
  * 神经元
@@ -38,7 +38,7 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 		this.moduler=moduler;
 		
 		//变更通知
-		neureEntity=NeureSupport.convert(this.moduler.getUrl());
+		neureEntity=NeureConvert.convert(this.moduler.getUrl());
 	}
 	
 	@Override
@@ -49,9 +49,9 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 	@Override
 	public RES neure(REQ req, INeureHandler<REQ, RES> handler, Object... args) throws NeureException {
 		RES res=null;
-		NeureHandler<REQ, RES> neureHandler=null;
+		Neuron<REQ, RES> neureHandler=null;
 		
-		neureHandler=new NeureHandler<REQ, RES>(req, neureEntity, handler, args);
+		neureHandler=new Neuron<REQ, RES>(req, neureEntity, handler, args);
 		
 		try {
 			res=neureHandler.execute();//执行或容错
