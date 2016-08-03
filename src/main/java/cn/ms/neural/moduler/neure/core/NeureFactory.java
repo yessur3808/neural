@@ -20,6 +20,7 @@ import cn.ms.neural.moduler.neure.Neuron;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;
 import cn.ms.neural.moduler.neure.handler.INeureHandler;
 import cn.ms.neural.moduler.neure.support.NeureConvert;
+import cn.ms.neural.moduler.neure.type.AlarmType;
 
 /**
  * 神经元
@@ -51,9 +52,8 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 		RES res=null;
 		Neuron<REQ, RES> neureHandler=null;
 		
-		neureHandler=new Neuron<REQ, RES>(req, neureEntity, handler, args);
-		
 		try {
+			neureHandler=new Neuron<REQ, RES>(req, neureEntity, handler, args);
 			res=neureHandler.execute();//执行或容错
 		}catch(HystrixBadRequestException nonft){
 			throw new NeureNonFaultTolerantException(nonft.getMessage(), nonft);//不执行容错异常
@@ -69,13 +69,22 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 			try {
 				handler.callback(res, args);//回调
 			} catch (Throwable callback) {
+				//$NON-NLS-callback$
+				neureHandler.doAlarm("callback", AlarmType.CALLBACK, callback);
 				throw new NeureCallbackException(callback.getMessage(), callback);//回调异常
 			}
 			
+			//指标一
 			List<HystrixEventType> hystrixEventTypes=neureHandler.getExecutionEvents();
-			HystrixMetrics metrics=neureHandler.getMetrics();
 			System.out.println("事件:"+hystrixEventTypes.toString());
+			
+			//指标二
+			HystrixMetrics metrics=neureHandler.getMetrics();
 			System.out.println("指标:"+metrics.toString());
+			
+			//指标三
+			long retryExecuteTimes=neureHandler.getRetryExecuteTimes();
+			System.out.println("重试执行次数:"+retryExecuteTimes);
 		}
 		
 		return res;

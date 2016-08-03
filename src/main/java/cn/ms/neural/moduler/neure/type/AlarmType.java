@@ -13,24 +13,14 @@ public enum AlarmType {
 	RUN_ROUTE,
 	
 	/**
-	 * 常规MOCK失败告警
+	 * 呼吸失败告警
 	 */
-	RUN_MOCK,
+	RUN_BREATH,
 	
 	/**
-	 * 容错路由失败告警
+	 * Fault-Tolerant失败告警
 	 */
-	FALLBACK_ROUTE,
-	
-	/**
-	 * 容错MOCK失败告警
-	 */
-	FALLBACK_MOCK,
-	
-	/**
-	 * 容错呼吸失败告警
-	 */
-	BREATHCYCLE,
+	FALLBACK_FAULT_TOLERANT,
 	
 	/**
 	 * 回调失败告警

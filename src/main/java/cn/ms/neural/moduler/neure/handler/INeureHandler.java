@@ -1,5 +1,7 @@
 package cn.ms.neural.moduler.neure.handler;
 
+import cn.ms.neural.moduler.neure.type.AlarmType;
+
 /**
  * 神经元处理
  * 
@@ -53,11 +55,12 @@ public interface INeureHandler<REQ, RES> {
 	/**
 	 * 告警通知
 	 * 
+	 * @param alarmType
 	 * @param req
 	 * @param t
 	 * @param args
 	 * @throws Throwable
 	 */
-	void alarm(REQ req, Throwable t, Object...args) throws Throwable;
+	void alarm(AlarmType alarmType, REQ req, Throwable t, Object...args) throws Throwable;
 	
 }

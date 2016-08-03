@@ -18,6 +18,7 @@ import cn.ms.neural.moduler.extension.gracestop.processor.IGraceStopProcessor;
 import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcessor;
 import cn.ms.neural.moduler.neure.handler.INeureHandler;
+import cn.ms.neural.moduler.neure.type.AlarmType;
 
 /**
  * 微服务神经元 <br>
@@ -198,7 +199,7 @@ public class Neural<REQ, RES> extends NeuralFactory<REQ, RES>{
 			public void callback(RES res, Object... args) throws Throwable {
 			}
 			@Override
-			public void alarm(REQ req, Throwable t, Object... args) throws Throwable {
+			public void alarm(AlarmType alarmType, REQ req, Throwable t, Object... args) throws Throwable {
 			}
 		}, args);
 	}

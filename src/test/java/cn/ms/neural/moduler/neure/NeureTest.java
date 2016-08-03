@@ -6,6 +6,7 @@ import org.junit.Test;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.neure.core.NeureFactory;
 import cn.ms.neural.moduler.neure.handler.INeureHandler;
+import cn.ms.neural.moduler.neure.type.AlarmType;
 
 public class NeureTest {
 
@@ -25,7 +26,7 @@ public class NeureTest {
 			public long breath(long nowTimes, long nowExpend, long maxRetryNum, Object... args) throws Throwable {
 				return 0;
 			}
-			public void alarm(String req, Throwable t, Object... args) throws Throwable {
+			public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws Throwable {
 			}
 		});
 		
@@ -50,7 +51,7 @@ public class NeureTest {
 				public long breath(long nowTimes, long nowExpend, long maxRetryNum, Object... args) throws Throwable {
 					return 0;
 				}
-				public void alarm(String req, Throwable t, Object... args) throws Throwable {
+				public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws Throwable {
 				}
 			});
 			

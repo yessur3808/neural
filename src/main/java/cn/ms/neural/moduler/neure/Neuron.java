@@ -16,6 +16,7 @@ import cn.ms.neural.common.exception.neure.NeureException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;
 import cn.ms.neural.moduler.neure.handler.INeureHandler;
+import cn.ms.neural.moduler.neure.type.AlarmType;
 
 /**
  * 神经元
@@ -45,7 +46,7 @@ public class Neuron<REQ, RES> extends HystrixCommand<RES> {
 		this.neureEntity = neureEntity;
 		this.handler = handler;
 		this.args=args;
-		this.maxExecuteTimes=neureEntity.getMaxRetryTimes()+1;
+		this.maxExecuteTimes=neureEntity.getMaxRetryTimes()+1;//最大允许执行次数
 		this.retryExecuteTimes=new CountDownLatch(maxExecuteTimes);
 	}
 	
@@ -64,18 +65,14 @@ public class Neuron<REQ, RES> extends HystrixCommand<RES> {
 				try {
 					return handler.route(req, args);//执行route
 				} catch (Throwable t) {
-					logger.error("The run-route is failure, error is:"+t.getCause(), t);
+					//$NON-NLS-run-alarm$
+					doAlarm("run-alarm", AlarmType.RUN_ROUTE, t);
+					
+					String routeErr=String.format("The run-route is failure, error is:%s", t.getMessage());
+					logger.error(routeErr, t);
 					t.printStackTrace();
-					
-					try {
-						handler.alarm(req, t, args);//告警
-					} catch (Throwable th) {
-						throw new NeureAlarmException(th.getMessage(), th);
-					}
-					
-					//最后一次重试,则向外抛异常
-					if(retryExecuteTimes.getCount()<2){
-						throw new Throwable(t.getMessage(), t);
+					if(retryExecuteTimes.getCount()<2){//最后一次重试,则向外抛异常
+						throw new Throwable(routeErr, t);
 					}
 				} finally {
 					if(neureEntity.getMaxRetryTimes()>0){//需要重试
@@ -86,7 +83,13 @@ public class Neuron<REQ, RES> extends HystrixCommand<RES> {
 								Thread.sleep(breathTime);//休眠后重试						
 							}
 						} catch (Throwable t) {
-							throw new NeureBreathException(t.getMessage(), t);
+							//$NON-NLS-run-breath$
+							doAlarm("run-breath", AlarmType.RUN_BREATH, t);
+							
+							String breathErr=String.format("The run-breath is failure, error is:%s", t.getMessage());
+							logger.error(breathErr, t);
+							t.printStackTrace();
+							throw new NeureBreathException(breathErr, t);
 						}
 					}
 					
@@ -114,19 +117,52 @@ public class Neuron<REQ, RES> extends HystrixCommand<RES> {
 	@Override
 	protected RES getFallback() {
 		try{
-			if(neureEntity.isThreadContext()){
+			if(neureEntity.isThreadContext()){//线程之间参数传递
 				putThreadContextParameters();
 			}
 			
 			//容错处理
 			return handler.faulttolerant(req, args);
 		}catch(Throwable t){
-			throw new NeureFaultTolerantException(t.getMessage(), t);
+			//$NON-NLS-getFallback-faulttolerant$
+			doAlarm("getFallback-faulttolerant", AlarmType.FALLBACK_FAULT_TOLERANT, t);
+			
+			String faulttolerantErr=String.format("The getFallback-faulttolerant is failure, error is:%s", t.getMessage());
+			logger.error(faulttolerantErr, t);
+			t.printStackTrace();
+			throw new NeureFaultTolerantException(faulttolerantErr, t);
 		} finally {
-			if(neureEntity.isThreadContext()){
+			if(neureEntity.isThreadContext()){//清理新线程中的参数
 				ThreadContext.clearAll();
 			}
 		}
+	}
+	
+	/**
+	 * 执行告警
+	 * 
+	 * @param name
+	 * @param alarmType
+	 * @param t
+	 */
+	public void doAlarm(String name, AlarmType alarmType, Throwable t) {
+		try {
+			handler.alarm(alarmType, req, t, args);//告警
+		} catch (Throwable th) {
+			String alarmErr=String.format("The % is failure, error is:%s", name, th.getMessage());
+			logger.error(alarmErr, th);
+			th.printStackTrace();
+			throw new NeureAlarmException(alarmErr, th);
+		}
+	}
+
+	/**
+	 * 重试执行次数
+	 * 
+	 * @return
+	 */
+	public long getRetryExecuteTimes() {
+		return maxExecuteTimes-retryExecuteTimes.getCount();
 	}
 	
 	/**
