@@ -35,6 +35,13 @@
 			<artifactId>guava</artifactId>
 			<version>${guava}</version>
 		</dependency>
+		
+		<!-- zbus -->
+		<dependency>
+		    <groupId>org.zbus</groupId>
+		    <artifactId>zbus</artifactId>
+		    <version>6.3.4</version>
+		</dependency>
 
 		<!-- 其他依赖 -->
 		<dependency>
