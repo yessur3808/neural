@@ -3,9 +3,10 @@ package cn.ms.neural.moduler.neure;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.neure.core.NeureFactory;
-import cn.ms.neural.moduler.neure.handler.INeureHandler;
+import cn.ms.neural.moduler.neure.processor.INeureProcessor;
 import cn.ms.neural.moduler.neure.type.AlarmType;
 
 public class NeureTest {
@@ -14,19 +15,24 @@ public class NeureTest {
 	public void test_route() {
 		INeure<String, String> neure=new NeureFactory<>();
 		neure.notify(new Moduler<String, String>());
-		String res=neure.neure("这是请求报文", new INeureHandler<String, String>() {
-			public String route(String req, Object... args) throws Throwable {
-				return "这是响应报文";
-			}
+		String res=neure.neure("这是请求报文", new INeureProcessor<String, String>() {
+			@Override
 			public String faulttolerant(String req, Object... args) {
 				return null;
 			}
+			@Override
 			public void callback(String res, Object... args) throws Throwable {
 			}
+			@Override
 			public long breath(long nowTimes, long nowExpend, long maxRetryNum, Object... args) throws Throwable {
 				return 0;
 			}
+			@Override
 			public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws Throwable {
+			}
+			@Override
+			public String processor(String req, Object... args) throws ProcessorException {
+				return "这是响应报文";
 			}
 		});
 		
@@ -39,19 +45,24 @@ public class NeureTest {
 		INeure<String, String> neure=new NeureFactory<>();
 		try {
 			neure.notify(new Moduler<String, String>());
-			String res=neure.neure("这是请求报文", new INeureHandler<String, String>() {
-				public String route(String req, Object... args) throws Throwable {
-					throw new RuntimeException();
-				}
+			String res=neure.neure("这是请求报文", new INeureProcessor<String, String>() {
+				@Override
 				public String faulttolerant(String req, Object... args) {
 					return "这是响应报文";
 				}
+				@Override
 				public void callback(String res, Object... args) throws Throwable {
 				}
+				@Override
 				public long breath(long nowTimes, long nowExpend, long maxRetryNum, Object... args) throws Throwable {
 					return 0;
 				}
+				@Override
 				public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws Throwable {
+				}
+				@Override
+				public String processor(String req, Object... args) throws ProcessorException {
+					throw new RuntimeException();
 				}
 			});
 			
