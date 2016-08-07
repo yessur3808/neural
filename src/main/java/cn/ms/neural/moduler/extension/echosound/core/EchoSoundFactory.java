@@ -1,6 +1,6 @@
 package cn.ms.neural.moduler.extension.echosound.core;
 
-import cn.ms.neural.common.exception.EchoSoundException;
+import cn.ms.neural.common.exception.echosound.EchoSoundException;
 import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.moduler.Conf;
 //github.com/yu120/neural

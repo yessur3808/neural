@@ -1,11 +1,11 @@
-package cn.ms.neural.common.exception;
+package cn.ms.neural.common.exception.echosound;
 
 /**
- * 放通率拒绝异常
+ * 中枢神经异常
  * 
  * @author lry
  */
-public class PipeScalingException extends RuntimeException {
+public class EchoSoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 7815426752583648734L;
 
@@ -17,38 +17,38 @@ public class PipeScalingException extends RuntimeException {
     public static final int SERIALIZATION_EXCEPTION = 5;
     private int code;
 
-    public PipeScalingException() {
+    public EchoSoundException() {
         super();
     }
 
-    public PipeScalingException(String message, Throwable cause) {
+    public EchoSoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public PipeScalingException(String message) {
+    public EchoSoundException(String message) {
         super(message);
     }
 
-    public PipeScalingException(Throwable cause) {
+    public EchoSoundException(Throwable cause) {
         super(cause);
     }
 
-    public PipeScalingException(int code) {
+    public EchoSoundException(int code) {
         super();
         this.code = code;
     }
 
-    public PipeScalingException(int code, String message, Throwable cause) {
+    public EchoSoundException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public PipeScalingException(int code, String message) {
+    public EchoSoundException(int code, String message) {
         super(message);
         this.code = code;
     }
 
-    public PipeScalingException(int code, Throwable cause) {
+    public EchoSoundException(int code, Throwable cause) {
         super(cause);
         this.code = code;
     }

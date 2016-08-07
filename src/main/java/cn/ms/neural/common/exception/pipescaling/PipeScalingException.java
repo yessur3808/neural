@@ -1,11 +1,11 @@
-package cn.ms.neural.common.exception;
+package cn.ms.neural.common.exception.pipescaling;
 
 /**
- * 中枢神经异常
+ * 放通率拒绝异常
  * 
  * @author lry
  */
-public class NullException extends RuntimeException {
+public class PipeScalingException extends RuntimeException {
 
 	private static final long serialVersionUID = 7815426752583648734L;
 
@@ -17,38 +17,38 @@ public class NullException extends RuntimeException {
     public static final int SERIALIZATION_EXCEPTION = 5;
     private int code;
 
-    public NullException() {
+    public PipeScalingException() {
         super();
     }
 
-    public NullException(String message, Throwable cause) {
+    public PipeScalingException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public NullException(String message) {
+    public PipeScalingException(String message) {
         super(message);
     }
 
-    public NullException(Throwable cause) {
+    public PipeScalingException(Throwable cause) {
         super(cause);
     }
 
-    public NullException(int code) {
+    public PipeScalingException(int code) {
         super();
         this.code = code;
     }
 
-    public NullException(int code, String message, Throwable cause) {
+    public PipeScalingException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public NullException(int code, String message) {
+    public PipeScalingException(int code, String message) {
         super(message);
         this.code = code;
     }
 
-    public NullException(int code, Throwable cause) {
+    public PipeScalingException(int code, Throwable cause) {
         super(cause);
         this.code = code;
     }

@@ -1,11 +1,11 @@
-package cn.ms.neural.common.exception;
+package cn.ms.neural.common.exception.echosound;
 
 /**
  * 中枢神经异常
  * 
  * @author lry
  */
-public class EchoSoundException extends RuntimeException {
+public class EchoSoundReboundException extends RuntimeException {
 
 	private static final long serialVersionUID = 7815426752583648734L;
 
@@ -17,38 +17,38 @@ public class EchoSoundException extends RuntimeException {
     public static final int SERIALIZATION_EXCEPTION = 5;
     private int code;
 
-    public EchoSoundException() {
+    public EchoSoundReboundException() {
         super();
     }
 
-    public EchoSoundException(String message, Throwable cause) {
+    public EchoSoundReboundException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public EchoSoundException(String message) {
+    public EchoSoundReboundException(String message) {
         super(message);
     }
 
-    public EchoSoundException(Throwable cause) {
+    public EchoSoundReboundException(Throwable cause) {
         super(cause);
     }
 
-    public EchoSoundException(int code) {
+    public EchoSoundReboundException(int code) {
         super();
         this.code = code;
     }
 
-    public EchoSoundException(int code, String message, Throwable cause) {
+    public EchoSoundReboundException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public EchoSoundException(int code, String message) {
+    public EchoSoundReboundException(int code, String message) {
         super(message);
         this.code = code;
     }
 
-    public EchoSoundException(int code, Throwable cause) {
+    public EchoSoundReboundException(int code, Throwable cause) {
         super(cause);
         this.code = code;
     }
