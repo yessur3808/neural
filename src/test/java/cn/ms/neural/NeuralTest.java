@@ -16,8 +16,8 @@ public class NeuralTest {
 		neural.init();
 		System.out.println("开始前:"+moduler.getUrl().toString());
 		for (int i = 0; i < 10; i++) {
-			String resData=neural.gracestop(REQ_DATA);
-			System.out.println("响应报文:"+resData);
+//			String resData=neural.gracestop(REQ_DATA);
+//			System.out.println("响应报文:"+resData);
 			System.out.println("URL:"+moduler.getUrl().toString());
 			Thread.sleep(1000);
 		}

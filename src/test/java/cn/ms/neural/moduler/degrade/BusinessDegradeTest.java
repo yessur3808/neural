@@ -9,7 +9,6 @@ import cn.ms.neural.common.exception.degrade.DegradeException;
 import cn.ms.neural.common.spi.ExtensionLoader;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.degrade.IDegrade;
-import cn.ms.neural.moduler.extension.degrade.processor.IBizDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.type.DegradeType;
 
@@ -42,9 +41,8 @@ public class BusinessDegradeTest {
 				public String mock(String req, Object... args) throws DegradeException {
 					return "这是MOCK响应报文";
 				}
-			}, new IBizDegradeProcessor<String, String>() {
 				@Override
-				public String processor(String req, IDegradeProcessor<String, String> processor, Object... args)throws DegradeException {
+				public String bizProcessor(String req, Object... args) throws DegradeException {
 					return "这是业务降级响应报文";
 				}
 			});
@@ -74,11 +72,10 @@ public class BusinessDegradeTest {
 				public String mock(String req, Object... args) throws DegradeException {
 					return "这是MOCK响应报文";
 				}
-			}, new IBizDegradeProcessor<String, String>() {
 				@Override
-				public String processor(String req, IDegradeProcessor<String, String> processor, Object... args)throws DegradeException {
+				public String bizProcessor(String req, Object... args) throws DegradeException {
 					if(req.equals("请求报文")){
-						return processor.processor(req, args);
+						return processor(req, args);
 					}else{
 						return "这是业务降级响应报文";
 					}
@@ -110,14 +107,13 @@ public class BusinessDegradeTest {
 				public String mock(String req, Object... args) throws DegradeException {
 					return "这是MOCK响应报文";
 				}
-			}, new IBizDegradeProcessor<String, String>() {
 				@Override
-				public String processor(String req, IDegradeProcessor<String, String> processor, Object... args)throws DegradeException {
+				public String bizProcessor(String req, Object... args) throws DegradeException {
 					if(req.equals("请求报文")){
 						try {
-							return processor.processor(req, args);
+							return processor(req, args);
 						} catch (Exception e) {
-							return processor.mock(req, args);
+							return mock(req, args);
 						}
 					}else{
 						return "这是业务降级响应报文";

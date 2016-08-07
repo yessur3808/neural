@@ -6,7 +6,6 @@ import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.degrade.IDegrade;
 import cn.ms.neural.moduler.extension.degrade.conf.DegradeConf;
-import cn.ms.neural.moduler.extension.degrade.processor.IBizDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.type.DegradeType;
 import cn.ms.neural.moduler.extension.degrade.type.StrategyType;
@@ -60,7 +59,7 @@ public class DegradeFactory<REQ, RES> implements IDegrade<REQ, RES> {
 	}
 
 	@Override
-	public RES degrade(REQ req, IDegradeProcessor<REQ, RES> processor, IBizDegradeProcessor<REQ, RES> bizprocessor, Object... args) throws DegradeException {
+	public RES degrade(REQ req, IDegradeProcessor<REQ, RES> processor, Object... args) throws DegradeException {
 		if(!degradeSwitch){//服务降级开关关闭,则直接拉起引擎
 			return processor.processor(req, args);
 		}
@@ -76,7 +75,7 @@ public class DegradeFactory<REQ, RES> implements IDegrade<REQ, RES> {
 				return doDegrade(req, strategyType, processor, args);
 			}
 		case BUSINESS:// 业务降级
-			return bizprocessor.processor(req, processor, args);
+			return processor.bizProcessor(req, args);
 		default:
 			throw new DegradeException("'degradeType' is illegal type.");
 		}

@@ -14,6 +14,6 @@ import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
  */
 public interface IEchoSound<REQ, RES> extends IModuler<REQ, RES> {
 
-	RES echosound(EchoSoundType echoSoundType, REQ req, IEchoSoundProcessor<REQ, RES> processor, IEcho<REQ, RES> echo, Object...args) throws EchoSoundException;
+	RES echosound(EchoSoundType echoSoundType, REQ req, IEchoSoundProcessor<REQ, RES> processor, Object...args) throws EchoSoundException;
 	
 }

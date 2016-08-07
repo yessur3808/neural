@@ -18,7 +18,7 @@ import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.neure.INeure;
 import cn.ms.neural.moduler.neure.Neuron;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;
-import cn.ms.neural.moduler.neure.handler.INeureHandler;
+import cn.ms.neural.moduler.neure.processor.INeureProcessor;
 import cn.ms.neural.moduler.neure.support.NeureConvert;
 import cn.ms.neural.moduler.neure.type.AlarmType;
 
@@ -48,12 +48,12 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 	}
 
 	@Override
-	public RES neure(REQ req, INeureHandler<REQ, RES> handler, Object... args) throws NeureException {
+	public RES neure(REQ req, INeureProcessor<REQ, RES> processor, Object... args) throws NeureException {
 		RES res=null;
 		Neuron<REQ, RES> neureHandler=null;
 		
 		try {
-			neureHandler=new Neuron<REQ, RES>(req, neureEntity, handler, args);
+			neureHandler=new Neuron<REQ, RES>(req, neureEntity, processor, args);
 			res=neureHandler.execute();//执行或容错
 		}catch(HystrixBadRequestException nonft){
 			throw new NeureNonFaultTolerantException(nonft.getMessage(), nonft);//不执行容错异常
@@ -67,7 +67,7 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 			throw new NeureUnknownException(unknown.getMessage(), unknown);//未知异常
 		} finally {
 			try {
-				handler.callback(res, args);//回调
+				processor.callback(res, args);//回调
 			} catch (Throwable callback) {
 				//$NON-NLS-callback$
 				neureHandler.doAlarm("callback", AlarmType.CALLBACK, callback);

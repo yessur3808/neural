@@ -2,7 +2,6 @@ package cn.ms.neural.moduler.extension.degrade;
 
 import cn.ms.neural.common.exception.degrade.DegradeException;
 import cn.ms.neural.moduler.IModuler;
-import cn.ms.neural.moduler.extension.degrade.processor.IBizDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
 
 /**
@@ -28,11 +27,10 @@ public interface IDegrade<REQ, RES> extends IModuler<REQ, RES> {
 	 * 
 	 * @param req
 	 * @param processor
-	 * @param bizprocessor
 	 * @param args
 	 * @return
 	 * @throws DegradeException
 	 */
-	RES degrade(REQ req, IDegradeProcessor<REQ, RES> processor, IBizDegradeProcessor<REQ, RES> bizprocessor, Object...args) throws DegradeException;
+	RES degrade(REQ req, IDegradeProcessor<REQ, RES> processor, Object...args) throws DegradeException;
 	
 }

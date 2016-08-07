@@ -43,7 +43,11 @@ public class ShieldingDegradeTest {
 				public String mock(String req, Object... args) throws DegradeException {
 					return "这是MOCK响应报文";
 				}
-			}, null);
+				@Override
+				public String bizProcessor(String req, Object... args) throws DegradeException {
+					return "这是业务降级响应报文";
+				}
+			});
 			
 			Assert.assertEquals(null, res);
 		} catch (Throwable t) {
@@ -71,7 +75,11 @@ public class ShieldingDegradeTest {
 				public String mock(String req, Object... args) throws DegradeException {
 					return "这是MOCK响应报文";
 				}
-			}, null);
+				@Override
+				public String bizProcessor(String req, Object... args) throws DegradeException {
+					return "这是业务降级响应报文";
+				}
+			});
 			
 			Assert.assertTrue(false);
 		} catch (Throwable t) {
@@ -103,7 +111,11 @@ public class ShieldingDegradeTest {
 				public String mock(String req, Object... args) throws DegradeException {
 					return "这是MOCK响应报文";
 				}
-			}, null);
+				@Override
+				public String bizProcessor(String req, Object... args) throws DegradeException {
+					return "这是业务降级响应报文";
+				}
+			});
 			
 			Assert.assertEquals("这是MOCK响应报文", res);
 		} catch (Throwable t) {
