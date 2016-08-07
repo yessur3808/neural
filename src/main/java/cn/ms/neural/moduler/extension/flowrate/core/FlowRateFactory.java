@@ -11,11 +11,11 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.common.util.concurrent.RateLimiter;
 
+import cn.ms.neural.Conf;
 import cn.ms.neural.common.exception.flowrate.FlowrateException;
 import cn.ms.neural.common.exception.flowrate.support.CCTRejectREQException;
 import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.common.utils.StringUtils;
-import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.flowrate.IFlowRate;
 import cn.ms.neural.moduler.extension.flowrate.conf.FlowRateConf;

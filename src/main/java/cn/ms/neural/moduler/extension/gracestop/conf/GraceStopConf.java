@@ -1,6 +1,6 @@
 package cn.ms.neural.moduler.extension.gracestop.conf;
 
-import cn.ms.neural.moduler.Conf;
+import cn.ms.neural.Conf;
 import cn.ms.neural.moduler.extension.gracestop.type.GraceStopBootType;
 import cn.ms.neural.moduler.extension.gracestop.type.GraceStopStatusType;
 

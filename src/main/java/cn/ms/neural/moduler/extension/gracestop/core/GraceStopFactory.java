@@ -6,12 +6,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
+import cn.ms.neural.Conf;
 import cn.ms.neural.common.NamedThreadFactory;
 import cn.ms.neural.common.concurrent.LongAdder;
 import cn.ms.neural.common.exception.gracestop.GraceStopedException;
 import cn.ms.neural.common.exception.gracestop.GraceWaitStopException;
 import cn.ms.neural.common.spi.Adaptive;
-import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.gracestop.IGraceStop;
 import cn.ms.neural.moduler.extension.gracestop.conf.GraceStopConf;

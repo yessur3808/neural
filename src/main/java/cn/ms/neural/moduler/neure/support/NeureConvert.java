@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.neure.support;
 
+import cn.ms.neural.Conf;
 import cn.ms.neural.common.URL;
-import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.neure.conf.NeureConf;
 import cn.ms.neural.moduler.neure.entity.HystrixSetter;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;

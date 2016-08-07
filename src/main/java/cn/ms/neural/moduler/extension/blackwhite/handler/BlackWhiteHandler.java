@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.ms.neural.Conf;
 import cn.ms.neural.common.URL;
 import cn.ms.neural.common.utils.StringUtils;
-import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.extension.blackwhite.conf.BlackWhiteConf;
 import cn.ms.neural.moduler.extension.blackwhite.entity.BlackWhiteEntity;
 import cn.ms.neural.moduler.extension.blackwhite.type.BlackWhiteType;

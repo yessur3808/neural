@@ -1,8 +1,8 @@
 package cn.ms.neural.moduler.extension.degrade.core;
 
+import cn.ms.neural.Conf;
 import cn.ms.neural.common.exception.degrade.DegradeException;
 import cn.ms.neural.common.spi.Adaptive;
-import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.degrade.IDegrade;
 import cn.ms.neural.moduler.extension.degrade.conf.DegradeConf;

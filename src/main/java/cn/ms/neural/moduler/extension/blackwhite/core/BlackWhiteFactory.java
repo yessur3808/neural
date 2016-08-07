@@ -4,13 +4,13 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.ms.neural.Conf;
 import cn.ms.neural.common.exception.blackwhite.BlackWhiteListException;
 import cn.ms.neural.common.exception.blackwhite.black.BlackListException;
 import cn.ms.neural.common.exception.blackwhite.white.WhiteListException;
 import cn.ms.neural.common.logger.ILogger;
 import cn.ms.neural.common.logger.LoggerManager;
 import cn.ms.neural.common.spi.Adaptive;
-import cn.ms.neural.moduler.Conf;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.blackwhite.IBlackWhite;
 import cn.ms.neural.moduler.extension.blackwhite.conf.BlackWhiteConf;
