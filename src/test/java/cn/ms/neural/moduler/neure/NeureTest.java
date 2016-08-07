@@ -4,6 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import cn.ms.neural.common.exception.ProcessorException;
+import cn.ms.neural.common.exception.neure.NeureAlarmException;
+import cn.ms.neural.common.exception.neure.NeureBreathException;
+import cn.ms.neural.common.exception.neure.NeureCallbackException;
+import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.neure.core.NeureFactory;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
@@ -17,22 +21,22 @@ public class NeureTest {
 		neure.notify(new Moduler<String, String>());
 		String res=neure.neure("这是请求报文", new INeureProcessor<String, String>() {
 			@Override
-			public String faulttolerant(String req, Object... args) {
+			public String processor(String req, Object... args) throws ProcessorException {
+				return "这是响应报文";
+			}
+			@Override
+			public String faulttolerant(String req, Object... args) throws NeureFaultTolerantException {
 				return null;
 			}
 			@Override
-			public void callback(String res, Object... args) throws Throwable {
-			}
-			@Override
-			public long breath(long nowTimes, long nowExpend, long maxRetryNum, Object... args) throws Throwable {
+			public long breath(long nowTimes, long nowExpend, long maxRetryNum, Object... args) throws NeureBreathException {
 				return 0;
 			}
 			@Override
-			public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws Throwable {
+			public void callback(String res, Object... args) throws NeureCallbackException {
 			}
 			@Override
-			public String processor(String req, Object... args) throws ProcessorException {
-				return "这是响应报文";
+			public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws NeureAlarmException {
 			}
 		});
 		
@@ -47,22 +51,22 @@ public class NeureTest {
 			neure.notify(new Moduler<String, String>());
 			String res=neure.neure("这是请求报文", new INeureProcessor<String, String>() {
 				@Override
+				public String processor(String req, Object... args) throws ProcessorException {
+					throw new RuntimeException();
+				}
+				@Override
 				public String faulttolerant(String req, Object... args) {
 					return "这是响应报文";
 				}
 				@Override
-				public void callback(String res, Object... args) throws Throwable {
-				}
-				@Override
-				public long breath(long nowTimes, long nowExpend, long maxRetryNum, Object... args) throws Throwable {
+				public long breath(long nowTimes, long nowExpend, long maxRetryNum, Object... args) throws NeureBreathException {
 					return 0;
 				}
 				@Override
-				public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws Throwable {
+				public void callback(String res, Object... args) throws NeureCallbackException {
 				}
 				@Override
-				public String processor(String req, Object... args) throws ProcessorException {
-					throw new RuntimeException();
+				public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws NeureAlarmException {
 				}
 			});
 			

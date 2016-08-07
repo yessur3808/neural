@@ -1,6 +1,6 @@
 package cn.ms.neural.moduler.extension.echosound;
 
-import cn.ms.neural.common.exception.EchoSoundException;
+import cn.ms.neural.common.exception.echosound.EchoSoundException;
 
 public interface IEcho<REQ, RES> {
 

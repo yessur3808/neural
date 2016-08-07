@@ -1,5 +1,9 @@
 package cn.ms.neural.moduler.neure.processor;
 
+import cn.ms.neural.common.exception.neure.NeureAlarmException;
+import cn.ms.neural.common.exception.neure.NeureBreathException;
+import cn.ms.neural.common.exception.neure.NeureCallbackException;
+import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
 import cn.ms.neural.moduler.neure.type.AlarmType;
 import cn.ms.neural.processor.IProcessor;
 
@@ -18,7 +22,7 @@ public interface INeureProcessor<REQ, RES> extends IProcessor<REQ, RES> {
 	 * @param args
 	 * @return
 	 */
-	RES faulttolerant(REQ req, Object...args);
+	RES faulttolerant(REQ req, Object...args) throws NeureFaultTolerantException;
 	
 	/**
 	 * 慢性尝试周期计算
@@ -32,7 +36,7 @@ public interface INeureProcessor<REQ, RES> extends IProcessor<REQ, RES> {
 	 * @return
 	 * @throws Throwable
 	 */
-	long breath(long nowTimes, long nowExpend, long maxRetryNum, Object...args) throws Throwable;
+	long breath(long nowTimes, long nowExpend, long maxRetryNum, Object...args) throws NeureBreathException;
 	
 	/**
 	 * 回调服务
@@ -41,7 +45,7 @@ public interface INeureProcessor<REQ, RES> extends IProcessor<REQ, RES> {
 	 * @param args
 	 * @throws Throwable
 	 */
-	void callback(RES res, Object...args) throws Throwable;
+	void callback(RES res, Object...args) throws NeureCallbackException;
 	
 	/**
 	 * 告警通知
@@ -52,6 +56,6 @@ public interface INeureProcessor<REQ, RES> extends IProcessor<REQ, RES> {
 	 * @param args
 	 * @throws Throwable
 	 */
-	void alarm(AlarmType alarmType, REQ req, Throwable t, Object...args) throws Throwable;
+	void alarm(AlarmType alarmType, REQ req, Throwable t, Object...args) throws NeureAlarmException;
 	
 }
