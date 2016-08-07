@@ -15,6 +15,8 @@ import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcessor;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
 import cn.ms.neural.moduler.neure.type.AlarmType;
+import cn.ms.neural.processor.INeuralProcessor;
+import cn.ms.neural.support.NeuralFactory;
 
 /**
  * 微服务神经元 <br>

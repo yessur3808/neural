@@ -1,5 +1,6 @@
-package cn.ms.neural;
+package cn.ms.neural.support;
 
+import cn.ms.neural.INotify;
 import cn.ms.neural.common.URL;
 import cn.ms.neural.moduler.IModuler;
 import cn.ms.neural.moduler.Moduler;

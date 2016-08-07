@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.extension.degrade.processor;
 
-import cn.ms.neural.IProcessor;
 import cn.ms.neural.common.exception.degrade.DegradeException;
+import cn.ms.neural.processor.IProcessor;
 
 /**
  * 服务降级处理器

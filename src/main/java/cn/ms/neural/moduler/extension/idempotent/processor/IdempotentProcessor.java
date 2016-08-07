@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.extension.idempotent.processor;
 
-import cn.ms.neural.IProcessor;
 import cn.ms.neural.common.exception.idempotent.IdempotentException;
+import cn.ms.neural.processor.IProcessor;
 
 public interface IdempotentProcessor<REQ,RES> extends IProcessor<REQ, RES> {
 

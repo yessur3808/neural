@@ -1,4 +1,4 @@
-package cn.ms.neural;
+package cn.ms.neural.processor;
 
 import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;

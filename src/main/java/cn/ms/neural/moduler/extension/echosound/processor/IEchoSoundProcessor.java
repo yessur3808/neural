@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.extension.echosound.processor;
 
-import cn.ms.neural.IProcessor;
 import cn.ms.neural.common.exception.EchoSoundException;
+import cn.ms.neural.processor.IProcessor;
 
 /**
  * 回声探测

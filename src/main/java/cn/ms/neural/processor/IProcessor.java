@@ -1,4 +1,4 @@
-package cn.ms.neural;
+package cn.ms.neural.processor;
 
 import cn.ms.neural.common.exception.ProcessorException;
 

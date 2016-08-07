@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.neure.processor;
 
-import cn.ms.neural.IProcessor;
 import cn.ms.neural.moduler.neure.type.AlarmType;
+import cn.ms.neural.processor.IProcessor;
 
 /**
  * 处理器
