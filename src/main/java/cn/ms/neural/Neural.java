@@ -39,8 +39,8 @@ public class Neural<REQ, RES> extends NeuralFactory<REQ, RES>{
 	/**
 	 * 微服务神经元
 	 * 
-	 * @param idempotentKEY
 	 * @param req
+	 * @param neuralId
 	 * @param echoSoundType
 	 * @param blackWhiteIdKeyVals
 	 * @param processor
@@ -48,7 +48,7 @@ public class Neural<REQ, RES> extends NeuralFactory<REQ, RES>{
 	 * @return
 	 */
 	public RES neural(REQ req,
-			final String idempotentKEY, 
+			final String neuralId, 
 			final EchoSoundType echoSoundType, 
 			final Map<String, Object> blackWhiteIdKeyVals, 
 			final INeuralProcessor<REQ, RES> processor, 
@@ -75,7 +75,7 @@ public class Neural<REQ, RES> extends NeuralFactory<REQ, RES>{
 									public RES processor(REQ req, Object...args) throws ProcessorException {
 										
 										//$NON-NLS-幂等开始$
-										return moduler.getIdempotent().idempotent(idempotentKEY, req, new IdempotentProcessor<REQ, RES>() {
+										return moduler.getIdempotent().idempotent(neuralId, req, new IdempotentProcessor<REQ, RES>() {
 											@Override
 											public RES processor(REQ req, Object...args) throws ProcessorException {
 												

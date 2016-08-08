@@ -1,25 +1,55 @@
 package cn.ms.neural;
 
+import org.junit.Test;
+
 import cn.ms.neural.common.URL;
+import cn.ms.neural.common.exception.gracestop.GraceStopedException;
 import cn.ms.neural.moduler.Moduler;
+import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
+import cn.ms.neural.moduler.extension.gracestop.type.GraceStopStatusType;
+import junit.framework.Assert;
 
 public class NeuralTest {
 
-	public static final String REQ_DATA = "这是请求报文";
-	
-	public static void main(String[] args) throws Throwable{
-		Moduler<String, String> moduler=new Moduler<>();
-		moduler.setUrl(URL.valueOf("http://127.0.0.1:8080/test/?a=1&b=2"));
-		
-		Neural<String, String> neural=new Neural<String, String>();
-		neural.notify(moduler);
-		neural.init();
-		System.out.println("开始前:"+moduler.getUrl().toString());
-		for (int i = 0; i < 10; i++) {
-//			String resData=neural.gracestop(REQ_DATA);
-//			System.out.println("响应报文:"+resData);
-			System.out.println("URL:"+moduler.getUrl().toString());
-			Thread.sleep(1000);
+	/**
+	 * 优雅停机
+	 * @throws Throwable
+	 */
+	@Test
+	public void testGracestop() {
+		try {
+			Moduler<String, String> moduler=new Moduler<>();
+			URL url=URL.valueOf("http://127.0.0.1:8080/neural/?"
+					+ "gracestop.status="+GraceStopStatusType.OFFLINE
+					+ "&gracestop.switch=boot");
+			
+			moduler.setUrl(url);
+			Neural<String, String> neural=new Neural<String, String>();
+			neural.notify(moduler);
+			neural.init();
+
+			try {
+				neural.neural("请求报文", "key1", EchoSoundType.NON, null, new NeuralProcessorDemo());
+				Assert.assertTrue(false);
+			} catch (Throwable t) {
+				if(t instanceof GraceStopedException){
+					Assert.assertTrue(true);
+				}else{
+					Assert.assertTrue(false);
+				}
+			}
+			
+			neural.notify(url.addModulerParameter(Conf.GRACESTOP, "status", GraceStopStatusType.ONLINE.getVal()));
+			try {
+				String resData=neural.neural("请求报文", "key1", EchoSoundType.NON, null, new NeuralProcessorDemo());
+				Assert.assertEquals("这是响应报文", resData);
+			} catch (Throwable t) {
+				Assert.assertTrue(false);
+				t.printStackTrace();
+			}
+		} catch (Throwable t) {
+			Assert.assertTrue(false);
+			t.printStackTrace();
 		}
 	}
 	
