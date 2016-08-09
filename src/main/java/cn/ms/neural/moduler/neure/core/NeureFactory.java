@@ -1,10 +1,7 @@
 package cn.ms.neural.moduler.neure.core;
 
-import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-import com.netflix.hystrix.HystrixEventType;
-import com.netflix.hystrix.HystrixMetrics;
 import com.netflix.hystrix.exception.HystrixBadRequestException;
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 
@@ -74,17 +71,17 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 				throw new NeureCallbackException(callback.getMessage(), callback);//回调异常
 			}
 			
-			//指标一
-			List<HystrixEventType> hystrixEventTypes=neureHandler.getExecutionEvents();
-			System.out.println("事件:"+hystrixEventTypes.toString());
-			
-			//指标二
-			HystrixMetrics metrics=neureHandler.getMetrics();
-			System.out.println("指标:"+metrics.toString());
-			
-			//指标三
-			long retryExecuteTimes=neureHandler.getRetryExecuteTimes();
-			System.out.println("重试执行次数:"+retryExecuteTimes);
+//			//指标一
+//			List<HystrixEventType> hystrixEventTypes=neureHandler.getExecutionEvents();
+//			System.out.println("事件:"+hystrixEventTypes.toString());
+//			
+//			//指标二
+//			HystrixMetrics metrics=neureHandler.getMetrics();
+//			System.out.println("指标:"+metrics.toString());
+//			
+//			//指标三
+//			long retryExecuteTimes=neureHandler.getRetryExecuteTimes();
+//			System.out.println("重试执行次数:"+retryExecuteTimes);
 		}
 		
 		return res;
