@@ -39,8 +39,8 @@ import cn.ms.neural.support.AbstractNeuralFactory;
  * 灰度路由<br>
  * @author lry
  *
- * @param <REQ>
- * @param <RES>
+ * @param <REQ> 请求对象
+ * @param <RES> 响应对象
  */
 public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 
@@ -152,15 +152,15 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 													 * 幂等请求校验
 													 */
 													@Override
-													public boolean check(String idempotentKEY) throws IdempotentException {
-														return processor.check(idempotentKEY);
+													public boolean check(String neuralId, Object...args) throws IdempotentException {
+														return processor.check(neuralId);
 													}
 													/**
 													 * 获取幂等数据
 													 */
 													@Override
-													public RES get(String idempotentKEY) throws IdempotentException {
-														return processor.get(idempotentKEY);
+													public RES get(String neuralId, Object...args) throws IdempotentException {
+														return processor.get(neuralId);
 													}
 													/**
 													 * 幂等持久化数据
