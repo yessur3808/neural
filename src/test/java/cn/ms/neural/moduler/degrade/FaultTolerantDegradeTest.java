@@ -13,7 +13,7 @@ import cn.ms.neural.moduler.extension.degrade.IDegrade;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.type.DegradeType;
 import cn.ms.neural.moduler.extension.degrade.type.StrategyType;
-import cn.ms.neural.moduler.senior.alarm.AlarmType;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 
 /**
  * 容错降级测试
@@ -50,7 +50,7 @@ public class FaultTolerantDegradeTest {
 					return "这是业务降级响应报文";
 				}
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});
@@ -86,7 +86,7 @@ public class FaultTolerantDegradeTest {
 					return "这是业务降级响应报文";
 				}
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});
@@ -127,7 +127,7 @@ public class FaultTolerantDegradeTest {
 					return "这是业务降级响应报文";
 				}
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});

@@ -1,9 +1,13 @@
 package cn.ms.neural.processor;
 
+import cn.ms.neural.common.exception.degrade.DegradeException;
+import cn.ms.neural.common.exception.echosound.EchoSoundException;
+import cn.ms.neural.common.exception.echosound.EchoSoundReboundException;
+import cn.ms.neural.common.exception.idempotent.IdempotentException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
-import cn.ms.neural.moduler.senior.alarm.IAlarm;
+import cn.ms.neural.moduler.senior.alarm.processor.IAlarmProcessor;
 
 /**
  * 微服务神经元处理中心
@@ -11,8 +15,9 @@ import cn.ms.neural.moduler.senior.alarm.IAlarm;
  * @author lry
  * @version v1.0
  */
-public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm<REQ, RES> {
+public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarmProcessor<REQ, RES> {
 
+	//$NON-NLS-容错内核$
 	/**
 	 * 失败容错
 	 * 
@@ -21,7 +26,6 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 * @return
 	 */
 	RES faulttolerant(REQ req, Object...args) throws NeureFaultTolerantException;
-	
 	/**
 	 * 慢性尝试周期计算
 	 * <br>
@@ -35,7 +39,6 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 * @throws Throwable
 	 */
 	long breath(long nowTimes, long nowExpend, long maxRetryNum, Object...args) throws NeureBreathException;
-	
 	/**
 	 * 回调服务
 	 * 
@@ -45,6 +48,7 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 */
 	void callback(RES res, Object...args) throws NeureCallbackException;
 	
+	
 	//$NON-NLS-回声探测$
 	/**
 	 * 发起探测
@@ -53,7 +57,7 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 * @param args
 	 * @return
 	 */
-	REQ $echo(REQ req, Object...args);
+	REQ $echo(REQ req, Object...args) throws EchoSoundException;
 	/**
 	 * 反弹探测
 	 * 
@@ -61,7 +65,7 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 * @param args
 	 * @return
 	 */
-	RES $rebound(REQ req, Object...args);
+	RES $rebound(REQ req, Object...args) throws EchoSoundReboundException;
 
 	
 	//$NON-NLS-幂等$
@@ -72,7 +76,7 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 * @param args
 	 * @return
 	 */
-	boolean check(String neuralId, Object...args);
+	boolean check(String neuralId, Object...args) throws IdempotentException;
 	/**
 	 * 获取幂等结果
 	 * 
@@ -80,7 +84,7 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 * @param args
 	 * @return
 	 */
-	RES get(String neuralId, Object...args);
+	RES get(String neuralId, Object...args) throws IdempotentException;
 	/**
 	 * 幂等结果持久化
 	 * 
@@ -88,7 +92,7 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 * @param res
 	 * @param args
 	 */
-	void storage(REQ req, RES res, Object...args);
+	void storage(REQ req, RES res, Object...args) throws IdempotentException;
 
 	
 	//$NON-NLS-服务降级$
@@ -99,7 +103,7 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 * @param args
 	 * @return
 	 */
-	RES mock(REQ req, Object...args);
+	RES mock(REQ req, Object...args) throws DegradeException;
 	/**
 	 * 业务降级
 	 * 
@@ -107,7 +111,7 @@ public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm
 	 * @param args
 	 * @return
 	 */
-	RES bizDegrade(REQ req, Object...args);
+	RES bizDegrade(REQ req, Object...args) throws DegradeException;
 
 	
 }

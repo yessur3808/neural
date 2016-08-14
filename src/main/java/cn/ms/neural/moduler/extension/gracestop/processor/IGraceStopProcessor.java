@@ -1,6 +1,6 @@
 package cn.ms.neural.moduler.extension.gracestop.processor;
 
-import cn.ms.neural.moduler.senior.alarm.IAlarmType;
+import cn.ms.neural.moduler.senior.alarm.processor.IAlarmTypeProcessor;
 import cn.ms.neural.processor.IProcessor;
 
 /**
@@ -11,6 +11,6 @@ import cn.ms.neural.processor.IProcessor;
  * @param <REQ>
  * @param <RES>
  */
-public interface IGraceStopProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarmType<REQ, RES> {
+public interface IGraceStopProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarmTypeProcessor<REQ, RES> {
 	
 }

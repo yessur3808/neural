@@ -12,7 +12,7 @@ import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.degrade.IDegrade;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.type.DegradeType;
-import cn.ms.neural.moduler.senior.alarm.AlarmType;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 
 /**
  * 业务降级测试
@@ -48,7 +48,7 @@ public class BusinessDegradeTest {
 					return "这是业务降级响应报文";
 				}
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});
@@ -87,7 +87,7 @@ public class BusinessDegradeTest {
 					}
 				}
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});
@@ -130,7 +130,7 @@ public class BusinessDegradeTest {
 					}
 				}
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});

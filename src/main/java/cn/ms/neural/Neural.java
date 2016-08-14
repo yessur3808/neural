@@ -19,8 +19,8 @@ import cn.ms.neural.moduler.extension.gracestop.processor.IGraceStopProcessor;
 import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcessor;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
-import cn.ms.neural.moduler.senior.alarm.AlarmModulerType;
-import cn.ms.neural.moduler.senior.alarm.AlarmType;
+import cn.ms.neural.moduler.senior.alarm.AlarmModuler;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 import cn.ms.neural.support.AbstractNeuralFactory;
 
@@ -124,10 +124,13 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 																	public void callback(RES res, Object...args) throws NeureCallbackException {
 																		processor.callback(res, args);
 																	}
+																	/**
+																	 * 告警
+																	 */
 																	@Override
-																	public void alarm(AlarmType alarmType, REQ req, RES res,
+																	public void alarm(IAlarmType alarmType, REQ req, RES res,
 																			Throwable t, Object... args) throws AlarmException {
-																		processor.alarm(AlarmModulerType.Neure, alarmType, req, res, t, args);																		
+																		processor.alarm(AlarmModuler.Neure, alarmType, req, res, t, args);																		
 																	}
 																}, args);//$NON-NLS-容错内核结束$
 															}
@@ -145,10 +148,12 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 															public RES $rebound(REQ req, Object...args) throws EchoSoundException {
 																return processor.$rebound(req, args);
 															}
+															/**
+															 * 告警
+															 */
 															@Override
-															public void alarm(AlarmType alarmType, REQ req, RES res, Throwable t,
-																	Object... args) throws AlarmException {
-																processor.alarm(AlarmModulerType.EchoSound, alarmType, req, res, t, args);																
+															public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
+																processor.alarm(AlarmModuler.EchoSound, alarmType, req, res, t, args);																
 															}
 														}, args);//$NON-NLS-回声探测结束$
 													}
@@ -173,10 +178,12 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 													public void storage(REQ req, RES res, Object...args) throws IdempotentException {
 														processor.storage(req, res, args);
 													}
+													/**
+													 * 告警
+													 */
 													@Override
-													public void alarm(AlarmType alarmType, REQ req, RES res, Throwable t,
-															Object... args) throws AlarmException {
-														processor.alarm(AlarmModulerType.Idempotent, alarmType, req, res, t, args);														
+													public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
+														processor.alarm(AlarmModuler.Idempotent, alarmType, req, res, t, args);														
 													}
 												}, args);//$NON-NLS-幂等结束$
 											}
@@ -194,42 +201,48 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 											public RES bizDegrade(REQ req, Object...args) throws DegradeException {
 												return processor.bizDegrade(req, args);
 											}
+											/**
+											 * 告警
+											 */
 											@Override
-											public void alarm(AlarmType alarmType,REQ req, RES res, 
-													Throwable t, Object... args) throws AlarmException {
-												processor.alarm(AlarmModulerType.Degrade, alarmType, req, res, t, args);												
+											public void alarm(IAlarmType alarmType,REQ req, RES res, Throwable t, Object... args) throws AlarmException {
+												processor.alarm(AlarmModuler.Degrade, alarmType, req, res, t, args);												
 											}
 										}, args);//$NON-NLS-服务降级结束$
 									}
-
+									/**
+									 * 告警
+									 */
 									@Override
-									public void alarm(AlarmType alarmType, REQ req, RES res, 
-											Throwable t, Object... args) throws AlarmException {
-										processor.alarm(AlarmModulerType.FlowRate, alarmType, req, res, t, args);
+									public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
+										processor.alarm(AlarmModuler.FlowRate, alarmType, req, res, t, args);
 									}
 								}, args);//$NON-NLS-流量控制结束$
 							}
-
+							/**
+							 * 告警
+							 */
 							@Override
-							public void alarm(AlarmType alarmType, REQ req, RES res,
-									Throwable t, Object... args) throws AlarmException {
-								processor.alarm(AlarmModulerType.PipeScaling, alarmType, req, res, t, args);
+							public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
+								processor.alarm(AlarmModuler.PipeScaling, alarmType, req, res, t, args);
 							}
 						}, args);//$NON-NLS-管道缩放结束$
 					}
-
+					/**
+					 * 告警
+					 */
 					@Override
-					public void alarm(AlarmType alarmType, REQ req, RES res,
-							Throwable t, Object... args) throws AlarmException {
-						processor.alarm(AlarmModulerType.BlackWhite, alarmType, req, res, t, args);						
+					public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
+						processor.alarm(AlarmModuler.BlackWhite, alarmType, req, res, t, args);						
 					}
 				}, args);//$NON-NLS-黑白名单结束$
 			}
-
+			/**
+			 * 告警
+			 */
 			@Override
-			public void alarm(AlarmType alarmType, REQ req, RES res, 
-					Throwable t, Object... args) throws AlarmException {
-				processor.alarm(AlarmModulerType.GraceStop, alarmType, req, res, t, args);
+			public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
+				processor.alarm(AlarmModuler.GraceStop, alarmType, req, res, t, args);
 			}
 		}, args);//$NON-NLS-优雅停机结束$
 	}

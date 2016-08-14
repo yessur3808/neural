@@ -1,14 +1,14 @@
 package cn.ms.neural.moduler.extension.degrade.processor;
 
 import cn.ms.neural.common.exception.degrade.DegradeException;
-import cn.ms.neural.moduler.senior.alarm.IAlarmType;
+import cn.ms.neural.moduler.senior.alarm.processor.IAlarmTypeProcessor;
 
 /**
  * 业务服务降级
  * 
  * @author lry
  */
-public interface IBizDegradeProcessor<REQ, RES> extends IAlarmType<REQ, RES> {
+public interface IBizDegradeProcessor<REQ, RES> extends IAlarmTypeProcessor<REQ, RES> {
 
 	/**
 	 * 业务降级处理器

@@ -16,7 +16,7 @@ import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.blackwhite.IBlackWhite;
 import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
 import cn.ms.neural.moduler.extension.blackwhite.type.BlackWhiteType;
-import cn.ms.neural.moduler.senior.alarm.AlarmType;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 
 public class BlackWhiteTest {
 
@@ -55,7 +55,7 @@ public class BlackWhiteTest {
 				}
 
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});
@@ -80,7 +80,7 @@ public class BlackWhiteTest {
 				}
 
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});
@@ -112,7 +112,7 @@ public class BlackWhiteTest {
 				}
 
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});
@@ -141,7 +141,7 @@ public class BlackWhiteTest {
 				}
 
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});

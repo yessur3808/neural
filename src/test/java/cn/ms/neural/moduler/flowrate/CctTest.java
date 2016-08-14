@@ -14,7 +14,7 @@ import cn.ms.neural.common.spi.ExtensionLoader;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.flowrate.IFlowRate;
 import cn.ms.neural.moduler.extension.flowrate.processor.IFlowRateProcessor;
-import cn.ms.neural.moduler.senior.alarm.AlarmType;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 
 /**
  * KEY
@@ -49,7 +49,7 @@ public class CctTest {
 								}
 
 								@Override
-								public void alarm(AlarmType alarmType, String req, String res, Throwable t,
+								public void alarm(IAlarmType alarmType, String req, String res, Throwable t,
 										Object... args) throws AlarmException {
 								}
 							});
