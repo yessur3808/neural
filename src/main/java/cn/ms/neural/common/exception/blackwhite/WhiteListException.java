@@ -1,11 +1,11 @@
-package cn.ms.neural.common.exception.blackwhite.black;
+package cn.ms.neural.common.exception.blackwhite;
 
 /**
  * 黑白名单异常
  * 
  * @author lry
  */
-public class BlackListException extends RuntimeException {
+public class WhiteListException extends RuntimeException {
 
 	private static final long serialVersionUID = 7815426752583648734L;
 
@@ -17,38 +17,38 @@ public class BlackListException extends RuntimeException {
     public static final int SERIALIZATION_EXCEPTION = 5;
     private int code;
 
-    public BlackListException() {
+    public WhiteListException() {
         super();
     }
 
-    public BlackListException(String message, Throwable cause) {
+    public WhiteListException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public BlackListException(String message) {
+    public WhiteListException(String message) {
         super(message);
     }
 
-    public BlackListException(Throwable cause) {
+    public WhiteListException(Throwable cause) {
         super(cause);
     }
 
-    public BlackListException(int code) {
+    public WhiteListException(int code) {
         super();
         this.code = code;
     }
 
-    public BlackListException(int code, String message, Throwable cause) {
+    public WhiteListException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public BlackListException(int code, String message) {
+    public WhiteListException(int code, String message) {
         super(message);
         this.code = code;
     }
 
-    public BlackListException(int code, Throwable cause) {
+    public WhiteListException(int code, Throwable cause) {
         super(cause);
         this.code = code;
     }

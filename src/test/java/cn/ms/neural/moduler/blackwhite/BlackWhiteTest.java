@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import cn.ms.neural.common.URL;
 import cn.ms.neural.common.exception.ProcessorException;
-import cn.ms.neural.common.exception.blackwhite.black.BlackListException;
-import cn.ms.neural.common.exception.blackwhite.white.WhiteListException;
+import cn.ms.neural.common.exception.blackwhite.BlackListException;
+import cn.ms.neural.common.exception.blackwhite.WhiteListException;
 import cn.ms.neural.common.spi.ExtensionLoader;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.blackwhite.IBlackWhite;

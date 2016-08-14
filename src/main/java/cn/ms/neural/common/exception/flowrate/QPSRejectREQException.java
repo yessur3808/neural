@@ -1,11 +1,11 @@
-package cn.ms.neural.common.exception.blackwhite.white;
+package cn.ms.neural.common.exception.flowrate;
 
 /**
- * 黑白名单异常
+ * 流控QPS异常
  * 
  * @author lry
  */
-public class WhiteListException extends RuntimeException {
+public class QPSRejectREQException extends RuntimeException {
 
 	private static final long serialVersionUID = 7815426752583648734L;
 
@@ -17,38 +17,38 @@ public class WhiteListException extends RuntimeException {
     public static final int SERIALIZATION_EXCEPTION = 5;
     private int code;
 
-    public WhiteListException() {
+    public QPSRejectREQException() {
         super();
     }
 
-    public WhiteListException(String message, Throwable cause) {
+    public QPSRejectREQException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public WhiteListException(String message) {
+    public QPSRejectREQException(String message) {
         super(message);
     }
 
-    public WhiteListException(Throwable cause) {
+    public QPSRejectREQException(Throwable cause) {
         super(cause);
     }
 
-    public WhiteListException(int code) {
+    public QPSRejectREQException(int code) {
         super();
         this.code = code;
     }
 
-    public WhiteListException(int code, String message, Throwable cause) {
+    public QPSRejectREQException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public WhiteListException(int code, String message) {
+    public QPSRejectREQException(int code, String message) {
         super(message);
         this.code = code;
     }
 
-    public WhiteListException(int code, Throwable cause) {
+    public QPSRejectREQException(int code, Throwable cause) {
         super(cause);
         this.code = code;
     }

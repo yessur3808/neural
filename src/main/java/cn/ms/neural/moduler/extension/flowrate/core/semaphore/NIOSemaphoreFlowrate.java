@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import cn.ms.neural.common.exception.flowrate.support.CCTRejectREQException;
+import cn.ms.neural.common.exception.flowrate.CCTRejectREQException;
 import cn.ms.neural.moduler.extension.flowrate.conf.FlowRateConf;
 import cn.ms.neural.moduler.extension.flowrate.entity.FlowrateRule;
 import cn.ms.neural.moduler.extension.flowrate.processor.IFlowRateProcessor;

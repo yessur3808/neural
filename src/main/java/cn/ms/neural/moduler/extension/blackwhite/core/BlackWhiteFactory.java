@@ -5,9 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cn.ms.neural.Conf;
+import cn.ms.neural.common.exception.blackwhite.BlackListException;
 import cn.ms.neural.common.exception.blackwhite.BlackWhiteListException;
-import cn.ms.neural.common.exception.blackwhite.black.BlackListException;
-import cn.ms.neural.common.exception.blackwhite.white.WhiteListException;
+import cn.ms.neural.common.exception.blackwhite.WhiteListException;
 import cn.ms.neural.common.logger.ILogger;
 import cn.ms.neural.common.logger.LoggerManager;
 import cn.ms.neural.common.spi.Adaptive;

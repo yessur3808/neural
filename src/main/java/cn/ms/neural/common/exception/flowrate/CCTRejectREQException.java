@@ -1,4 +1,4 @@
-package cn.ms.neural.common.exception.flowrate.support;
+package cn.ms.neural.common.exception.flowrate;
 
 /**
  * 流控并发异常

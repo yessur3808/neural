@@ -1,11 +1,11 @@
-package cn.ms.neural.common.exception.flowrate.support;
+package cn.ms.neural.common.exception.blackwhite;
 
 /**
- * 流控QPS异常
+ * 黑白名单异常
  * 
  * @author lry
  */
-public class QPSRejectREQException extends RuntimeException {
+public class BlackListException extends RuntimeException {
 
 	private static final long serialVersionUID = 7815426752583648734L;
 
@@ -17,38 +17,38 @@ public class QPSRejectREQException extends RuntimeException {
     public static final int SERIALIZATION_EXCEPTION = 5;
     private int code;
 
-    public QPSRejectREQException() {
+    public BlackListException() {
         super();
     }
 
-    public QPSRejectREQException(String message, Throwable cause) {
+    public BlackListException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public QPSRejectREQException(String message) {
+    public BlackListException(String message) {
         super(message);
     }
 
-    public QPSRejectREQException(Throwable cause) {
+    public BlackListException(Throwable cause) {
         super(cause);
     }
 
-    public QPSRejectREQException(int code) {
+    public BlackListException(int code) {
         super();
         this.code = code;
     }
 
-    public QPSRejectREQException(int code, String message, Throwable cause) {
+    public BlackListException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public QPSRejectREQException(int code, String message) {
+    public BlackListException(int code, String message) {
         super(message);
         this.code = code;
     }
 
-    public QPSRejectREQException(int code, Throwable cause) {
+    public BlackListException(int code, Throwable cause) {
         super(cause);
         this.code = code;
     }
