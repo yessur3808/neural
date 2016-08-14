@@ -24,17 +24,17 @@ public class NeuralProcessorDemo implements INeuralProcessor<String, String> {
 	}
 
 	@Override
-	public String bizProcessor(String req, Object... args) throws DegradeException {
+	public String bizDegrade(String req, Object... args) throws DegradeException {
 		return "这是业务降级响应报文";
 	}
 
 	@Override
-	public boolean check(String idempotentKEY) throws IdempotentException {
+	public boolean check(String idempotentKEY, Object...args) throws IdempotentException {
 		return false;
 	}
 
 	@Override
-	public String get(String idempotentKEY) throws IdempotentException {
+	public String get(String idempotentKEY, Object...args) throws IdempotentException {
 		return "这是幂等响应报文";
 	}
 

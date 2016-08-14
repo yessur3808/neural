@@ -13,6 +13,14 @@ import cn.ms.neural.processor.IProcessor;
  */
 public interface IDegradeProcessor<REQ, RES> extends IProcessor<REQ, RES> {
 
+	/**
+	 * Mock降级
+	 * 
+	 * @param req
+	 * @param args
+	 * @return
+	 * @throws DegradeException
+	 */
 	RES mock(REQ req, Object...args) throws DegradeException;
 	
 	/**
@@ -23,6 +31,6 @@ public interface IDegradeProcessor<REQ, RES> extends IProcessor<REQ, RES> {
 	 * @return
 	 * @throws Throwable
 	 */
-	RES bizProcessor(REQ req, Object... args) throws DegradeException;
+	RES bizDegrade(REQ req, Object... args) throws DegradeException;
 
 }

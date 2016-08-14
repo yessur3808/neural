@@ -7,6 +7,7 @@ import cn.ms.neural.common.utils.NetUtils;
 import cn.ms.neural.moduler.extension.blackwhite.IBlackWhite;
 import cn.ms.neural.moduler.extension.degrade.IDegrade;
 import cn.ms.neural.moduler.extension.echosound.IEchoSound;
+import cn.ms.neural.moduler.extension.flowrate.IFlowRate;
 import cn.ms.neural.moduler.extension.gracestop.IGraceStop;
 import cn.ms.neural.moduler.extension.idempotent.Idempotent;
 import cn.ms.neural.moduler.extension.pipescaling.IPipeScaling;
@@ -42,6 +43,11 @@ public class Moduler<REQ, RES> {
 	 */
 	@SuppressWarnings("unchecked")
 	IPipeScaling<REQ, RES> pipeScaling=ExtensionLoader.getExtensionLoader(IPipeScaling.class).getAdaptiveExtension();
+	/**
+	 * 流量控制
+	 */
+	@SuppressWarnings("unchecked")
+	IFlowRate<REQ, RES> flowRate=ExtensionLoader.getExtensionLoader(IFlowRate.class).getAdaptiveExtension();
 	/**
 	 * 服务降级
 	 */
@@ -95,6 +101,14 @@ public class Moduler<REQ, RES> {
 
 	public void setPipeScaling(IPipeScaling<REQ, RES> pipeScaling) {
 		this.pipeScaling = pipeScaling;
+	}
+
+	public IFlowRate<REQ, RES> getFlowRate() {
+		return flowRate;
+	}
+
+	public void setFlowRate(IFlowRate<REQ, RES> flowRate) {
+		this.flowRate = flowRate;
 	}
 
 	public IDegrade<REQ, RES> getDegrade() {

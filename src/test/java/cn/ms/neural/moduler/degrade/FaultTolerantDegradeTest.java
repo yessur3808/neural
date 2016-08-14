@@ -44,7 +44,7 @@ public class FaultTolerantDegradeTest {
 					return "这是MOCK响应报文";
 				}
 				@Override
-				public String bizProcessor(String req, Object... args) throws DegradeException {
+				public String bizDegrade(String req, Object... args) throws DegradeException {
 					return "这是业务降级响应报文";
 				}
 			});
@@ -76,7 +76,7 @@ public class FaultTolerantDegradeTest {
 					return "这是MOCK响应报文";
 				}
 				@Override
-				public String bizProcessor(String req, Object... args) throws DegradeException {
+				public String bizDegrade(String req, Object... args) throws DegradeException {
 					return "这是业务降级响应报文";
 				}
 			});
@@ -113,7 +113,7 @@ public class FaultTolerantDegradeTest {
 					return "这是MOCK响应报文";
 				}
 				@Override
-				public String bizProcessor(String req, Object... args) throws DegradeException {
+				public String bizDegrade(String req, Object... args) throws DegradeException {
 					return "这是业务降级响应报文";
 				}
 			});

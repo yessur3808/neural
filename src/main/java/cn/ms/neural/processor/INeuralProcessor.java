@@ -1,11 +1,5 @@
 package cn.ms.neural.processor;
 
-import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
-import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
-import cn.ms.neural.moduler.extension.echosound.processor.IEchoSoundProcessor;
-import cn.ms.neural.moduler.extension.gracestop.processor.IGraceStopProcessor;
-import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
-import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcessor;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
 
 /**
@@ -14,41 +8,72 @@ import cn.ms.neural.moduler.neure.processor.INeureProcessor;
  * @author lry
  * @version v1.0
  */
-public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>,
+public interface INeuralProcessor<REQ, RES> extends INeureProcessor<REQ, RES> {
 
-		/**
-		 * 优雅停机
-		 */
-		IGraceStopProcessor<REQ, RES>,
+	
+	//$NON-NLS-回声探测$
+	/**
+	 * 发起探测
+	 * 
+	 * @param req
+	 * @param args
+	 * @return
+	 */
+	REQ $echo(REQ req, Object...args);
+	/**
+	 * 反弹探测
+	 * 
+	 * @param req
+	 * @param args
+	 * @return
+	 */
+	RES $rebound(REQ req, Object...args);
 
-		/**
-		 * 黑白名单
-		 */
-		IBlackWhiteProcessor<REQ, RES>,
+	
+	//$NON-NLS-幂等$
+	/**
+	 * 幂等请求校验(判断是否是幂等请求)
+	 * 
+	 * @param neuralId
+	 * @param args
+	 * @return
+	 */
+	boolean check(String neuralId, Object...args);
+	/**
+	 * 获取幂等结果
+	 * 
+	 * @param neuralId
+	 * @param args
+	 * @return
+	 */
+	RES get(String neuralId, Object...args);
+	/**
+	 * 幂等结果持久化
+	 * 
+	 * @param req
+	 * @param res
+	 * @param args
+	 */
+	void storage(REQ req, RES res, Object...args);
 
-		/**
-		 * 管道缩放
-		 */
-		IPipeScalingProcessor<REQ, RES>,
+	
+	//$NON-NLS-服务降级$
+	/**
+	 * Mock服务降级
+	 * 
+	 * @param req
+	 * @param args
+	 * @return
+	 */
+	RES mock(REQ req, Object...args);
+	/**
+	 * 业务降级
+	 * 
+	 * @param req
+	 * @param args
+	 * @return
+	 */
+	RES bizDegrade(REQ req, Object...args);
 
-		/**
-		 * 服务降级
-		 */
-		IDegradeProcessor<REQ, RES>,
-
-		/**
-		 * 幂等机制
-		 */
-		IdempotentProcessor<REQ, RES>,
-
-		/**
-		 * 回声探测
-		 */
-		IEchoSoundProcessor<REQ, RES>,
-
-		/**
-		 * 内核
-		 */
-		INeureProcessor<REQ, RES> {
-
+	
 }

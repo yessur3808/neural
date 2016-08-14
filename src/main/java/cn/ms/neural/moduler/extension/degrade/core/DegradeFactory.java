@@ -75,7 +75,7 @@ public class DegradeFactory<REQ, RES> implements IDegrade<REQ, RES> {
 				return doDegrade(req, strategyType, processor, args);
 			}
 		case BUSINESS:// 业务降级
-			return processor.bizProcessor(req, args);
+			return processor.bizDegrade(req, args);
 		default:
 			throw new DegradeException("'degradeType' is illegal type.");
 		}

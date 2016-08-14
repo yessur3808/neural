@@ -42,7 +42,7 @@ public class BusinessDegradeTest {
 					return "这是MOCK响应报文";
 				}
 				@Override
-				public String bizProcessor(String req, Object... args) throws DegradeException {
+				public String bizDegrade(String req, Object... args) throws DegradeException {
 					return "这是业务降级响应报文";
 				}
 			});
@@ -73,7 +73,7 @@ public class BusinessDegradeTest {
 					return "这是MOCK响应报文";
 				}
 				@Override
-				public String bizProcessor(String req, Object... args) throws DegradeException {
+				public String bizDegrade(String req, Object... args) throws DegradeException {
 					if(req.equals("请求报文")){
 						return processor(req, args);
 					}else{
@@ -108,7 +108,7 @@ public class BusinessDegradeTest {
 					return "这是MOCK响应报文";
 				}
 				@Override
-				public String bizProcessor(String req, Object... args) throws DegradeException {
+				public String bizDegrade(String req, Object... args) throws DegradeException {
 					if(req.equals("请求报文")){
 						try {
 							return processor(req, args);
