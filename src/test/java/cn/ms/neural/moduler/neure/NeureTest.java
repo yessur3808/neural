@@ -3,15 +3,15 @@ package cn.ms.neural.moduler.neure;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cn.ms.neural.alarm.AlarmType;
+import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
-import cn.ms.neural.common.exception.neure.NeureAlarmException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.neure.core.NeureFactory;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
-import cn.ms.neural.moduler.neure.type.AlarmType;
 
 public class NeureTest {
 
@@ -36,7 +36,8 @@ public class NeureTest {
 			public void callback(String res, Object... args) throws NeureCallbackException {
 			}
 			@Override
-			public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws NeureAlarmException {
+			public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+					throws AlarmException {
 			}
 		});
 		
@@ -66,7 +67,8 @@ public class NeureTest {
 				public void callback(String res, Object... args) throws NeureCallbackException {
 				}
 				@Override
-				public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws NeureAlarmException {
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
 				}
 			});
 			

@@ -3,7 +3,9 @@ package cn.ms.neural.moduler.gracestop;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.URL;
+import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.gracestop.GraceStopedException;
 import cn.ms.neural.common.spi.ExtensionLoader;
 import cn.ms.neural.moduler.Moduler;
@@ -34,6 +36,11 @@ public class GraceStopTest {
 				@Override
 				public String processor(String req, Object... args) {
 					return req;
+				}
+
+				@Override
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
 				}
 			});
 			
@@ -68,6 +75,11 @@ public class GraceStopTest {
 				@Override
 				public String processor(String req, Object... args) {
 					return req;
+				}
+
+				@Override
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
 				}
 			});
 			

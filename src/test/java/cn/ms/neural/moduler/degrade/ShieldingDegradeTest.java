@@ -3,7 +3,9 @@ package cn.ms.neural.moduler.degrade;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.URL;
+import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.degrade.DegradeException;
 import cn.ms.neural.common.spi.ExtensionLoader;
@@ -47,6 +49,10 @@ public class ShieldingDegradeTest {
 				public String bizDegrade(String req, Object... args) throws DegradeException {
 					return "这是业务降级响应报文";
 				}
+				@Override
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
+				}
 			});
 			
 			Assert.assertEquals(null, res);
@@ -78,6 +84,10 @@ public class ShieldingDegradeTest {
 				@Override
 				public String bizDegrade(String req, Object... args) throws DegradeException {
 					return "这是业务降级响应报文";
+				}
+				@Override
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
 				}
 			});
 			
@@ -114,6 +124,10 @@ public class ShieldingDegradeTest {
 				@Override
 				public String bizDegrade(String req, Object... args) throws DegradeException {
 					return "这是业务降级响应报文";
+				}
+				@Override
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
 				}
 			});
 			

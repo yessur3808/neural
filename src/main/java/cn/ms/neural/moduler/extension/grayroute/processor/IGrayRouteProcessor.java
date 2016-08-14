@@ -1,5 +1,7 @@
 package cn.ms.neural.moduler.extension.grayroute.processor;
 
-public interface IGrayRouteProcessor {
+import cn.ms.neural.alarm.IAlarmType;
+
+public interface IGrayRouteProcessor<REQ,RES> extends IAlarmType<REQ, RES> {
 
 }

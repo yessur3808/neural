@@ -7,7 +7,9 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.URL;
+import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.spi.ExtensionLoader;
 import cn.ms.neural.moduler.Moduler;
@@ -44,6 +46,11 @@ public class CctTest {
 								@Override
 								public String processor(String req, Object... args) throws ProcessorException {
 									return null;
+								}
+
+								@Override
+								public void alarm(AlarmType alarmType, String req, String res, Throwable t,
+										Object... args) throws AlarmException {
 								}
 							});
 	                    	System.out.println("-->"+res);

@@ -1,5 +1,6 @@
 package cn.ms.neural.moduler.extension.echosound.processor;
 
+import cn.ms.neural.alarm.IAlarmType;
 import cn.ms.neural.common.exception.echosound.EchoSoundException;
 import cn.ms.neural.processor.IProcessor;
 
@@ -8,7 +9,7 @@ import cn.ms.neural.processor.IProcessor;
  * @author lry
  * @version v1.0
  */
-public interface IEchoSoundProcessor<REQ, RES> extends IProcessor<REQ, RES> {
+public interface IEchoSoundProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarmType<REQ, RES> {
 
 	/**
 	 * 发射探测

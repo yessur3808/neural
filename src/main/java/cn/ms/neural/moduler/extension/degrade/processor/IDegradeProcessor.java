@@ -1,5 +1,6 @@
 package cn.ms.neural.moduler.extension.degrade.processor;
 
+import cn.ms.neural.alarm.IAlarmType;
 import cn.ms.neural.common.exception.degrade.DegradeException;
 import cn.ms.neural.processor.IProcessor;
 
@@ -11,7 +12,7 @@ import cn.ms.neural.processor.IProcessor;
  * @param <REQ>
  * @param <RES>
  */
-public interface IDegradeProcessor<REQ, RES> extends IProcessor<REQ, RES> {
+public interface IDegradeProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarmType<REQ, RES> {
 
 	/**
 	 * Mock降级

@@ -1,11 +1,13 @@
 package cn.ms.neural.moduler.neure.type;
 
+import cn.ms.neural.alarm.AlarmType;
+
 /**
  * 告警来源类型
  * 
  * @author lry
  */
-public enum AlarmType {
+public enum NeureAlarmType implements AlarmType {
 
 	/**
 	 * 常规路由失败告警

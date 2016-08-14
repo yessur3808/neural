@@ -1,14 +1,15 @@
 package cn.ms.neural;
 
+import cn.ms.neural.alarm.AlarmModulerType;
+import cn.ms.neural.alarm.AlarmType;
+import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.degrade.DegradeException;
 import cn.ms.neural.common.exception.echosound.EchoSoundException;
 import cn.ms.neural.common.exception.idempotent.IdempotentException;
-import cn.ms.neural.common.exception.neure.NeureAlarmException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
-import cn.ms.neural.moduler.neure.type.AlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
 public class NeuralProcessorDemo implements INeuralProcessor<String, String> {
@@ -69,7 +70,8 @@ public class NeuralProcessorDemo implements INeuralProcessor<String, String> {
 	}
 
 	@Override
-	public void alarm(AlarmType alarmType, String req, Throwable t, Object... args) throws NeureAlarmException {
+	public void alarm(AlarmModulerType alarmModulerType, AlarmType alarmType, String req, String res, Throwable t,
+			Object... args) throws AlarmException {
 		
 	}
 

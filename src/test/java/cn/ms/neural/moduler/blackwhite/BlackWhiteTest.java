@@ -6,7 +6,9 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.URL;
+import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.blackwhite.BlackListException;
 import cn.ms.neural.common.exception.blackwhite.WhiteListException;
@@ -51,6 +53,11 @@ public class BlackWhiteTest {
 				public String processor(String req, Object... args) throws ProcessorException {
 					return "这是响应报文";
 				}
+
+				@Override
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
+				}
 			});
 			Assert.assertTrue("这是响应报文".equals(res));
 		} catch (Throwable t) {
@@ -70,6 +77,11 @@ public class BlackWhiteTest {
 				@Override
 				public String processor(String req, Object... args) throws ProcessorException {
 					return "这是响应报文";
+				}
+
+				@Override
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
 				}
 			});
 			Assert.assertTrue(false);
@@ -98,6 +110,11 @@ public class BlackWhiteTest {
 				public String processor(String req, Object... args) throws ProcessorException {
 					return "这是响应报文";
 				}
+
+				@Override
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
+				}
 			});
 			Assert.assertTrue(false);
 		} catch (Throwable t) {
@@ -121,6 +138,11 @@ public class BlackWhiteTest {
 				@Override
 				public String processor(String req, Object... args) throws ProcessorException {
 					return "这是响应报文";
+				}
+
+				@Override
+				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+						throws AlarmException {
 				}
 			});
 			Assert.assertTrue(false);

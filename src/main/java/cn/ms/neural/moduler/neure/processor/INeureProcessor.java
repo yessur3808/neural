@@ -1,10 +1,9 @@
 package cn.ms.neural.moduler.neure.processor;
 
-import cn.ms.neural.common.exception.neure.NeureAlarmException;
+import cn.ms.neural.alarm.IAlarmType;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
-import cn.ms.neural.moduler.neure.type.AlarmType;
 import cn.ms.neural.processor.IProcessor;
 
 /**
@@ -13,7 +12,7 @@ import cn.ms.neural.processor.IProcessor;
  * @author lry
  * @version v1.0
  */
-public interface INeureProcessor<REQ, RES> extends IProcessor<REQ, RES> {
+public interface INeureProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarmType<REQ, RES> {
 
 	/**
 	 * 失败容错
@@ -46,16 +45,5 @@ public interface INeureProcessor<REQ, RES> extends IProcessor<REQ, RES> {
 	 * @throws Throwable
 	 */
 	void callback(RES res, Object...args) throws NeureCallbackException;
-	
-	/**
-	 * 告警通知
-	 * 
-	 * @param alarmType
-	 * @param req
-	 * @param t
-	 * @param args
-	 * @throws Throwable
-	 */
-	void alarm(AlarmType alarmType, REQ req, Throwable t, Object...args) throws NeureAlarmException;
 	
 }
