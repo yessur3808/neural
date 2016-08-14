@@ -32,7 +32,7 @@ public class GraceStopConf extends Conf {
 	/**
 	 * 关机超时时间KEY
 	 */
-	public static final String SHUTDOWN_TIMEOUT_KEY = "shutdown.timeout";
+	public static final String SHUTDOWN_TIMEOUT_KEY = "shutdownTimeout";
 	/**
 	 * 关机超时时间默认值,单位毫秒
 	 */
@@ -43,10 +43,10 @@ public class GraceStopConf extends Conf {
 	/**
 	 * 开机时间KEY
 	 */
-	public static final String STARTUP_TIME_KEY = "startup.time";
+	public static final String STARTUP_TIME_KEY = "startupTime";
 	/**
 	 * 停机时间KEY
 	 */
-	public static final String SHUTDOWN_TIME_KEY = "shutdown.time";
+	public static final String SHUTDOWN_TIME_KEY = "shutdownTime";
 	
 }

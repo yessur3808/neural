@@ -32,15 +32,26 @@ public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 	 * 模块中心
 	 */
 	private Moduler<REQ, RES> moduler;
+	private GraceStopStatusType graceStopStatusType;
 	
 	/**
 	 * 实时流量计数器
 	 */
 	private final LongAdder longAdder = new LongAdder();
+	private ScheduledExecutorService scheduledExecutorService=null;
 	
 	@Override
 	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
+		
+		String status=moduler.getUrl().getModulerParameter(Conf.GRACESTOP, 
+				GraceStopConf.STATUS_KEY, GraceStopConf.STATUS_DEFAULT_VALUE.getVal());
+		
+		try {
+			graceStopStatusType=GraceStopStatusType.valueOf(status);
+		} catch (Exception e) {
+			throw new GraceStopedException("Unknown GraceStop StatusType.");
+		}
 		
 		//每次变更通知后进行检查
 		this.schedule(moduler.getUrl().getModulerParameter(Conf.GRACESTOP, 
@@ -59,9 +70,7 @@ public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 	@Override
 	public RES gracestop(REQ req, IGraceStopProcessor<REQ, RES> processor, Object... args) {
 		//开机状态校验
-		String status=moduler.getUrl().getModulerParameter(Conf.GRACESTOP, 
-				GraceStopConf.STATUS_KEY, GraceStopConf.STATUS_DEFAULT_VALUE.getVal());
-		if (GraceStopStatusType.OFFLINE.getVal().equals(status)) {//已离线
+		if (GraceStopStatusType.OFFLINE==graceStopStatusType) {//已离线
 			throw new GraceStopedException();
 		}
 		
@@ -76,13 +85,8 @@ public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 				longAdder.decrement();//减流量
 			}
 		}else{//等待关机,拒绝接入流量
-			throw new GraceWaitStopException();
+			throw new GraceWaitStopException("Wait for shutdown, deny access to traffic.");
 		}
-	}
-
-	@Override
-	public void destory() throws Throwable {
-		
 	}
 	
 	private boolean schedule(long delay) {
@@ -92,11 +96,11 @@ public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 			return false;
 		}
 		
-		moduler=new Moduler<>();
-		ScheduledExecutorService scheduledExecutorService=null;
 		ScheduledFuture<Boolean> scheduledFuture=null;
 		try {
-			scheduledExecutorService = Executors.newScheduledThreadPool(1, new NamedThreadFactory("GracestopFactoryRetryTimer", true));
+			if(scheduledExecutorService==null){
+				scheduledExecutorService = Executors.newScheduledThreadPool(1, new NamedThreadFactory("GracestopFactoryRetryTimer", true));				
+			}
 			scheduledFuture=scheduledExecutorService.schedule(new Callable<Boolean>() {
 				public Boolean call() throws Exception {
 					//开/关机开关校验
@@ -129,6 +133,11 @@ public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 				scheduledExecutorService.shutdown();
 			}
 		}
+	}
+
+	@Override
+	public void destory() throws Throwable {
+		
 	}
 	
 }
