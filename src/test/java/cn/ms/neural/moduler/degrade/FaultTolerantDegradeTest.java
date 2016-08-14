@@ -3,7 +3,6 @@ package cn.ms.neural.moduler.degrade;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.URL;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
@@ -14,6 +13,7 @@ import cn.ms.neural.moduler.extension.degrade.IDegrade;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.type.DegradeType;
 import cn.ms.neural.moduler.extension.degrade.type.StrategyType;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 /**
  * 容错降级测试

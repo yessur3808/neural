@@ -1,4 +1,4 @@
-package cn.ms.neural.alarm;
+package cn.ms.neural.moduler.senior.alarm;
 
 public enum AlarmModulerType {
 

@@ -1,9 +1,9 @@
 package cn.ms.neural.moduler.neure.processor;
 
-import cn.ms.neural.alarm.IAlarmType;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.IProcessor;
 
 /**

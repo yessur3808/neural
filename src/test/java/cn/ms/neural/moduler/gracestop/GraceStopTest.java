@@ -3,7 +3,6 @@ package cn.ms.neural.moduler.gracestop;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.URL;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.gracestop.GraceStopedException;
@@ -12,6 +11,7 @@ import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.gracestop.IGraceStop;
 import cn.ms.neural.moduler.extension.gracestop.processor.IGraceStopProcessor;
 import cn.ms.neural.moduler.extension.gracestop.type.GraceStopStatusType;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 public class GraceStopTest {
 

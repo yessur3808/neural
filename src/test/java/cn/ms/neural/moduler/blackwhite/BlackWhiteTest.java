@@ -6,7 +6,6 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.URL;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
@@ -17,6 +16,7 @@ import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.blackwhite.IBlackWhite;
 import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
 import cn.ms.neural.moduler.extension.blackwhite.type.BlackWhiteType;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 public class BlackWhiteTest {
 

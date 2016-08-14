@@ -3,7 +3,6 @@ package cn.ms.neural.moduler.neure;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
@@ -12,6 +11,7 @@ import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.neure.core.NeureFactory;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 public class NeureTest {
 

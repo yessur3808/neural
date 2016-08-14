@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.extension.idempotent.processor;
 
-import cn.ms.neural.alarm.IAlarmType;
 import cn.ms.neural.common.exception.idempotent.IdempotentException;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.IProcessor;
 
 /**

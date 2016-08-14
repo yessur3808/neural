@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.URL;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
@@ -15,6 +14,7 @@ import cn.ms.neural.common.spi.ExtensionLoader;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.flowrate.IFlowRate;
 import cn.ms.neural.moduler.extension.flowrate.processor.IFlowRateProcessor;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 /**
  * KEY

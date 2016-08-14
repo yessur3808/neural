@@ -1,7 +1,5 @@
 package cn.ms.neural;
 
-import cn.ms.neural.alarm.AlarmModulerType;
-import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.degrade.DegradeException;
@@ -10,6 +8,8 @@ import cn.ms.neural.common.exception.idempotent.IdempotentException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
+import cn.ms.neural.moduler.senior.alarm.AlarmModulerType;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
 public class NeuralProcessorDemo implements INeuralProcessor<String, String> {

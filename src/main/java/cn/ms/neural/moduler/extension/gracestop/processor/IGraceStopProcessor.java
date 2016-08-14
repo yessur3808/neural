@@ -1,6 +1,6 @@
 package cn.ms.neural.moduler.extension.gracestop.processor;
 
-import cn.ms.neural.alarm.IAlarmType;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.IProcessor;
 
 /**

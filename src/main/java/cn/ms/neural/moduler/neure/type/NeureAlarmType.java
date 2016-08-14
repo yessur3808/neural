@@ -1,6 +1,6 @@
 package cn.ms.neural.moduler.neure.type;
 
-import cn.ms.neural.alarm.AlarmType;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 /**
  * 告警来源类型

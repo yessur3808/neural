@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.extension.degrade.processor;
 
-import cn.ms.neural.alarm.IAlarmType;
 import cn.ms.neural.common.exception.degrade.DegradeException;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.IProcessor;
 
 /**

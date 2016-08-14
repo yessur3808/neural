@@ -2,8 +2,6 @@ package cn.ms.neural;
 
 import java.util.Map;
 
-import cn.ms.neural.alarm.AlarmModulerType;
-import cn.ms.neural.alarm.AlarmType;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.degrade.DegradeException;
@@ -21,6 +19,8 @@ import cn.ms.neural.moduler.extension.gracestop.processor.IGraceStopProcessor;
 import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcessor;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
+import cn.ms.neural.moduler.senior.alarm.AlarmModulerType;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 import cn.ms.neural.support.AbstractNeuralFactory;
 
