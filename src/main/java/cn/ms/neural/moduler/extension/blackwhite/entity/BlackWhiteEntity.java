@@ -10,7 +10,6 @@ import java.util.List;
  */
 public class BlackWhiteEntity {
 
-	private String bwName;
 	private long time=System.currentTimeMillis();
 	private boolean blackEnabled=false;
 	private boolean whiteEnabled=false;
@@ -21,12 +20,6 @@ public class BlackWhiteEntity {
 	private List<String> offlineBlackData=new ArrayList<String>();
 	private List<String> offlineWhiteData=new ArrayList<String>();
 	
-	public String getBwName() {
-		return bwName;
-	}
-	public void setBwName(String bwName) {
-		this.bwName = bwName;
-	}
 	public long getTime() {
 		return time;
 	}
@@ -72,10 +65,9 @@ public class BlackWhiteEntity {
 	
 	@Override
 	public String toString() {
-		return "BlackWhiteEntity [bwName=" + bwName + ", time=" + time + ", blackEnabled=" + blackEnabled
-				+ ", whiteEnabled=" + whiteEnabled + ", onlineBlackData=" + onlineBlackData + ", onlineWhiteData="
-				+ onlineWhiteData + ", offlineBlackData=" + offlineBlackData + ", offlineWhiteData=" + offlineWhiteData
-				+ "]";
+		return "BlackWhiteEntity [time=" + time + ", blackEnabled=" + blackEnabled + ", whiteEnabled=" + whiteEnabled
+				+ ", onlineBlackData=" + onlineBlackData + ", onlineWhiteData=" + onlineWhiteData
+				+ ", offlineBlackData=" + offlineBlackData + ", offlineWhiteData=" + offlineWhiteData + "]";
 	}
 	
 }

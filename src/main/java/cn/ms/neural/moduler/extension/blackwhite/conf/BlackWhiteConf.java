@@ -21,9 +21,5 @@ public class BlackWhiteConf {
 	public static final boolean VISIT_RECORD_SWITCH_DEF_VALUE = false;
 	
 	public static final String BLACKWHITELIST_KEY = "list";
-	/**
-	 * 资源KV分割符
-	 */
-	public static final String RES_KV_SEQ = ":";
 	
 }

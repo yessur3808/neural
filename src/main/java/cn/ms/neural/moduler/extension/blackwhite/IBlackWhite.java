@@ -9,10 +9,11 @@ import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
 /**
  * 黑白名单
  * <br>
- * 黑白名单配置格式：
- * blackwhite.switch=[总开关:true/false]&blackwhite.list=[值]:[黑白类型:WHITE/BLACK]:[开关:true/false]:[KEY字段][多规则之间使用英文逗号分隔:,]
+ * 支持各类自定义的黑白名单过滤,如IP过滤、服务ID过滤、渠道ID过滤...
  * <br>
- * http://127.0.0.1:8080/test/?blackwhite.switch=true&blackwhite.list=10.24.1.10:WHITE:true:ip,10.24.1.12:BLACK:true:ip
+ * 黑白名单配置格式：[KEY字段]=>[黑/白名单类型:WHITE/BLACK]|[子开关:true/false]|[黑白名单值:VALUE]
+ * <br>
+ * ip=>WHITE|true|10.24.1.10,ip=>WHITE|true|10.24.1.10
  * @author lry
  * @version v1.0
  */

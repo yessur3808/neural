@@ -78,7 +78,6 @@ public class BlackWhiteFactory<REQ, RES> implements IBlackWhite<REQ, RES> {
 		
 		for (Map.Entry<String, Object> entry:blackWhiteIdKeyVals.entrySet()) {//实时遍历过滤key-value
 			BlackWhiteEntity blackWhiteList = blackWhiteListMap.get(entry.getKey());
-			System.err.println(blackWhiteList.toString());
 			//$NON-NLS-黑名单校验$
 			if (!blackWhiteList.isBlackEnabled()) {// 校验开关
 				if (bizDefaultLog.isWarnEnabled()) {
