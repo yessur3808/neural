@@ -20,7 +20,7 @@ import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcesso
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
 import cn.ms.neural.moduler.neure.type.AlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
-import cn.ms.neural.support.NeuralFactory;
+import cn.ms.neural.support.AbstractNeuralFactory;
 
 /**
  * 微服务神经元 <br>
@@ -34,7 +34,7 @@ import cn.ms.neural.support.NeuralFactory;
  * @param <REQ>
  * @param <RES>
  */
-public class Neural<REQ, RES> extends NeuralFactory<REQ, RES>{
+public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 
 	/**
 	 * 微服务神经元

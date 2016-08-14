@@ -5,7 +5,13 @@ import cn.ms.neural.common.URL;
 import cn.ms.neural.moduler.IModuler;
 import cn.ms.neural.moduler.Moduler;
 
-public abstract class NeuralFactory<REQ, RES> implements IModuler<REQ, RES>,INotify<URL> {
+/**
+ * 微服务神经元抽象工厂
+ * 
+ * @author lry
+ * @version v1.0
+ */
+public abstract class AbstractNeuralFactory<REQ, RES> implements IModuler<REQ, RES>,INotify<URL> {
 	
 	protected Moduler<REQ, RES> moduler=new Moduler<REQ, RES>();
 	
