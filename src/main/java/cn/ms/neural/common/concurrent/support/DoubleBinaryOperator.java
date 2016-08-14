@@ -2,7 +2,8 @@ package cn.ms.neural.common.concurrent.support;
 
 @FunctionalInterface
 public interface DoubleBinaryOperator {
-    /**
+    
+	/**
      * Applies this operator to the given operands.
      *
      * @param left the first operand
@@ -10,4 +11,5 @@ public interface DoubleBinaryOperator {
      * @return the operator result
      */
     double applyAsDouble(double left, double right);
+    
 }

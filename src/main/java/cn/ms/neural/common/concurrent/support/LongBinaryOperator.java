@@ -11,4 +11,5 @@ public interface LongBinaryOperator {
      * @return the operator result
      */
     long applyAsLong(long left, long right);
+    
 }
