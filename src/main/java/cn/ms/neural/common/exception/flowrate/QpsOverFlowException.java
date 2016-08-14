@@ -1,11 +1,11 @@
 package cn.ms.neural.common.exception.flowrate;
 
 /**
- * 流控并发异常
+ * 流控QPS异常
  * 
  * @author lry
  */
-public class CCTRejectREQException extends RuntimeException {
+public class QpsOverFlowException extends RuntimeException {
 
 	private static final long serialVersionUID = 7815426752583648734L;
 
@@ -17,38 +17,38 @@ public class CCTRejectREQException extends RuntimeException {
     public static final int SERIALIZATION_EXCEPTION = 5;
     private int code;
 
-    public CCTRejectREQException() {
+    public QpsOverFlowException() {
         super();
     }
 
-    public CCTRejectREQException(String message, Throwable cause) {
+    public QpsOverFlowException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public CCTRejectREQException(String message) {
+    public QpsOverFlowException(String message) {
         super(message);
     }
 
-    public CCTRejectREQException(Throwable cause) {
+    public QpsOverFlowException(Throwable cause) {
         super(cause);
     }
 
-    public CCTRejectREQException(int code) {
+    public QpsOverFlowException(int code) {
         super();
         this.code = code;
     }
 
-    public CCTRejectREQException(int code, String message, Throwable cause) {
+    public QpsOverFlowException(int code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public CCTRejectREQException(int code, String message) {
+    public QpsOverFlowException(int code, String message) {
         super(message);
         this.code = code;
     }
 
-    public CCTRejectREQException(int code, Throwable cause) {
+    public QpsOverFlowException(int code, Throwable cause) {
         super(cause);
         this.code = code;
     }
