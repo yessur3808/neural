@@ -12,7 +12,7 @@ public class HystrixSetter {
 	private String commandKey="neural-command-key";//Command KEY
 	
 	private int eitTimeout=1000;//执行隔离线程超时毫秒,默认为1000ms
-	private int eTimeout=1000;//执行超时时间,默认为1000ms
+	private int etimeout=1000;//执行超时时间,默认为1000ms
 
 	//调用线程允许请求HystrixCommand.GetFallback()的最大数量，默认10。超出时将会有异常抛出，注意：该项配置对于THREAD隔离模式也起作用
 	private int fismRequests=10;
@@ -52,11 +52,11 @@ public class HystrixSetter {
 	
 	public HystrixSetter() {
 	}
-	public HystrixSetter(int eitTimeout, int eTimeout, 
+	public HystrixSetter(int eitTimeout, int etimeout, 
 			int cbRequests, int cbErrorRate,int threadPoolCoreSize,
 			int threadPoolQueueSize) {
 		this.eitTimeout = eitTimeout;
-		this.eTimeout = eTimeout;
+		this.etimeout = etimeout;
 		this.cbRequests = cbRequests;
 		this.cbErrorRate = cbErrorRate;
 		this.threadPoolCoreSize = threadPoolCoreSize;
@@ -81,11 +81,11 @@ public class HystrixSetter {
 	public void setEitTimeout(int eitTimeout) {
 		this.eitTimeout = eitTimeout;
 	}
-	public int geteTimeout() {
-		return eTimeout;
+	public int getEtimeout() {
+		return etimeout;
 	}
-	public void seteTimeout(int eTimeout) {
-		this.eTimeout = eTimeout;
+	public void setEtimeout(int etimeout) {
+		this.etimeout = etimeout;
 	}
 	public int getFismRequests() {
 		return fismRequests;

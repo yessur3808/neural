@@ -45,7 +45,7 @@ public class HystrixSetterSupport {
     	setter=setter.andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
     			//超时控制
     			.withExecutionIsolationThreadTimeoutInMilliseconds(hs.getEitTimeout())//执行隔离线程超时毫秒,默认为1000ms
-    			.withExecutionTimeoutInMilliseconds(hs.geteTimeout())//执行超时时间,默认为1000ms
+    			.withExecutionTimeoutInMilliseconds(hs.getEtimeout())//执行超时时间,默认为1000ms
     			//断路器
     			.withCircuitBreakerRequestVolumeThreshold(hs.getCbRequests())//当在配置时间窗口内达到此数量的失败后,进行短路,默认20个
     			.withCircuitBreakerSleepWindowInMilliseconds(hs.getCbSleepWindow())//短路多久以后开始尝试是否恢复,默认5s

@@ -29,7 +29,7 @@ public class NeureConf {
 	public static final String EITTIMEOUT_KEY = "eitTimeout";
 	public static final int EITTIMEOUT_DEF_VAL = 80000;
 
-	public static final String ETIMEOUT_KEY = "eTimeout";
+	public static final String ETIMEOUT_KEY = "etimeout";
 	public static final int ETIMEOUT_DEF_VAL = 80000;
 	
 	public static final String FISMREQUESTS_KEY = "fismRequests";
