@@ -1,119 +1,60 @@
 package cn.ms.neural.moduler.extension.flowrate.entity;
 
-import java.io.Serializable;
-import java.util.concurrent.TimeUnit;
-
-import cn.ms.neural.moduler.extension.flowrate.type.FlowRateType;
+import cn.ms.neural.moduler.extension.flowrate.conf.FlowRateConf;
 
 /**
  * 流量控制规则实体
  * @author lry
  */
-public class FlowrateRule implements Serializable {
+public class FlowrateRule {
 	
-	private static final long serialVersionUID = 1L;
-	
-	//$NON-NLS-公共$
-	private String key;
-	private FlowRateType flowrateType;
 	/**
-	 * unit the time unit of the warmupPeriod argument
+	 * 流速控制总开关
 	 */
-	private String timeUnit=TimeUnit.MILLISECONDS.toString();
-		
-	//$NON-NLS-流速控制$
-	/**
-	 * permitsPerSecond the rate of the returned RateLimiter, measured in how many permits become available per second
-	 */
-	private double permitsPerSecond=0;
-	/**
-	 * warmupPeriod the duration of the period where the RateLimiter ramps up its rate, before reaching its stable (maximum) rate
-	 */
-	private long warmupPeriod=1000*10;
+	private boolean flowrateSwitch=false;
 	
 	//$NON-NLS-并发控制$
 	/**
-	 * permits the initial number of permits available. This value may be negative, in which case releases must occur before any acquires will be granted.
+	 * 并发控制子开关
 	 */
-	private int permits=100;
+	private boolean cctSwitch=false;
 	/**
-	 * fair true if this semaphore will guarantee first-in first-out granting of permits under contention, else false
+	 * 最大允许并发数
 	 */
-	private boolean fair=true;
+	private int permits=FlowRateConf.CCT_NUM_DEF_VAL;
+		
+	//$NON-NLS-流速控制$
 	/**
-	 * timeout the maximum time to wait for a permit
+	 * QPS控制子开关
 	 */
-	private long timeout=0;
+	private boolean qpsSwitch=false;
+	/**
+	 * 最大QPS数量
+	 */
+	private double permitsPerSecond=FlowRateConf.QPS_NUM_DEF_VAL;
 	
 	public FlowrateRule() {
 	}
 	
-	/**
-	 * 
-	 * @param key
-	 * @param flowrateType 
-	 * @param timeUnit
-	 * @param permitsPerSecond QPS
-	 * @param warmupPeriod
-	 */
-	public FlowrateRule(String key, FlowRateType flowrateType, String timeUnit, double permitsPerSecond, long warmupPeriod) {
-		this.key = key;
-		this.flowrateType = flowrateType;
-		this.timeUnit = timeUnit;
-		this.permitsPerSecond = permitsPerSecond;
-		this.warmupPeriod = warmupPeriod;
-	}
-	
-	public FlowrateRule(String key, FlowRateType flowrateType, String timeUnit, int permits, boolean fair, long timeout) {
-		this.key = key;
-		this.flowrateType = flowrateType;
-		this.timeUnit = timeUnit;
+	public FlowrateRule(boolean flowrateSwitch, boolean cctSwitch, int permits, boolean qpsSwitch, double permitsPerSecond) {
+		this.flowrateSwitch = flowrateSwitch;
+		this.cctSwitch = cctSwitch;
 		this.permits = permits;
-		this.fair = fair;
-		this.timeout = timeout;
-	}
-	
-	public FlowrateRule(String key, FlowRateType flowrateType, String timeUnit, double permitsPerSecond, long warmupPeriod,
-			int permits, boolean fair, long timeout) {
-		this.key = key;
-		this.flowrateType = flowrateType;
-		this.timeUnit = timeUnit;
+		this.qpsSwitch = qpsSwitch;
 		this.permitsPerSecond = permitsPerSecond;
-		this.warmupPeriod = warmupPeriod;
-		this.permits = permits;
-		this.fair = fair;
-		this.timeout = timeout;
 	}
 
-	public String getKey() {
-		return key;
+	public boolean isFlowrateSwitch() {
+		return flowrateSwitch;
 	}
-	public void setKey(String key) {
-		this.key = key;
+	public void setFlowrateSwitch(boolean flowrateSwitch) {
+		this.flowrateSwitch = flowrateSwitch;
 	}
-	public FlowRateType getFlowrateType() {
-		return flowrateType;
+	public boolean isCctSwitch() {
+		return cctSwitch;
 	}
-	public void setFlowrateType(FlowRateType flowrateType) {
-		this.flowrateType = flowrateType;
-	}
-	public String getTimeUnit() {
-		return timeUnit;
-	}
-	public void setTimeUnit(String timeUnit) {
-		this.timeUnit = timeUnit;
-	}
-	public double getPermitsPerSecond() {
-		return permitsPerSecond;
-	}
-	public void setPermitsPerSecond(double permitsPerSecond) {
-		this.permitsPerSecond = permitsPerSecond;
-	}
-	public long getWarmupPeriod() {
-		return warmupPeriod;
-	}
-	public void setWarmupPeriod(long warmupPeriod) {
-		this.warmupPeriod = warmupPeriod;
+	public void setCctSwitch(boolean cctSwitch) {
+		this.cctSwitch = cctSwitch;
 	}
 	public int getPermits() {
 		return permits;
@@ -121,23 +62,17 @@ public class FlowrateRule implements Serializable {
 	public void setPermits(int permits) {
 		this.permits = permits;
 	}
-	public boolean isFair() {
-		return fair;
+	public boolean isQpsSwitch() {
+		return qpsSwitch;
 	}
-	public void setFair(boolean fair) {
-		this.fair = fair;
+	public void setQpsSwitch(boolean qpsSwitch) {
+		this.qpsSwitch = qpsSwitch;
 	}
-	public long getTimeout() {
-		return timeout;
+	public double getPermitsPerSecond() {
+		return permitsPerSecond;
 	}
-	public void setTimeout(long timeout) {
-		this.timeout = timeout;
-	}
-
-	public String toString() {
-		return "FlowrateEntity [key=" + key + ", flowrateType=" + flowrateType + ", timeUnit=" + timeUnit
-				+ ", permitsPerSecond=" + permitsPerSecond + ", warmupPeriod=" + warmupPeriod + ", permits=" + permits
-				+ ", fair=" + fair + ", timeout=" + timeout + "]";
+	public void setPermitsPerSecond(double permitsPerSecond) {
+		this.permitsPerSecond = permitsPerSecond;
 	}
 	
 }

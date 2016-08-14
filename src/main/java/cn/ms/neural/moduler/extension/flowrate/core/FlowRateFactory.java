@@ -14,6 +14,7 @@ import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.flowrate.IFlowRate;
 import cn.ms.neural.moduler.extension.flowrate.conf.FlowRateConf;
+import cn.ms.neural.moduler.extension.flowrate.entity.FlowrateRule;
 import cn.ms.neural.moduler.extension.flowrate.processor.IFlowRateProcessor;
 
 /**
@@ -27,34 +28,32 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 
 	private Moduler<REQ, RES> moduler;
 
-	private boolean flowrateSwitch=false;
 	
 	//$NON-NLS-并发流控$
 	private Semaphore semaphore;
-	private boolean cctSwitch=false;
-	private int permits=FlowRateConf.CCT_NUM_DEF_VAL;
-	
 	//$NON-NLS-QPS流控$
 	private RateLimiter rateLimiter;
-	private boolean qpsSwitch=false;
-	private double permitsPerSecond=FlowRateConf.QPS_NUM_DEF_VAL;
+	private FlowrateRule flowrateRule;
 	
 	@Override
 	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
 		
 		//流控总开关
-		flowrateSwitch = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.FLOWRATE_SWITCH_KEY, FlowRateConf.FLOWRATE_SWITCH_DEF_VAL);
+		boolean flowrateSwitch = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.FLOWRATE_SWITCH_KEY, FlowRateConf.FLOWRATE_SWITCH_DEF_VAL);
 		
 		//$NON-NLS-并发数$
-		cctSwitch = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.CCT_SWITCH_KEY, FlowRateConf.CCT_SWITCH_DEF_VAL);
-		permits = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.CCT_NUM_KEY, FlowRateConf.CCT_NUM_DEF_VAL);
-		semaphore=new Semaphore(permits, true);
+		boolean cctSwitch = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.CCT_SWITCH_KEY, FlowRateConf.CCT_SWITCH_DEF_VAL);
+		int permits = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.CCT_NUM_KEY, FlowRateConf.CCT_NUM_DEF_VAL);
 		
 		//$NON-NLS-速率大小$
-		qpsSwitch = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.QPS_SWITCH_KEY, FlowRateConf.QPS_SWITCH_DEF_VAL);
-		permitsPerSecond = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.QPS_NUM_KEY, FlowRateConf.QPS_NUM_DEF_VAL);
-		rateLimiter=RateLimiter.create(permitsPerSecond);
+		boolean qpsSwitch = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.QPS_SWITCH_KEY, FlowRateConf.QPS_SWITCH_DEF_VAL);
+		double permitsPerSecond = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.QPS_NUM_KEY, FlowRateConf.QPS_NUM_DEF_VAL);
+		
+		//$NON-NLS-配置更新$
+		flowrateRule=new FlowrateRule(flowrateSwitch, cctSwitch, permits, qpsSwitch, permitsPerSecond);
+		semaphore=new Semaphore(flowrateRule.getPermits(), true);
+		rateLimiter=RateLimiter.create(flowrateRule.getPermitsPerSecond());
 	}
 
 	@Override
@@ -62,21 +61,18 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 		
 	}
 
-	/**
-	 * 流控
-	 */
 	@Override
 	public RES flowrate(REQ req, IFlowRateProcessor<REQ, RES> processor, Object... args) throws FlowrateException {
-		if (!flowrateSwitch) {// 流控总开关
+		if (!flowrateRule.isFlowrateSwitch()) {// 流控总开关
 			return processor.processor(req, args);
 		}
 		
-		if(cctSwitch){//并发开关
+		if(flowrateRule.isCctSwitch()){//并发开关
 			try {
 				if (semaphore.tryAcquire()) {//并发控制
 					return rateLimiter(req, processor, args);	
 				}else{//并发溢出
-					throw new CctOverFlowException("并发溢出");
+					throw new CctOverFlowException("The concurrent overflow.");
 				}
 			} catch (Exception e) {
 				throw new CctException(e);//并发异常
@@ -97,12 +93,12 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 	 * @return
 	 */
 	private RES rateLimiter(REQ req, IFlowRateProcessor<REQ, RES> processor, Object... args) {
-		if(qpsSwitch){//流控开关打开
+		if(flowrateRule.isQpsSwitch()){//流控开关打开
 			try {
 				if(rateLimiter.tryAcquire()){//流速控制
 					return processor.processor(req, args);
 				}else{
-				    throw new QpsOverFlowException("流速溢出");
+				    throw new QpsOverFlowException("The flow rate overflow.");
 				}
 			} catch (Exception e) {
 				throw new QpsException();
