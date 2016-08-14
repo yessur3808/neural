@@ -9,12 +9,6 @@ package cn.ms.neural;
 public class Conf {
 
 	/**
-	 * 模块参数分割符号
-	 */
-	public static final String MODULER_PARAMTER_SEQ = ".";
-	public static final String ANT = "@";
-	
-	/**
 	 * 数据分隔符
 	 */
 	public static final String KV_SEQ = "=>";//KEY=>VALUE分隔符
