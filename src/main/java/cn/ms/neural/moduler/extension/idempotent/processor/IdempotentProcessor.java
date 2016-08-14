@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.extension.idempotent.processor;
 
 import cn.ms.neural.common.exception.idempotent.IdempotentException;
-import cn.ms.neural.moduler.senior.alarm.IAlarmType;
+import cn.ms.neural.moduler.senior.alarm.processor.IAlarmTypeProcessor;
 import cn.ms.neural.processor.IProcessor;
 
 /**
@@ -10,7 +10,7 @@ import cn.ms.neural.processor.IProcessor;
  * @author lry
  * @version v1.0
  */
-public interface IdempotentProcessor<REQ,RES> extends IProcessor<REQ, RES>, IAlarmType<REQ, RES> {
+public interface IdempotentProcessor<REQ,RES> extends IProcessor<REQ, RES>, IAlarmTypeProcessor<REQ, RES> {
 
 	/**
 	 * 幂等请求校验

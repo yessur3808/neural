@@ -11,7 +11,7 @@ import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.neure.core.NeureFactory;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
-import cn.ms.neural.moduler.senior.alarm.AlarmType;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 
 public class NeureTest {
 
@@ -36,7 +36,7 @@ public class NeureTest {
 			public void callback(String res, Object... args) throws NeureCallbackException {
 			}
 			@Override
-			public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+			public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 					throws AlarmException {
 			}
 		});
@@ -67,7 +67,7 @@ public class NeureTest {
 				public void callback(String res, Object... args) throws NeureCallbackException {
 				}
 				@Override
-				public void alarm(AlarmType alarmType, String req, String res, Throwable t, Object... args)
+				public void alarm(IAlarmType alarmType, String req, String res, Throwable t, Object... args)
 						throws AlarmException {
 				}
 			});

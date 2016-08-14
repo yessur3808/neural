@@ -8,8 +8,8 @@ import cn.ms.neural.common.exception.idempotent.IdempotentException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
-import cn.ms.neural.moduler.senior.alarm.AlarmModulerType;
-import cn.ms.neural.moduler.senior.alarm.AlarmType;
+import cn.ms.neural.moduler.senior.alarm.AlarmModuler;
+import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
 public class NeuralProcessorDemo implements INeuralProcessor<String, String> {
@@ -70,7 +70,7 @@ public class NeuralProcessorDemo implements INeuralProcessor<String, String> {
 	}
 
 	@Override
-	public void alarm(AlarmModulerType alarmModulerType, AlarmType alarmType, String req, String res, Throwable t,
+	public void alarm(AlarmModuler alarmModulerType, IAlarmType alarmType, String req, String res, Throwable t,
 			Object... args) throws AlarmException {
 		
 	}

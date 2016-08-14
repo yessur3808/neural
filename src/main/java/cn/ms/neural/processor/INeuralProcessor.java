@@ -3,7 +3,7 @@ package cn.ms.neural.processor;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
-import cn.ms.neural.moduler.senior.alarm.IAlarm;
+import cn.ms.neural.moduler.senior.alarm.processor.IAlarmProcessor;
 
 /**
  * 微服务神经元处理中心
@@ -11,7 +11,7 @@ import cn.ms.neural.moduler.senior.alarm.IAlarm;
  * @author lry
  * @version v1.0
  */
-public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarm<REQ, RES> {
+public interface INeuralProcessor<REQ, RES> extends IProcessor<REQ, RES>, IAlarmProcessor<REQ, RES> {
 
 	/**
 	 * 失败容错
