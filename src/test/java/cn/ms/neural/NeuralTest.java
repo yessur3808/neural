@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import cn.ms.neural.common.URL;
 import cn.ms.neural.common.exception.gracestop.GraceStopedException;
+import cn.ms.neural.demo.DemoProcessor;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 import cn.ms.neural.moduler.extension.gracestop.type.GraceStopStatusType;
@@ -29,7 +30,7 @@ public class NeuralTest {
 			neural.init();
 
 			try {
-				neural.neural("请求报文", "key1", EchoSoundType.NON, null, new NeuralProcessorDemo());
+				neural.neural("请求报文", "key1", EchoSoundType.NON, null, new DemoProcessor());
 				Assert.assertTrue(false);
 			} catch (Throwable t) {
 				if(t instanceof GraceStopedException){
@@ -41,7 +42,7 @@ public class NeuralTest {
 			
 			neural.notify(url.addModulerParameter(Conf.GRACESTOP, "status", GraceStopStatusType.ONLINE.getVal()));
 			try {
-				String resData=neural.neural("请求报文", "key1", EchoSoundType.NON, null, new NeuralProcessorDemo());
+				String resData=neural.neural("请求报文", "key1", EchoSoundType.NON, null, new DemoProcessor());
 				Assert.assertEquals("这是响应报文", resData);
 			} catch (Throwable t) {
 				Assert.assertTrue(false);

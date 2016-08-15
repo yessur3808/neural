@@ -1,4 +1,4 @@
-package cn.ms.neural;
+package cn.ms.neural.demo;
 
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
@@ -12,7 +12,7 @@ import cn.ms.neural.moduler.senior.alarm.AlarmModuler;
 import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
-public class NeuralProcessorDemo implements INeuralProcessor<String, String> {
+public class DemoProcessor implements INeuralProcessor<String, String> {
 
 	@Override
 	public String processor(String req, Object... args) throws ProcessorException {
@@ -31,7 +31,7 @@ public class NeuralProcessorDemo implements INeuralProcessor<String, String> {
 
 	@Override
 	public boolean check(String idempotentKEY, Object...args) throws IdempotentException {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -70,8 +70,7 @@ public class NeuralProcessorDemo implements INeuralProcessor<String, String> {
 	}
 
 	@Override
-	public void alarm(AlarmModuler alarmModulerType, IAlarmType alarmType, String req, String res, Throwable t,
-			Object... args) throws AlarmException {
+	public void alarm(AlarmModuler alarmModulerType, IAlarmType alarmType, String req, String res, Throwable t, Object... args) throws AlarmException {
 		
 	}
 

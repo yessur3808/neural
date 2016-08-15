@@ -1,5 +1,6 @@
-package cn.ms.neural;
+package cn.ms.neural.demo;
 
+import cn.ms.neural.Neural;
 import cn.ms.neural.common.URL;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
@@ -32,7 +33,7 @@ public class HelloWord {
 	public void input() {
 		try {
 			try {
-				neural.neural("请求报文", "key1", EchoSoundType.NON, null, new NeuralProcessorDemo());
+				neural.neural("请求报文", "key1", EchoSoundType.NON, null, new DemoProcessor());
 			} catch (Throwable t) {
 				t.printStackTrace();
 			}
