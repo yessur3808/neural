@@ -16,16 +16,16 @@ public abstract class AbstractNeuralFactory<REQ, RES> implements IModuler<REQ, R
 	protected Moduler<REQ, RES> moduler=new Moduler<REQ, RES>();
 	
 	/**
-	 * 配置变更后广播事件
+	 * 通知变更广播
 	 */
 	@Override
 	public void notify(URL msg) {
 		moduler.setUrl(msg);
-		notify(moduler);
+		this.notify(moduler);
 	}
 	
 	/**
-	 * 设置模块中心
+	 * 通知变更
 	 */
 	@Override
 	public void notify(Moduler<REQ, RES> moduler) {
@@ -35,19 +35,41 @@ public abstract class AbstractNeuralFactory<REQ, RES> implements IModuler<REQ, R
 		this.moduler.getGraceStop().notify(this.moduler);
 		this.moduler.getBlackWhite().notify(this.moduler);
 		this.moduler.getPipeScaling().notify(this.moduler);
+		this.moduler.getFlowRate().notify(this.moduler);
 		this.moduler.getDegrade().notify(this.moduler);
 		this.moduler.getIdempotent().notify(this.moduler);
+		this.moduler.getEchoSound().notify(this.moduler);
 		this.moduler.getNeure().notify(this.moduler);
 	}
 	
+	/**
+	 * 初始化
+	 */
 	@Override
 	public void init() throws Throwable {
-		moduler.getGraceStop().init();
+		this.moduler.getGraceStop().init();
+		this.moduler.getBlackWhite().init();
+		this.moduler.getPipeScaling().init();
+		this.moduler.getFlowRate().init();
+		this.moduler.getDegrade().init();
+		this.moduler.getIdempotent().init();
+		this.moduler.getEchoSound().init();
+		this.moduler.getNeure().init();
 	}
 	
+	/**
+	 * 销毁
+	 */
 	@Override
 	public void destory() throws Throwable {
-		
+		this.moduler.getGraceStop().destory();
+		this.moduler.getBlackWhite().destory();
+		this.moduler.getPipeScaling().destory();
+		this.moduler.getFlowRate().destory();
+		this.moduler.getDegrade().destory();
+		this.moduler.getIdempotent().destory();
+		this.moduler.getEchoSound().destory();
+		this.moduler.getNeure().destory();
 	}
 
 }
