@@ -16,6 +16,7 @@ import cn.ms.neural.moduler.extension.flowrate.IFlowRate;
 import cn.ms.neural.moduler.extension.flowrate.conf.FlowRateConf;
 import cn.ms.neural.moduler.extension.flowrate.entity.FlowrateRule;
 import cn.ms.neural.moduler.extension.flowrate.processor.IFlowRateProcessor;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 /**
  * 流控中心
@@ -71,9 +72,15 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 				if (semaphore.tryAcquire()) {//并发控制
 					return rateLimiter(req, processor, args);	
 				}else{//并发溢出
+					//$NON-NLS-告警$
+					processor.alarm(AlarmType.FLOWRATE_CTT_OVERFLOW, req, null, null, args);
+					
 					throw new CctOverFlowException("The concurrent overflow.");
 				}
 			} catch (Exception e) {
+				//$NON-NLS-告警$
+				processor.alarm(AlarmType.FLOWRATE_CTT_EXCEPTION, req, null, e, args);
+				
 				throw new CctException(e);//并发异常
 			} finally {
 				semaphore.release();//释放资源
@@ -97,10 +104,16 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 				if(rateLimiter.tryAcquire()){//流速控制
 					return processor.processor(req, args);
 				}else{
+					//$NON-NLS-告警$
+					processor.alarm(AlarmType.FLOWRATE_QPS_OVERFLOW, req, null, null, args);
+
 				    throw new QpsOverFlowException("The flow rate overflow.");
 				}
 			} catch (Exception e) {
-				throw new QpsException();
+				//$NON-NLS-告警$
+				processor.alarm(AlarmType.FLOWRATE_QPS_EXCEPTION, req, null, e, args);
+
+				throw new QpsException(e);
 			}
 		}else{//流控开关关闭
 			return processor.processor(req, args);

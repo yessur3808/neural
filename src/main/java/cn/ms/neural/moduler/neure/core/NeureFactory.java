@@ -17,7 +17,7 @@ import cn.ms.neural.moduler.neure.Neuron;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
 import cn.ms.neural.moduler.neure.support.NeureConvert;
-import cn.ms.neural.moduler.neure.type.NeureAlarmType;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 /**
  * 神经元
@@ -67,7 +67,7 @@ public class NeureFactory<REQ, RES> implements INeure<REQ, RES> {
 				processor.callback(res, args);//回调
 			} catch (Throwable callback) {
 				//$NON-NLS-callback$
-				neureHandler.doAlarm("callback", NeureAlarmType.CALLBACK, callback);
+				neureHandler.doAlarm("callback", AlarmType.CALLBACK, callback);
 				throw new NeureCallbackException(callback.getMessage(), callback);//回调异常
 			}
 			

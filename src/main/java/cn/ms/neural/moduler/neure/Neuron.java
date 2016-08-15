@@ -16,7 +16,7 @@ import cn.ms.neural.common.exception.neure.NeureException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
 import cn.ms.neural.moduler.neure.entity.NeureEntity;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
-import cn.ms.neural.moduler.neure.type.NeureAlarmType;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 /**
  * 神经元
@@ -66,7 +66,7 @@ public class Neuron<REQ, RES> extends HystrixCommand<RES> {
 					return processor.processor(req, args);//执行processor
 				} catch (Throwable t) {
 					//$NON-NLS-run-alarm$
-					doAlarm("run-alarm", NeureAlarmType.RUN_ROUTE, t);
+					doAlarm("run-alarm", AlarmType.RUN_ROUTE, t);
 					
 					String routeErr=String.format("The run-route is failure, error is:%s", t.getMessage());
 					logger.error(routeErr, t);
@@ -84,7 +84,7 @@ public class Neuron<REQ, RES> extends HystrixCommand<RES> {
 							}
 						} catch (Throwable t) {
 							//$NON-NLS-run-breath$
-							doAlarm("run-breath", NeureAlarmType.RUN_BREATH, t);
+							doAlarm("run-breath", AlarmType.RUN_BREATH, t);
 							
 							String breathErr=String.format("The run-breath is failure, error is:%s", t.getMessage());
 							logger.error(breathErr, t);
@@ -125,7 +125,7 @@ public class Neuron<REQ, RES> extends HystrixCommand<RES> {
 			return processor.faulttolerant(req, args);
 		}catch(Throwable t){
 			//$NON-NLS-getFallback-faulttolerant$
-			doAlarm("getFallback-faulttolerant", NeureAlarmType.FALLBACK_FAULT_TOLERANT, t);
+			doAlarm("getFallback-faulttolerant", AlarmType.FALLBACK_FAULT_TOLERANT, t);
 			
 			String faulttolerantErr=String.format("The getFallback-faulttolerant is failure, error is:%s", t.getMessage());
 			logger.error(faulttolerantErr, t);
@@ -145,7 +145,7 @@ public class Neuron<REQ, RES> extends HystrixCommand<RES> {
 	 * @param alarmType
 	 * @param t
 	 */
-	public void doAlarm(String name, NeureAlarmType alarmType, Throwable t) {
+	public void doAlarm(String name, AlarmType alarmType, Throwable t) {
 		try {
 			processor.alarm(alarmType, req, null, t, args);
 		} catch (Throwable th) {

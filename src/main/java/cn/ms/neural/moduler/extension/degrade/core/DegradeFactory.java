@@ -9,6 +9,7 @@ import cn.ms.neural.moduler.extension.degrade.conf.DegradeConf;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
 import cn.ms.neural.moduler.extension.degrade.type.DegradeType;
 import cn.ms.neural.moduler.extension.degrade.type.StrategyType;
+import cn.ms.neural.moduler.senior.alarm.AlarmType;
 
 /**
  * 服务降级
@@ -71,6 +72,9 @@ public class DegradeFactory<REQ, RES> implements IDegrade<REQ, RES> {
 			try {
 				return processor.processor(req, args);
 			} catch (Throwable t) {
+				//$NON-NLS-告警$
+				processor.alarm(AlarmType.DEGRADE_FAULTTOLERANT, req, null, t, args);
+				
 				t.printStackTrace();
 				return doDegrade(req, strategyType, processor, args);
 			}

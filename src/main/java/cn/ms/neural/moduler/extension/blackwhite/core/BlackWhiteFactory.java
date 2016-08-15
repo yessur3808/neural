@@ -65,7 +65,7 @@ public class BlackWhiteFactory<REQ, RES> implements IBlackWhite<REQ, RES> {
 	}
 
 	@Override
-	public RES blackwhite(REQ blackWhiteREQ, Map<String, Object> blackWhiteIdKeyVals, IBlackWhiteProcessor<REQ, RES> blackWhiteProcessor, Object... args) throws BlackWhiteListException{
+	public RES blackwhite(REQ req, Map<String, Object> blackWhiteIdKeyVals, IBlackWhiteProcessor<REQ, RES> processor, Object... args) throws BlackWhiteListException{
 		if (!blackwhiteSwitch) {// 开关未打开,则直接跳过
 			if(disableRecordSwitch){//记录禁用
 				if (bizDefaultLog.isWarnEnabled()) {
@@ -73,7 +73,7 @@ public class BlackWhiteFactory<REQ, RES> implements IBlackWhite<REQ, RES> {
 				}
 			}
 
-			return blackWhiteProcessor.processor(blackWhiteREQ);
+			return processor.processor(req);
 		}
 		
 		for (Map.Entry<String, Object> entry:blackWhiteIdKeyVals.entrySet()) {//实时遍历过滤key-value
@@ -94,6 +94,7 @@ public class BlackWhiteFactory<REQ, RES> implements IBlackWhite<REQ, RES> {
 					if (bizDefaultLog.isDebugEnabled()) {
 						bizDefaultLog.debug(refusedMsg);
 					}
+					
 					throw new BlackListException(refusedMsg);
 				}else{//[匹配二]正则匹配
 					for (String allowedIp:blackWhiteList.getOnlineBlackData()) {
@@ -104,6 +105,7 @@ public class BlackWhiteFactory<REQ, RES> implements IBlackWhite<REQ, RES> {
 							if (bizDefaultLog.isDebugEnabled()) {
 								bizDefaultLog.debug(refusedMsg);
 							}
+							
 							throw new BlackListException(refusedMsg);
 						}
 					}					
@@ -144,7 +146,7 @@ public class BlackWhiteFactory<REQ, RES> implements IBlackWhite<REQ, RES> {
 			}
 		}
 
-		return blackWhiteProcessor.processor(blackWhiteREQ);
+		return processor.processor(req);
 	}
 
 	@Override
