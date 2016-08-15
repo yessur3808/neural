@@ -23,8 +23,8 @@ public class HelloWord {
 	public HelloWord() {
 		try {
 			moduler.setUrl(url);
-			neural.notify(moduler);
 			neural.init();
+			neural.notify(moduler);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

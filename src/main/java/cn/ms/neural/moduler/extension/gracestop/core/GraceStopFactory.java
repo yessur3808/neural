@@ -60,11 +60,11 @@ public class GraceStopFactory<REQ, RES> implements IGraceStop<REQ, RES> {
 	
 	@Override
 	public void init() throws Throwable {
-		try {
-    		moduler.setUrl(moduler.getUrl().addParameter(GraceStopConf.STARTUP_TIME_KEY, System.currentTimeMillis()));//启动时间
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
+//		try {
+//    		moduler.setUrl(moduler.getUrl().addParameter(GraceStopConf.STARTUP_TIME_KEY, System.currentTimeMillis()));//启动时间
+//		} catch (Throwable t) {
+//			t.printStackTrace();
+//		}
 	}
 	
 	@Override

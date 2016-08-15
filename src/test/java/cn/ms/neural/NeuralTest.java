@@ -26,8 +26,8 @@ public class NeuralTest {
 			
 			moduler.setUrl(url);
 			Neural<String, String> neural=new Neural<String, String>();
-			neural.notify(moduler);
 			neural.init();
+			neural.notify(moduler);
 
 			try {
 				neural.neural("请求报文", "key1", EchoSoundType.NON, null, new DemoProcessor());
