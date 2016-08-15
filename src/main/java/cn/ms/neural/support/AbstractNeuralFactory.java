@@ -1,15 +1,24 @@
 package cn.ms.neural.support;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import cn.ms.neural.INotify;
 import cn.ms.neural.common.URL;
+import cn.ms.neural.common.exception.neure.NeureException;
 import cn.ms.neural.common.spi.ExtensionLoader;
 import cn.ms.neural.moduler.IModuler;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.ModulerType;
+import cn.ms.neural.moduler.extension.blackwhite.IBlackWhite;
+import cn.ms.neural.moduler.extension.degrade.IDegrade;
+import cn.ms.neural.moduler.extension.echosound.IEchoSound;
+import cn.ms.neural.moduler.extension.flowrate.IFlowRate;
+import cn.ms.neural.moduler.extension.gracestop.IGraceStop;
+import cn.ms.neural.moduler.extension.idempotent.Idempotent;
+import cn.ms.neural.moduler.extension.pipescaling.IPipeScaling;
+import cn.ms.neural.moduler.neure.INeure;
 
 /**
  * 微服务神经元抽象工厂
@@ -21,27 +30,53 @@ public abstract class AbstractNeuralFactory<REQ, RES> implements IModuler<REQ, R
 	
 	protected Moduler<REQ, RES> moduler=new Moduler<REQ, RES>();
 	public List<ModulerType> modulerTypes=ModulerType.getModulerTypes();
-	public Map<ModulerType,IModuler<REQ, RES>> modulers=new HashMap<ModulerType,IModuler<REQ, RES>>();
+	public Map<ModulerType,IModuler<REQ, RES>> modulers=new LinkedHashMap<ModulerType,IModuler<REQ, RES>>();
 	
 	/**
 	 * 初始化
 	 */
 	@Override
 	public void init() throws Throwable {
+		//$NON-NLS-模块读取$
 		for (ModulerType modulerType:modulerTypes) {
 			@SuppressWarnings("unchecked")
-			IModuler<REQ, RES> moduler= (IModuler<REQ, RES>) ExtensionLoader.getExtensionLoader(modulerType.getClazz()).getAdaptiveExtension();
-			modulers.put(modulerType, moduler);
+			IModuler<REQ, RES> tempModuler= (IModuler<REQ, RES>) ExtensionLoader.getExtensionLoader(modulerType.getClazz()).getAdaptiveExtension();
+			modulers.put(modulerType, tempModuler);
+			
+			switch (modulerType) {
+			case GraceStop:
+				moduler.setGraceStop((IGraceStop<REQ, RES>) tempModuler);
+				break;
+			case BlackWhite:
+				moduler.setBlackWhite((IBlackWhite<REQ, RES>) tempModuler);
+				break;
+			case PipeScaling:
+				moduler.setPipeScaling((IPipeScaling<REQ, RES>) tempModuler);
+				break;
+			case Degrade:
+				moduler.setDegrade((IDegrade<REQ, RES>) tempModuler);
+				break;
+			case EchoSound:
+				moduler.setEchoSound((IEchoSound<REQ, RES>) tempModuler);
+				break;
+			case FlowRate:
+				moduler.setFlowRate((IFlowRate<REQ, RES>) tempModuler);
+				break;
+			case Idempotent:
+				moduler.setIdempotent((Idempotent<REQ, RES>) tempModuler);
+				break;
+			case Neure:
+				moduler.setNeure((INeure<REQ, RES>) tempModuler);
+				break;
+			default:
+				throw new NeureException("未知类型");
+			}
 		}
 		
-		this.moduler.getGraceStop().init();
-		this.moduler.getBlackWhite().init();
-		this.moduler.getPipeScaling().init();
-		this.moduler.getFlowRate().init();
-		this.moduler.getDegrade().init();
-		this.moduler.getIdempotent().init();
-		this.moduler.getEchoSound().init();
-		this.moduler.getNeure().init();
+		//$NON-NLS-初始化$
+		for (IModuler<REQ,RES> initModuler:modulers.values()) {
+			initModuler.init();
+		}
 	}
 	
 	/**
@@ -76,14 +111,10 @@ public abstract class AbstractNeuralFactory<REQ, RES> implements IModuler<REQ, R
 	 */
 	@Override
 	public void destory() throws Throwable {
-		this.moduler.getGraceStop().destory();
-		this.moduler.getBlackWhite().destory();
-		this.moduler.getPipeScaling().destory();
-		this.moduler.getFlowRate().destory();
-		this.moduler.getDegrade().destory();
-		this.moduler.getIdempotent().destory();
-		this.moduler.getEchoSound().destory();
-		this.moduler.getNeure().destory();
+		//$NON-NLS-销毁$
+		for (IModuler<REQ,RES> initModuler:modulers.values()) {
+			initModuler.destory();
+		}
 	}
 
 }
