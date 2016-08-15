@@ -10,6 +10,7 @@ import cn.ms.neural.common.exception.idempotent.IdempotentException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
+import cn.ms.neural.moduler.ModulerType;
 import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
 import cn.ms.neural.moduler.extension.echosound.processor.IEchoSoundProcessor;
@@ -19,14 +20,14 @@ import cn.ms.neural.moduler.extension.gracestop.processor.IGraceStopProcessor;
 import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 import cn.ms.neural.moduler.extension.pipescaling.processor.IPipeScalingProcessor;
 import cn.ms.neural.moduler.neure.processor.INeureProcessor;
-import cn.ms.neural.moduler.senior.alarm.AlarmModuler;
 import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 import cn.ms.neural.support.AbstractNeuralFactory;
 
 /**
  * 微服务神经元 <br>
- * 
+ * <br>
+ * 注意:使用时请单例化使用<br>
  * 1.泛化引用、泛化实现<br>
  * 2.链路追踪、容量规划、实时监控<br>
  * 3.优雅停机→黑白名单→管道缩放→流量控制→资源鉴权→服务降级→幂等保障→灰度路由→回声探测→[熔断拒绝→超时控制→舱壁隔离→服务容错→慢性尝试]<br>
@@ -130,7 +131,7 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 																	@Override
 																	public void alarm(IAlarmType alarmType, REQ req, RES res,
 																			Throwable t, Object... args) throws AlarmException {
-																		processor.alarm(AlarmModuler.Neure, alarmType, req, res, t, args);																		
+																		processor.alarm(ModulerType.Neure, alarmType, req, res, t, args);																		
 																	}
 																}, args);//$NON-NLS-容错内核结束$
 															}
@@ -153,7 +154,7 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 															 */
 															@Override
 															public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
-																processor.alarm(AlarmModuler.EchoSound, alarmType, req, res, t, args);																
+																processor.alarm(ModulerType.EchoSound, alarmType, req, res, t, args);																
 															}
 														}, args);//$NON-NLS-回声探测结束$
 													}
@@ -183,7 +184,7 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 													 */
 													@Override
 													public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
-														processor.alarm(AlarmModuler.Idempotent, alarmType, req, res, t, args);														
+														processor.alarm(ModulerType.Idempotent, alarmType, req, res, t, args);														
 													}
 												}, args);//$NON-NLS-幂等结束$
 											}
@@ -206,7 +207,7 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 											 */
 											@Override
 											public void alarm(IAlarmType alarmType,REQ req, RES res, Throwable t, Object... args) throws AlarmException {
-												processor.alarm(AlarmModuler.Degrade, alarmType, req, res, t, args);												
+												processor.alarm(ModulerType.Degrade, alarmType, req, res, t, args);												
 											}
 										}, args);//$NON-NLS-服务降级结束$
 									}
@@ -215,7 +216,7 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 									 */
 									@Override
 									public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
-										processor.alarm(AlarmModuler.FlowRate, alarmType, req, res, t, args);
+										processor.alarm(ModulerType.FlowRate, alarmType, req, res, t, args);
 									}
 								}, args);//$NON-NLS-流量控制结束$
 							}
@@ -224,7 +225,7 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 							 */
 							@Override
 							public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
-								processor.alarm(AlarmModuler.PipeScaling, alarmType, req, res, t, args);
+								processor.alarm(ModulerType.PipeScaling, alarmType, req, res, t, args);
 							}
 						}, args);//$NON-NLS-管道缩放结束$
 					}
@@ -233,7 +234,7 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 					 */
 					@Override
 					public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
-						processor.alarm(AlarmModuler.BlackWhite, alarmType, req, res, t, args);						
+						processor.alarm(ModulerType.BlackWhite, alarmType, req, res, t, args);						
 					}
 				}, args);//$NON-NLS-黑白名单结束$
 			}
@@ -242,7 +243,7 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 			 */
 			@Override
 			public void alarm(IAlarmType alarmType, REQ req, RES res, Throwable t, Object... args) throws AlarmException {
-				processor.alarm(AlarmModuler.GraceStop, alarmType, req, res, t, args);
+				processor.alarm(ModulerType.GraceStop, alarmType, req, res, t, args);
 			}
 		}, args);//$NON-NLS-优雅停机结束$
 	}

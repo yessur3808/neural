@@ -1,6 +1,6 @@
-package cn.ms.neural.moduler.senior.alarm;
+package cn.ms.neural.moduler;
 
-public enum AlarmModuler {
+public enum ModulerType {
 
 	/**
 	 * 优雅停机

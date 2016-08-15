@@ -1,7 +1,7 @@
 package cn.ms.neural.moduler.senior.alarm.processor;
 
 import cn.ms.neural.common.exception.AlarmException;
-import cn.ms.neural.moduler.senior.alarm.AlarmModuler;
+import cn.ms.neural.moduler.ModulerType;
 import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 
 /**
@@ -15,7 +15,7 @@ public interface IAlarmProcessor<REQ, RES> {
 	/**
 	 * 告警处理
 	 * 
-	 * @param alarmModuler 告警模块
+	 * @param modulerType 告警模块
 	 * @param alarmType 告警类型
 	 * @param req 请求对象
 	 * @param res 响应对象
@@ -23,6 +23,6 @@ public interface IAlarmProcessor<REQ, RES> {
 	 * @param args 其他参数
 	 * @throws AlarmException
 	 */
-	void alarm(AlarmModuler alarmModuler, IAlarmType alarmType, REQ req, RES res, Throwable t, Object...args) throws AlarmException;
+	void alarm(ModulerType modulerType, IAlarmType alarmType, REQ req, RES res, Throwable t, Object...args) throws AlarmException;
 	
 }
