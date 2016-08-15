@@ -28,11 +28,10 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 
 	private Moduler<REQ, RES> moduler;
 
-	
 	//$NON-NLS-并发流控$
-	private Semaphore semaphore;
+	private Semaphore semaphore=new Semaphore(FlowRateConf.CCT_NUM_DEF_VAL, true);
 	//$NON-NLS-QPS流控$
-	private RateLimiter rateLimiter;
+	private RateLimiter rateLimiter=RateLimiter.create(FlowRateConf.QPS_NUM_DEF_VAL);
 	private FlowrateRule flowrateRule;
 	
 	@Override
@@ -53,7 +52,7 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 		//$NON-NLS-配置更新$
 		flowrateRule=new FlowrateRule(flowrateSwitch, cctSwitch, permits, qpsSwitch, permitsPerSecond);
 		semaphore=new Semaphore(flowrateRule.getPermits(), true);
-		rateLimiter=RateLimiter.create(flowrateRule.getPermitsPerSecond());
+		rateLimiter.setRate(flowrateRule.getPermitsPerSecond());
 	}
 
 	@Override
