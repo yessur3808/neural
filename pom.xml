@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>info.ms.neural</groupId>
+	<groupId>cn.ms.neural</groupId>
 	<artifactId>neural</artifactId>
-	<version>3.3.0-SNAPSHOT</version>
+	<version>4.0.0-RELEASE</version>
 	<name>分布式服务框架中的神经组织</name>
 	<description>分布式服务框架中的神经组织，主要为分布式架构提供:流量控制、服务降级、幂等机制、泛化容错、流量熔断、隔离舱壁、超时控制、慢性重试。 </description>
 
