@@ -8,6 +8,8 @@ import cn.ms.neural.Conf;
 import cn.ms.neural.common.exception.flowrate.CctOverFlowException;
 import cn.ms.neural.common.exception.flowrate.FlowrateException;
 import cn.ms.neural.common.exception.flowrate.QpsOverFlowException;
+import cn.ms.neural.common.logger.ILogger;
+import cn.ms.neural.common.logger.LoggerManager;
 import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.flowrate.IFlowRate;
@@ -25,6 +27,8 @@ import cn.ms.neural.moduler.senior.alarm.AlarmType;
 @Adaptive
 public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 
+	private static final ILogger bizDefaultLog = LoggerManager.getBizDefaultLog();
+	
 	private Moduler<REQ, RES> moduler;
 
 	//$NON-NLS-并发流控$
@@ -66,8 +70,11 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 		}
 		
 		if(flowrateRule.isCctSwitch()){//并发开关
+			boolean hasRES=false;
 			try {
-				if (semaphore.tryAcquire()) {//并发控制
+				hasRES=semaphore.tryAcquire();//尝试获取许可数
+				bizDefaultLog.info("当前的并发数为:"+(flowrateRule.getPermits()-semaphore.availablePermits()));
+				if (hasRES) {//并发控制
 					return rateLimiter(req, processor, args);	
 				}else{//并发溢出
 					//$NON-NLS-告警$
@@ -75,7 +82,9 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 					throw new CctOverFlowException("The concurrent overflow.");
 				}
 			} finally {
-				semaphore.release();//释放资源
+				if(hasRES){//获取成功才释放
+					semaphore.release();//释放资源
+				}
 			}
 		}else{
 			return rateLimiter(req, processor, args);

@@ -12,21 +12,13 @@ public enum AlarmType implements IAlarmType {
 	 * 并发控制溢出
 	 */
 	FLOWRATE_CTT_OVERFLOW, 
-	/**
-	 * 并发控制异常
-	 */
-	FLOWRATE_CTT_EXCEPTION, 
 	
 
 	/**
 	 * 流速控制溢出
 	 */
 	FLOWRATE_QPS_OVERFLOW, 
-	/**
-	 * 流速控制异常
-	 */
-	FLOWRATE_QPS_EXCEPTION,
-	
+
 	
 	/**
 	 * 常规路由失败告警
