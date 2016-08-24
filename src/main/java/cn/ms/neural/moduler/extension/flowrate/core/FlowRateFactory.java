@@ -5,10 +5,8 @@ import java.util.concurrent.Semaphore;
 import com.google.common.util.concurrent.RateLimiter;
 
 import cn.ms.neural.Conf;
-import cn.ms.neural.common.exception.flowrate.CctException;
 import cn.ms.neural.common.exception.flowrate.CctOverFlowException;
 import cn.ms.neural.common.exception.flowrate.FlowrateException;
-import cn.ms.neural.common.exception.flowrate.QpsException;
 import cn.ms.neural.common.exception.flowrate.QpsOverFlowException;
 import cn.ms.neural.common.spi.Adaptive;
 import cn.ms.neural.moduler.Moduler;
@@ -74,14 +72,8 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 				}else{//并发溢出
 					//$NON-NLS-告警$
 					processor.alarm(AlarmType.FLOWRATE_CTT_OVERFLOW, req, null, null, args);
-					
 					throw new CctOverFlowException("The concurrent overflow.");
 				}
-			} catch (Exception e) {
-				//$NON-NLS-告警$
-				processor.alarm(AlarmType.FLOWRATE_CTT_EXCEPTION, req, null, e, args);
-				
-				throw new CctException(e);//并发异常
 			} finally {
 				semaphore.release();//释放资源
 			}
@@ -100,20 +92,12 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 	 */
 	private RES rateLimiter(REQ req, IFlowRateProcessor<REQ, RES> processor, Object... args) {
 		if(flowrateRule.isQpsSwitch()){//流控开关打开
-			try {
-				if(rateLimiter.tryAcquire()){//流速控制
-					return processor.processor(req, args);
-				}else{
-					//$NON-NLS-告警$
-					processor.alarm(AlarmType.FLOWRATE_QPS_OVERFLOW, req, null, null, args);
-
-				    throw new QpsOverFlowException("The flow rate overflow.");
-				}
-			} catch (Exception e) {
+			if(rateLimiter.tryAcquire()){//流速控制
+				return processor.processor(req, args);
+			}else{
 				//$NON-NLS-告警$
-				processor.alarm(AlarmType.FLOWRATE_QPS_EXCEPTION, req, null, e, args);
-
-				throw new QpsException(e);
+				processor.alarm(AlarmType.FLOWRATE_QPS_OVERFLOW, req, null, null, args);
+			    throw new QpsOverFlowException("The flow rate overflow.");
 			}
 		}else{//流控开关关闭
 			return processor.processor(req, args);
