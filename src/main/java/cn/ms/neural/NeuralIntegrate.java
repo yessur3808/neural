@@ -10,6 +10,7 @@ import cn.ms.neural.common.exception.idempotent.IdempotentException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
+import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.ModulerType;
 import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
@@ -46,6 +47,15 @@ import cn.ms.neural.support.AbstractNeuralFactory;
  */
 public class NeuralIntegrate<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 
+	public NeuralIntegrate(Moduler<REQ, RES> moduler) {
+		try {
+			super.init();
+			super.notify(moduler);//通知节点配置信息
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 微服务神经元
 	 * 

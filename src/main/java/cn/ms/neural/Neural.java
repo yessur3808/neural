@@ -61,10 +61,6 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 		
 	}
 	
-	public void name() {
-		
-	}
-	
 	/**
 	 * 微服务神经元
 	 * 

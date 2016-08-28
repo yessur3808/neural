@@ -25,9 +25,7 @@ public class NeuralTest {
 					+ "&gracestop.switch=boot");
 			
 			moduler.setUrl(url);
-			NeuralIntegrate<String, String> neural=new NeuralIntegrate<String, String>();
-			neural.init();
-			neural.notify(moduler);
+			NeuralIntegrate<String, String> neural=new NeuralIntegrate<String, String>(moduler);
 
 			try {
 				neural.neural("请求报文", "key1", EchoSoundType.NON, null, new DemoProcessor());

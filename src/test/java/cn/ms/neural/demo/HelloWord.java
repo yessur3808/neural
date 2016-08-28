@@ -18,13 +18,12 @@ public class HelloWord {
 	URL url=URL.valueOf("http://127.0.0.1:8080/neural/?"
 			+ "gracestop.status="+GraceStopStatusType.ONLINE
 			+ "&gracestop.switch=boot");
-	NeuralIntegrate<String, String> neural=new NeuralIntegrate<String, String>();
+	NeuralIntegrate<String, String> neural=null;
 	
 	public HelloWord() {
 		try {
 			moduler.setUrl(url);
-			neural.init();
-			neural.notify(moduler);
+			neural=new NeuralIntegrate<String, String>(moduler);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
