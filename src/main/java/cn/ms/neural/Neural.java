@@ -2,14 +2,14 @@ package cn.ms.neural;
 
 import java.util.Map;
 
-import cn.ms.neural.chain.moduler.BlackWhiteHandler;
-import cn.ms.neural.chain.moduler.DegradeHandler;
-import cn.ms.neural.chain.moduler.EchoSoundHandler;
-import cn.ms.neural.chain.moduler.FlowRateHandler;
-import cn.ms.neural.chain.moduler.GraceStopHandler;
-import cn.ms.neural.chain.moduler.IdempotentHandler;
-import cn.ms.neural.chain.moduler.NeureHandler;
-import cn.ms.neural.chain.moduler.PipeScalingHandler;
+import cn.ms.neural.chain.moduler.BlackWhiteChain;
+import cn.ms.neural.chain.moduler.DegradeChain;
+import cn.ms.neural.chain.moduler.EchoSoundChain;
+import cn.ms.neural.chain.moduler.FlowRateChain;
+import cn.ms.neural.chain.moduler.GraceStopChain;
+import cn.ms.neural.chain.moduler.IdempotentChain;
+import cn.ms.neural.chain.moduler.NeureChain;
+import cn.ms.neural.chain.moduler.PipeScalingChain;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 import cn.ms.neural.processor.INeuralProcessor;
@@ -17,14 +17,14 @@ import cn.ms.neural.support.AbstractNeuralFactory;
 
 public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 
-	GraceStopHandler<REQ, RES> graceStopHandler = null;
-	BlackWhiteHandler<REQ, RES> blackWhiteHandler = null;
-	PipeScalingHandler<REQ, RES> pipeScalingHandler = null;
-	FlowRateHandler<REQ, RES> flowRateHandler = null;
-	DegradeHandler<REQ, RES> degradeHandler = null;
-	IdempotentHandler<REQ, RES> idempotentHandler = null;
-	EchoSoundHandler<REQ, RES> echoSoundHandler = null;
-	NeureHandler<REQ, RES> neureHandler = null;
+	GraceStopChain<REQ, RES> graceStopHandler = null;
+	BlackWhiteChain<REQ, RES> blackWhiteHandler = null;
+	PipeScalingChain<REQ, RES> pipeScalingHandler = null;
+	FlowRateChain<REQ, RES> flowRateHandler = null;
+	DegradeChain<REQ, RES> degradeHandler = null;
+	IdempotentChain<REQ, RES> idempotentHandler = null;
+	EchoSoundChain<REQ, RES> echoSoundHandler = null;
+	NeureChain<REQ, RES> neureHandler = null;
 	
 	public Neural(Moduler<REQ, RES> moduler) {
 		try {
@@ -35,14 +35,14 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 		}
 		
 		//$NON-NLS-建造模块功能$
-		graceStopHandler = new GraceStopHandler<REQ, RES>(moduler);
-		blackWhiteHandler = new BlackWhiteHandler<REQ, RES>(moduler);
-		pipeScalingHandler = new PipeScalingHandler<REQ, RES>(moduler);
-		flowRateHandler = new FlowRateHandler<REQ, RES>(moduler);
-		degradeHandler = new DegradeHandler<REQ, RES>(moduler);
-		idempotentHandler = new IdempotentHandler<REQ, RES>(moduler);
-		echoSoundHandler = new EchoSoundHandler<REQ, RES>(moduler);
-		neureHandler = new NeureHandler<REQ, RES>(moduler);
+		graceStopHandler = new GraceStopChain<REQ, RES>(moduler);
+		blackWhiteHandler = new BlackWhiteChain<REQ, RES>(moduler);
+		pipeScalingHandler = new PipeScalingChain<REQ, RES>(moduler);
+		flowRateHandler = new FlowRateChain<REQ, RES>(moduler);
+		degradeHandler = new DegradeChain<REQ, RES>(moduler);
+		idempotentHandler = new IdempotentChain<REQ, RES>(moduler);
+		echoSoundHandler = new EchoSoundChain<REQ, RES>(moduler);
+		neureHandler = new NeureChain<REQ, RES>(moduler);
 		
 		// 优雅停机 -->  黑白名单
 		graceStopHandler.setNeuralChainHandler(blackWhiteHandler);

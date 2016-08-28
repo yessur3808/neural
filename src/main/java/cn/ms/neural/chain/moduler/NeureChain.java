@@ -16,9 +16,9 @@ import cn.ms.neural.moduler.neure.processor.INeureProcessor;
 import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
-public class NeureHandler<REQ, RES> extends AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ, RES> {
+public class NeureChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ, RES> {
 
-	public NeureHandler(Moduler<REQ, RES> moduler) {
+	public NeureChain(Moduler<REQ, RES> moduler) {
 		super(moduler);
 	}
 

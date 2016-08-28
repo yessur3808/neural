@@ -14,9 +14,9 @@ import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
-public class IdempotentHandler<REQ, RES> extends AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ, RES> {
+public class IdempotentChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ, RES> {
 
-	public IdempotentHandler(Moduler<REQ, RES> moduler) {
+	public IdempotentChain(Moduler<REQ, RES> moduler) {
 		super(moduler);
 	}
 
