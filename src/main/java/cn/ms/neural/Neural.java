@@ -23,13 +23,13 @@ import cn.ms.neural.support.AbstractNeuralFactory;
  * 2.链路追踪、容量规划、实时监控<br>
  * 3.优雅停机→黑白名单→管道缩放→流量控制→资源鉴权→服务降级→幂等保障→灰度路由→回声探测→[熔断拒绝→超时控制→舱壁隔离→服务容错→慢性尝试]<br>
  * <br>
- * 待实现:
- * <br>
+ * 待实现: <br>
  * 链路追踪<br>
  * 容量规划<br>
  * 实时监控<br>
  * 资源鉴权<br>
  * 灰度路由<br>
+ * 
  * @author lry
  *
  * @param <REQ> 请求对象
@@ -45,16 +45,16 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 	IdempotentChain<REQ, RES> idempotentChain = null;
 	EchoSoundChain<REQ, RES> echoSoundChain = null;
 	NeureChain<REQ, RES> neureChain = null;
-	
+
 	public Neural(Moduler<REQ, RES> moduler) {
 		try {
 			super.init();
-			super.notify(moduler);//通知节点配置信息
+			super.notify(moduler);// 通知节点配置信息
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
-		
-		//$NON-NLS-建造模块功能$
+
+		// $NON-NLS-建造模块功能$
 		graceStopChain = new GraceStopChain<REQ, RES>(moduler);
 		blackWhiteChain = new BlackWhiteChain<REQ, RES>(moduler);
 		pipeScalingChain = new PipeScalingChain<REQ, RES>(moduler);
@@ -63,9 +63,9 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 		idempotentChain = new IdempotentChain<REQ, RES>(moduler);
 		echoSoundChain = new EchoSoundChain<REQ, RES>(moduler);
 		neureChain = new NeureChain<REQ, RES>(moduler);
-		
-		//$NON-NLS-责任链链接$
-		// 优雅停机 -->  黑白名单
+
+		// $NON-NLS-责任链链接$
+		// 优雅停机 --> 黑白名单
 		graceStopChain.setNeuralChain(blackWhiteChain);
 		// 黑白名单 --> 管道缩放
 		blackWhiteChain.setNeuralChain(pipeScalingChain);
@@ -79,9 +79,9 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 		idempotentChain.setNeuralChain(echoSoundChain);
 		// 回声探测 --> 服务容错(熔断拒绝→超时控制→舱壁隔离→服务容错→慢性尝试)
 		echoSoundChain.setNeuralChain(neureChain);
-		
+
 	}
-	
+
 	/**
 	 * 微服务神经元
 	 * 
@@ -93,14 +93,11 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 	 * @param args 其他参数
 	 * @return
 	 */
-	public RES neural(REQ req,
-			String neuralId, 
-			EchoSoundType echoSoundType, 
-			Map<String, Object> blackWhiteIdKeyVals, 
-			INeuralProcessor<REQ, RES> processor, Object...args) {
-		
-		//$NON-NLS-通过优雅停机开始进入模块链$
+	public RES neural(REQ req, String neuralId, EchoSoundType echoSoundType, Map<String, Object> blackWhiteIdKeyVals,
+			INeuralProcessor<REQ, RES> processor, Object... args) {
+
+		// $NON-NLS-通过优雅停机开始进入模块链$
 		return graceStopChain.chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 	}
-	
+
 }
