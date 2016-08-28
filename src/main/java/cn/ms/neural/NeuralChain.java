@@ -82,7 +82,7 @@ public class NeuralChain<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 			Map<String, Object> blackWhiteIdKeyVals, 
 			INeuralProcessor<REQ, RES> processor, Object...args) {
 		
-		return graceStopHandler.neural(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
+		return graceStopHandler.chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 	}
 	
 }

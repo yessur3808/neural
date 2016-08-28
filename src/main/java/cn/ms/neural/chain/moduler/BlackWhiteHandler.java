@@ -20,13 +20,13 @@ public class BlackWhiteHandler<REQ, RES> extends AbstractNeuralChainHandler<REQ,
 	}
 
 	@Override
-	public RES neural(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
+	public RES chain(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
 			final INeuralProcessor<REQ, RES> processor, Object... args) {
 		//$NON-NLS-黑白名单开始$
 		return moduler.getBlackWhite().blackwhite(req, blackWhiteIdKeyVals, new IBlackWhiteProcessor<REQ, RES>() {
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
-				return getNeuralChainHandler().neural(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
+				return getNeuralChainHandler().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
 			/**
 			 * 告警

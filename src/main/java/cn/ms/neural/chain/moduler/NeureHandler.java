@@ -23,7 +23,7 @@ public class NeureHandler<REQ, RES> extends AbstractNeuralChainHandler<REQ, RES>
 	}
 
 	@Override
-	public RES neural(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
+	public RES chain(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
 			final INeuralProcessor<REQ, RES> processor, Object... args) {
 		//$NON-NLS-容错内核开始(熔断拒绝→超时控制→舱壁隔离→服务容错→慢性尝试)$
 		return moduler.getNeure().neure(req, new INeureProcessor<REQ, RES>() {

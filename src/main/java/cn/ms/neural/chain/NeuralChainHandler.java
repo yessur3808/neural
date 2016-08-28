@@ -7,7 +7,7 @@ import cn.ms.neural.processor.INeuralProcessor;
 
 public interface NeuralChainHandler<REQ, RES> {
 
-	RES neural(REQ req, 
+	RES chain(REQ req, 
 			String neuralId, 
 			EchoSoundType echoSoundType, 
 			Map<String, Object> blackWhiteIdKeyVals,

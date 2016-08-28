@@ -21,13 +21,13 @@ public class DegradeHandler<REQ, RES> extends AbstractNeuralChainHandler<REQ, RE
 	}
 
 	@Override
-	public RES neural(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
+	public RES chain(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
 			final INeuralProcessor<REQ, RES> processor, Object... args) {
 		//$NON-NLS-服务降级开始$
 		return moduler.getDegrade().degrade(req, new IDegradeProcessor<REQ, RES>() {
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
-				return getNeuralChainHandler().neural(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
+				return getNeuralChainHandler().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
 			/**
 			 * 降级mock

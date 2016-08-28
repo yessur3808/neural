@@ -21,13 +21,13 @@ public class EchoSoundHandler<REQ, RES> extends AbstractNeuralChainHandler<REQ, 
 	}
 
 	@Override
-	public RES neural(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
+	public RES chain(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
 			final INeuralProcessor<REQ, RES> processor, Object... args) {
 		//$NON-NLS-回声探测开始$
 		return moduler.getEchoSound().echosound(echoSoundType, req, new IEchoSoundProcessor<REQ, RES>() {
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
-				return getNeuralChainHandler().neural(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
+				return getNeuralChainHandler().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
 			/**
 			 * 回声探测请求
