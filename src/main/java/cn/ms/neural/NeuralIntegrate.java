@@ -44,7 +44,7 @@ import cn.ms.neural.support.AbstractNeuralFactory;
  * @param <REQ> 请求对象
  * @param <RES> 响应对象
  */
-public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
+public class NeuralIntegrate<REQ, RES> extends AbstractNeuralFactory<REQ, RES>{
 
 	/**
 	 * 微服务神经元

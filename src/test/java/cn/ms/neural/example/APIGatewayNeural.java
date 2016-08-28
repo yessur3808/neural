@@ -2,7 +2,7 @@ package cn.ms.neural.example;
 
 import java.util.UUID;
 
-import cn.ms.neural.Neural;
+import cn.ms.neural.NeuralChain;
 import cn.ms.neural.common.URL;
 import cn.ms.neural.common.utils.NetUtils;
 import cn.ms.neural.example.entity.GatewayREQ;
@@ -20,7 +20,7 @@ import cn.ms.neural.processor.INeuralProcessor;
  */
 public class APIGatewayNeural {
 
-	Neural<GatewayREQ, GatewayRES> neural=new Neural<GatewayREQ, GatewayRES>();
+	NeuralChain<GatewayREQ, GatewayRES> neural = null;
 	INeuralProcessor<GatewayREQ, GatewayRES> processor=new APIGatewayNeuralProcessor();
 	
 	public APIGatewayNeural() {
@@ -34,8 +34,7 @@ public class APIGatewayNeural {
 					+ "&gracestop.switch=boot");
 			moduler.setUrl(url);
 			
-			neural.init();
-			neural.notify(moduler);//通知节点配置信息
+			neural=new NeuralChain<GatewayREQ, GatewayRES>(moduler);
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}

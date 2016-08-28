@@ -1,6 +1,6 @@
 package cn.ms.neural.demo;
 
-import cn.ms.neural.Neural;
+import cn.ms.neural.NeuralIntegrate;
 import cn.ms.neural.common.URL;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
@@ -18,7 +18,7 @@ public class HelloWord {
 	URL url=URL.valueOf("http://127.0.0.1:8080/neural/?"
 			+ "gracestop.status="+GraceStopStatusType.ONLINE
 			+ "&gracestop.switch=boot");
-	Neural<String, String> neural=new Neural<String, String>();
+	NeuralIntegrate<String, String> neural=new NeuralIntegrate<String, String>();
 	
 	public HelloWord() {
 		try {

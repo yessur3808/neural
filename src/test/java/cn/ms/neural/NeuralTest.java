@@ -25,7 +25,7 @@ public class NeuralTest {
 					+ "&gracestop.switch=boot");
 			
 			moduler.setUrl(url);
-			Neural<String, String> neural=new Neural<String, String>();
+			NeuralIntegrate<String, String> neural=new NeuralIntegrate<String, String>();
 			neural.init();
 			neural.notify(moduler);
 
