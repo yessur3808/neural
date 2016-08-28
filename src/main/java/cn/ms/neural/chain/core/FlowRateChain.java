@@ -26,7 +26,7 @@ public class FlowRateChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> imple
 		return moduler.getFlowRate().flowrate(req, new IFlowRateProcessor<REQ, RES>() {
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
-				return getNeuralChainHandler().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
+				return getNeuralChain().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
 			/**
 			 * 告警

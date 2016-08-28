@@ -27,7 +27,7 @@ public class DegradeChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> implem
 		return moduler.getDegrade().degrade(req, new IDegradeProcessor<REQ, RES>() {
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
-				return getNeuralChainHandler().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
+				return getNeuralChain().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
 			/**
 			 * 降级mock

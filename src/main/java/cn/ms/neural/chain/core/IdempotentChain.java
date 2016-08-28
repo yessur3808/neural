@@ -27,7 +27,7 @@ public class IdempotentChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> imp
 		return moduler.getIdempotent().idempotent(neuralId, req, new IdempotentProcessor<REQ, RES>() {
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
-				return getNeuralChainHandler().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
+				return getNeuralChain().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
 			/**
 			 * 幂等请求校验

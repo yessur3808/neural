@@ -26,7 +26,7 @@ public class PipeScalingChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> im
 		return moduler.getPipeScaling().pipescaling(req, new IPipeScalingProcessor<REQ, RES>() {
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
-				return getNeuralChainHandler().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
+				return getNeuralChain().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
 			/**
 			 * 告警

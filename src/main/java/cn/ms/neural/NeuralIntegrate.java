@@ -26,7 +26,7 @@ import cn.ms.neural.processor.INeuralProcessor;
 import cn.ms.neural.support.AbstractNeuralFactory;
 
 /**
- * 微服务神经元 <br>
+ * 集中式微服务神经元 <br>
  * <br>
  * 注意:使用时请单例化使用<br>
  * 1.泛化引用、泛化实现<br>
