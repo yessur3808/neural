@@ -1,15 +1,10 @@
 package cn.ms.neural.support;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import cn.ms.neural.INotify;
 import cn.ms.neural.common.URL;
 //github.com/yu120/neural
 import cn.ms.neural.moduler.IModuler;
 import cn.ms.neural.moduler.Moduler;
-import cn.ms.neural.moduler.ModulerType;
 
 /**
  * 微服务神经元抽象工厂
@@ -20,8 +15,6 @@ import cn.ms.neural.moduler.ModulerType;
 public abstract class AbstractNeuralFactory<REQ, RES> implements IModuler<REQ, RES>,INotify<URL> {
 	
 	protected Moduler<REQ, RES> moduler=new Moduler<REQ, RES>();
-	public List<ModulerType> modulerTypes=ModulerType.getModulerTypes();
-	public Map<ModulerType,IModuler<REQ, RES>> modulers=new LinkedHashMap<ModulerType,IModuler<REQ, RES>>();
 	
 	/**
 	 * 初始化

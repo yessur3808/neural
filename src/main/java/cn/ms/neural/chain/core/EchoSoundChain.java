@@ -23,12 +23,15 @@ public class EchoSoundChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> impl
 	@Override
 	public RES chain(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
 			final INeuralProcessor<REQ, RES> processor, Object... args) {
+		
 		//$NON-NLS-回声探测开始$
 		return moduler.getEchoSound().echosound(echoSoundType, req, new IEchoSoundProcessor<REQ, RES>() {
+			
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
 				return getNeuralChain().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
+			
 			/**
 			 * 回声探测请求
 			 */
@@ -36,6 +39,7 @@ public class EchoSoundChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> impl
 			public REQ $echo(REQ req, Object...args) throws EchoSoundException {
 				return processor.$echo(req, args);
 			}
+			
 			/**
 			 * 回声探测响应
 			 */
@@ -43,6 +47,7 @@ public class EchoSoundChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> impl
 			public RES $rebound(REQ req, Object...args) throws EchoSoundException {
 				return processor.$rebound(req, args);
 			}
+			
 			/**
 			 * 告警
 			 */
@@ -51,5 +56,7 @@ public class EchoSoundChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> impl
 				processor.alarm(ModulerType.EchoSound, alarmType, req, res, t, args);																
 			}
 		});
+		
 	}
+	
 }

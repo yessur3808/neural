@@ -23,12 +23,15 @@ public class IdempotentChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> imp
 	@Override
 	public RES chain(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
 			final INeuralProcessor<REQ, RES> processor, Object... args) {
+		
 		//$NON-NLS-幂等开始$
 		return moduler.getIdempotent().idempotent(neuralId, req, new IdempotentProcessor<REQ, RES>() {
+			
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
 				return getNeuralChain().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
+			
 			/**
 			 * 幂等请求校验
 			 */
@@ -36,6 +39,7 @@ public class IdempotentChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> imp
 			public boolean check(String neuralId, Object...args) throws IdempotentException {
 				return processor.check(neuralId);
 			}
+			
 			/**
 			 * 获取幂等数据
 			 */
@@ -43,6 +47,7 @@ public class IdempotentChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> imp
 			public RES get(String neuralId, Object...args) throws IdempotentException {
 				return processor.get(neuralId);
 			}
+			
 			/**
 			 * 幂等持久化数据
 			 */
@@ -50,6 +55,7 @@ public class IdempotentChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> imp
 			public void storage(REQ req, RES res, Object...args) throws IdempotentException {
 				processor.storage(req, res, args);
 			}
+			
 			/**
 			 * 告警
 			 */
@@ -58,5 +64,7 @@ public class IdempotentChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> imp
 				processor.alarm(ModulerType.Idempotent, alarmType, req, res, t, args);														
 			}
 		});
+		
 	}
+	
 }

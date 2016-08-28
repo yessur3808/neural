@@ -5,58 +5,44 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import cn.ms.neural.moduler.extension.blackwhite.IBlackWhite;
-import cn.ms.neural.moduler.extension.degrade.IDegrade;
-import cn.ms.neural.moduler.extension.echosound.IEchoSound;
-import cn.ms.neural.moduler.extension.flowrate.IFlowRate;
-import cn.ms.neural.moduler.extension.gracestop.IGraceStop;
-import cn.ms.neural.moduler.extension.idempotent.Idempotent;
-import cn.ms.neural.moduler.extension.pipescaling.IPipeScaling;
-import cn.ms.neural.moduler.neure.INeure;
-
 public enum ModulerType {
 
 	/**
 	 * 优雅停机
 	 */
-	GraceStop(0, IGraceStop.class),
+	GraceStop,
 	/**
 	 * 黑白名单
 	 */
-	BlackWhite(1, IBlackWhite.class),
+	BlackWhite,
 	/**
 	 * 管道缩放
 	 */
-	PipeScaling(2, IPipeScaling.class),
+	PipeScaling,
 	/**
 	 * 流量控制
 	 */
-	FlowRate(3, IFlowRate.class),
+	FlowRate,
 	/**
 	 * 服务降级
 	 */
-	Degrade(4, IDegrade.class),
+	Degrade,
 	/**
 	 * 幂等模块
 	 */
-	Idempotent(5, Idempotent.class),
+	Idempotent,
 	/**
 	 * 回声探测
 	 */
-	EchoSound(6, IEchoSound.class),
+	EchoSound,
 	/**
 	 * 容错内核
 	 */
-	Neure(7, INeure.class);
+	Neure;
 
 	Integer no;
 	Class<?> clazz;
 	static List<ModulerType> modulerTypes = new ArrayList<ModulerType>();
-
-	ModulerType(int no, Class<?> clazz) {
-		this.no = no;
-		this.clazz = clazz;
-	}
 
 	public Integer getNo() {
 		return no;
