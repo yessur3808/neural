@@ -6,13 +6,13 @@ import static java.lang.Math.max;
 import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 import com.google.common.annotations.Beta;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Stopwatch;
 import com.google.common.util.concurrent.Uninterruptibles;
-
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import cn.ms.neural.moduler.flowrate.SmoothRateLimiter.SmoothBursty;
 import cn.ms.neural.moduler.flowrate.SmoothRateLimiter.SmoothWarmingUp;

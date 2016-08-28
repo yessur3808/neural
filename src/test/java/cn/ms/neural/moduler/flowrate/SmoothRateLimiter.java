@@ -3,9 +3,9 @@ package cn.ms.neural.moduler.flowrate;
 import static java.lang.Math.min;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-import com.google.common.math.LongMath;
-
 import java.util.concurrent.TimeUnit;
+
+import com.google.common.math.LongMath;
 
 abstract class SmoothRateLimiter extends RateLimiter {
 

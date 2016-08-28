@@ -2,14 +2,14 @@ package cn.ms.neural;
 
 import java.util.Map;
 
-import cn.ms.neural.chain.moduler.BlackWhiteChain;
-import cn.ms.neural.chain.moduler.DegradeChain;
-import cn.ms.neural.chain.moduler.EchoSoundChain;
-import cn.ms.neural.chain.moduler.FlowRateChain;
-import cn.ms.neural.chain.moduler.GraceStopChain;
-import cn.ms.neural.chain.moduler.IdempotentChain;
-import cn.ms.neural.chain.moduler.NeureChain;
-import cn.ms.neural.chain.moduler.PipeScalingChain;
+import cn.ms.neural.chain.core.BlackWhiteChain;
+import cn.ms.neural.chain.core.DegradeChain;
+import cn.ms.neural.chain.core.EchoSoundChain;
+import cn.ms.neural.chain.core.FlowRateChain;
+import cn.ms.neural.chain.core.GraceStopChain;
+import cn.ms.neural.chain.core.IdempotentChain;
+import cn.ms.neural.chain.core.NeureChain;
+import cn.ms.neural.chain.core.PipeScalingChain;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 import cn.ms.neural.processor.INeuralProcessor;
