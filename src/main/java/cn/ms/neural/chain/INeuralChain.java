@@ -5,7 +5,7 @@ import java.util.Map;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 import cn.ms.neural.processor.INeuralProcessor;
 
-public interface NeuralChainHandler<REQ, RES> {
+public interface INeuralChain<REQ, RES> {
 
 	RES chain(REQ req, 
 			String neuralId, 

@@ -2,8 +2,8 @@ package cn.ms.neural.chain.moduler;
 
 import java.util.Map;
 
-import cn.ms.neural.chain.NeuralChainHandler;
-import cn.ms.neural.chain.support.AbstractNeuralChainHandler;
+import cn.ms.neural.chain.INeuralChain;
+import cn.ms.neural.chain.support.AbstractNeuralChain;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.idempotent.IdempotentException;
@@ -14,7 +14,7 @@ import cn.ms.neural.moduler.extension.idempotent.processor.IdempotentProcessor;
 import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
-public class IdempotentHandler<REQ, RES> extends AbstractNeuralChainHandler<REQ, RES> implements NeuralChainHandler<REQ, RES> {
+public class IdempotentHandler<REQ, RES> extends AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ, RES> {
 
 	public IdempotentHandler(Moduler<REQ, RES> moduler) {
 		super(moduler);

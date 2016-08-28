@@ -2,8 +2,8 @@ package cn.ms.neural.chain.moduler;
 
 import java.util.Map;
 
-import cn.ms.neural.chain.NeuralChainHandler;
-import cn.ms.neural.chain.support.AbstractNeuralChainHandler;
+import cn.ms.neural.chain.INeuralChain;
+import cn.ms.neural.chain.support.AbstractNeuralChain;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
@@ -16,7 +16,7 @@ import cn.ms.neural.moduler.neure.processor.INeureProcessor;
 import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
-public class NeureHandler<REQ, RES> extends AbstractNeuralChainHandler<REQ, RES> implements NeuralChainHandler<REQ, RES> {
+public class NeureHandler<REQ, RES> extends AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ, RES> {
 
 	public NeureHandler(Moduler<REQ, RES> moduler) {
 		super(moduler);

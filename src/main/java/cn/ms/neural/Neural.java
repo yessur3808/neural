@@ -15,7 +15,7 @@ import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 import cn.ms.neural.processor.INeuralProcessor;
 import cn.ms.neural.support.AbstractNeuralFactory;
 
-public class NeuralChain<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
+public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 
 	GraceStopHandler<REQ, RES> graceStopHandler = null;
 	BlackWhiteHandler<REQ, RES> blackWhiteHandler = null;
@@ -26,7 +26,7 @@ public class NeuralChain<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 	EchoSoundHandler<REQ, RES> echoSoundHandler = null;
 	NeureHandler<REQ, RES> neureHandler = null;
 	
-	public NeuralChain(Moduler<REQ, RES> moduler) {
+	public Neural(Moduler<REQ, RES> moduler) {
 		try {
 			super.init();
 			super.notify(moduler);//通知节点配置信息
