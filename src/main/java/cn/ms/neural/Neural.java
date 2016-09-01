@@ -48,8 +48,8 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 
 	public Neural(Moduler<REQ, RES> moduler) {
 		try {
-			super.init();
 			super.notify(moduler);// 通知节点配置信息
+			super.init();
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}

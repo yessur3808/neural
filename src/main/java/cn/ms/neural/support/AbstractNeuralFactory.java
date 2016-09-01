@@ -14,7 +14,7 @@ import cn.ms.neural.moduler.Moduler;
  */
 public abstract class AbstractNeuralFactory<REQ, RES> implements IModuler<REQ, RES>,INotify<URL> {
 	
-	protected Moduler<REQ, RES> moduler=new Moduler<REQ, RES>();
+	protected Moduler<REQ, RES> moduler=null;
 	
 	/**
 	 * 初始化
