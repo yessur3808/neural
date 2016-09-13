@@ -383,7 +383,7 @@ public final class ExtensionLoader<S> {
 	public static void main(String[] args) {
 		List<INeuralChain<String,String>> neuralChains=ExtensionLoader.getExtensionLoader(INeuralChain.class).getAdaptiveExtensions();
 		for (INeuralChain<String,String> neuralChain:neuralChains) {
-			System.out.println(neuralChain.getClass().getAnnotation(SPI.class));	
+			System.out.println(neuralChain);	
 		}
 	}
 	
