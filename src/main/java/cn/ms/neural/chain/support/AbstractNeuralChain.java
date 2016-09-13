@@ -11,18 +11,18 @@ import cn.ms.neural.moduler.Moduler;
  * @param <REQ>
  * @param <RES>
  */
-public abstract class AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ, RES> {  
-    
+public abstract class AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ, RES> {
+
 	public Moduler<REQ, RES> moduler;
-	public INeuralChain<REQ, RES> neuralChain;  
-    
+	public INeuralChain<REQ, RES> neuralChain;
+
 	public AbstractNeuralChain(Moduler<REQ, RES> moduler) {
 		this.moduler = moduler;
 	}
-    
-    @Override
-    public void setNeuralChain(INeuralChain<REQ, RES> neuralChain) {  
-        this.neuralChain = neuralChain;  
-    }  
-      
-} 
+
+	@Override
+	public void setNeuralChain(INeuralChain<REQ, RES> neuralChain) {
+		this.neuralChain = neuralChain;
+	}
+
+}

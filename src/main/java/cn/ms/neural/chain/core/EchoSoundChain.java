@@ -13,6 +13,14 @@ import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
+/**
+ * 回声探测调用链
+ * 
+ * @author lry
+ *
+ * @param <REQ>
+ * @param <RES>
+ */
 public class EchoSoundChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> {
 
 	public EchoSoundChain(Moduler<REQ, RES> moduler) {
@@ -23,7 +31,7 @@ public class EchoSoundChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> {
 	public RES chain(REQ req, final String neuralId, final EchoSoundType echoSoundType, final Map<String, Object> blackWhiteIdKeyVals,
 			final INeuralProcessor<REQ, RES> processor, Object... args) {
 		
-		//$NON-NLS-回声探测开始$
+		// $NON-NLS-回声探测开始$
 		return moduler.getEchoSound().echosound(echoSoundType, req, new IEchoSoundProcessor<REQ, RES>() {
 			
 			@Override
