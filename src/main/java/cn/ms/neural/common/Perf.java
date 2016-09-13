@@ -1,4 +1,4 @@
-package cn.ms.neural.common.perf;
+package cn.ms.neural.common;
 
 import java.io.Closeable;
 import java.io.IOException;
