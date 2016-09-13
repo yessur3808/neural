@@ -21,7 +21,6 @@ import cn.ms.neural.moduler.senior.alarm.IAlarmType;
  */
 public class BusinessDegradeTest {
 
-	@SuppressWarnings("unchecked")
 	IDegrade<String, String> degrade=ExtensionLoader.getExtensionLoader(IDegrade.class).getAdaptiveExtension();
 	
 	@Test

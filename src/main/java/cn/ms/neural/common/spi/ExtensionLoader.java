@@ -9,6 +9,8 @@ import java.security.AccessControlContext;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -17,7 +19,8 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.ServiceConfigurationError;
-import java.util.Set;
+
+import cn.ms.neural.chain.INeuralChain;
 
 /**
  * Transformation of ServiceLoader based on JDK
@@ -331,21 +334,45 @@ public final class ExtensionLoader<S> {
 		return providerNames;
 	}
 
-	public S getAdaptiveExtension() {
-		return load(DEFAULT_KEY);
+	//$NON-NLS-简单$
+	@SuppressWarnings("unchecked")
+	public <K> K getAdaptiveExtension() {
+		return (K) load(DEFAULT_KEY);
 	}
 
-	public S getAdaptiveExtension(String name) {
-		return load(name);
+	@SuppressWarnings("unchecked")
+	public <K> K getAdaptiveExtension(String name) {
+		return (K) load(name);
 	}
 	
-	public Set<S> getAdaptiveExtensions() {
-		List<String> extensions= getSupportedExtensions();
-		if(extensions==null || extensions.isEmpty()){
+	//$NON-NLS-复杂$
+	@SuppressWarnings("unchecked")
+	public <K> List<K> getAdaptiveExtensions() {
+		List<K> list=new ArrayList<K>();
+		Iterator<Provider> iterator = iterator();
+		while (iterator.hasNext()) {
+			Provider p = iterator.next();
+			if(p.name==null||p.name.length()<1){
+				continue;
+			}
 			
+			S s=load(p.name);
+			SPI spi=s.getClass().getAnnotation(SPI.class);
+			if(spi!=null){
+				list.add((K)s);				
+			}else{
+				fail(service, "Provider " + service + " is not extension, because WITHOUT @" + SPI.class.getSimpleName() + " Annotation!");
+			}
 		}
-		load(DEFAULT_KEY);
-		return null;
+		
+		Collections.sort(list, new Comparator<K>() {
+			@Override
+			public int compare(K o1, K o2) {
+				return o1.getClass().getAnnotation(SPI.class).order()-o2.getClass().getAnnotation(SPI.class).order();
+			}
+		});
+		
+		return list;
 	}
 	
 	
@@ -353,4 +380,11 @@ public final class ExtensionLoader<S> {
 		return ExtensionLoader.class.getName()+"[" + service.getName() + "]";
 	}
 
+	public static void main(String[] args) {
+		List<INeuralChain<String,String>> neuralChains=ExtensionLoader.getExtensionLoader(INeuralChain.class).getAdaptiveExtensions();
+		for (INeuralChain<String,String> neuralChain:neuralChains) {
+			System.out.println(neuralChain.getClass().getAnnotation(SPI.class));	
+		}
+	}
+	
 }

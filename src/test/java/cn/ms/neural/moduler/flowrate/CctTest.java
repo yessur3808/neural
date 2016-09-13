@@ -23,7 +23,6 @@ import cn.ms.neural.moduler.senior.alarm.IAlarmType;
  */
 public class CctTest {
 
-	@SuppressWarnings("unchecked")
 	IFlowRate<String, String> flowRate=ExtensionLoader.getExtensionLoader(IFlowRate.class).getAdaptiveExtension();
 	
 	/**

@@ -20,7 +20,6 @@ import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 
 public class BlackWhiteTest {
 
-	@SuppressWarnings("unchecked")
 	IBlackWhite<String, String> blackWhite=ExtensionLoader.getExtensionLoader(IBlackWhite.class).getAdaptiveExtension();
 	
 	public BlackWhiteTest() {

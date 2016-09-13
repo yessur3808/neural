@@ -31,44 +31,36 @@ public class Moduler<REQ, RES> {
 	/**
 	 * 优雅停机
 	 */
-	@SuppressWarnings("unchecked")
 	IGraceStop<REQ, RES> graceStop=ExtensionLoader.getExtensionLoader(IGraceStop.class).getAdaptiveExtension();
 	/**
 	 * 黑白名单
 	 */
-	@SuppressWarnings("unchecked")
 	IBlackWhite<REQ, RES> blackWhite=ExtensionLoader.getExtensionLoader(IBlackWhite.class).getAdaptiveExtension();
 	/**
 	 * 管道缩放
 	 */
-	@SuppressWarnings("unchecked")
 	IPipeScaling<REQ, RES> pipeScaling=ExtensionLoader.getExtensionLoader(IPipeScaling.class).getAdaptiveExtension();
 	/**
 	 * 流量控制
 	 */
-	@SuppressWarnings("unchecked")
 	IFlowRate<REQ, RES> flowRate=ExtensionLoader.getExtensionLoader(IFlowRate.class).getAdaptiveExtension();
 	/**
 	 * 服务降级
 	 */
-	@SuppressWarnings("unchecked")
 	IDegrade<REQ, RES> degrade=ExtensionLoader.getExtensionLoader(IDegrade.class).getAdaptiveExtension();
 	/**
 	 * 幂等模块
 	 */
-	@SuppressWarnings("unchecked")
 	Idempotent<REQ, RES> idempotent=ExtensionLoader.getExtensionLoader(Idempotent.class).getAdaptiveExtension();
 	
 	/**
 	 * 回声探测
 	 */
-	@SuppressWarnings("unchecked")
 	IEchoSound<REQ, RES> echoSound=ExtensionLoader.getExtensionLoader(IEchoSound.class).getAdaptiveExtension();
 	
 	/**
 	 * 容错内核
 	 */
-	@SuppressWarnings("unchecked")
 	INeure<REQ, RES> neure=ExtensionLoader.getExtensionLoader(INeure.class).getAdaptiveExtension();
 
 	public URL getUrl() {

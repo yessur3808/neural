@@ -27,7 +27,6 @@ public class GraceStopTest {
 				+ "gracestop.status="+GraceStopStatusType.OFFLINE
 				+ "&gracestop.switch=boot"));
 		
-		@SuppressWarnings("unchecked")
 		IGraceStop<String, String> graceStop=ExtensionLoader.getExtensionLoader(IGraceStop.class).getAdaptiveExtension();
 		graceStop.notify(moduler);//注入模块
 		
@@ -66,7 +65,6 @@ public class GraceStopTest {
 				+ "gracestop.status="+GraceStopStatusType.ONLINE
 				+ "&gracestop.switch=boot"));
 		
-		@SuppressWarnings("unchecked")
 		IGraceStop<String, String> graceStop=ExtensionLoader.getExtensionLoader(IGraceStop.class).getAdaptiveExtension();
 		graceStop.notify(moduler);//注入模块
 		

@@ -22,7 +22,6 @@ import cn.ms.neural.moduler.senior.alarm.IAlarmType;
  */
 public class ShieldingDegradeTest {
 
-	@SuppressWarnings("unchecked")
 	IDegrade<String, String> degrade=ExtensionLoader.getExtensionLoader(IDegrade.class).getAdaptiveExtension();
 	
 	@Test
