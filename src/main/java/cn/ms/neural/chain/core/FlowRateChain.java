@@ -2,7 +2,6 @@ package cn.ms.neural.chain.core;
 
 import java.util.Map;
 
-import cn.ms.neural.chain.INeuralChain;
 import cn.ms.neural.chain.support.AbstractNeuralChain;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
@@ -13,7 +12,7 @@ import cn.ms.neural.moduler.extension.flowrate.processor.IFlowRateProcessor;
 import cn.ms.neural.moduler.senior.alarm.IAlarmType;
 import cn.ms.neural.processor.INeuralProcessor;
 
-public class FlowRateChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ, RES> {
+public class FlowRateChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> {
 
 	public FlowRateChain(Moduler<REQ, RES> moduler) {
 		super(moduler);
@@ -28,7 +27,7 @@ public class FlowRateChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> imple
 			
 			@Override
 			public RES processor(REQ req, Object... args) throws ProcessorException {
-				return getNeuralChain().chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
+				return neuralChain.chain(req, neuralId, echoSoundType, blackWhiteIdKeyVals, processor, args);
 			}
 			
 			/**

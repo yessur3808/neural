@@ -7,6 +7,8 @@ import cn.ms.neural.processor.INeuralProcessor;
 
 public interface INeuralChain<REQ, RES> {
 
+	void setNeuralChain(INeuralChain<REQ, RES> neuralChain);
+	
 	RES chain(REQ req, 
 			String neuralId, 
 			EchoSoundType echoSoundType, 
