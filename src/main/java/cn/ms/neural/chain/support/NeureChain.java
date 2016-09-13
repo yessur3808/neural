@@ -1,8 +1,8 @@
-package cn.ms.neural.chain.core;
+package cn.ms.neural.chain.support;
 
 import java.util.Map;
 
-import cn.ms.neural.chain.support.AbstractNeuralChain;
+import cn.ms.neural.chain.AbstractNeuralChain;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;

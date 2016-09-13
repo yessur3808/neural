@@ -1,6 +1,5 @@
-package cn.ms.neural.chain.support;
+package cn.ms.neural.chain;
 
-import cn.ms.neural.chain.INeuralChain;
 import cn.ms.neural.moduler.Moduler;
 
 /**
