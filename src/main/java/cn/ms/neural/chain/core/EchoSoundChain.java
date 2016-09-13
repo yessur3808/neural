@@ -6,6 +6,7 @@ import cn.ms.neural.chain.support.AbstractNeuralChain;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.echosound.EchoSoundException;
+import cn.ms.neural.common.spi.SPI;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.ModulerType;
 import cn.ms.neural.moduler.extension.echosound.processor.IEchoSoundProcessor;
@@ -21,6 +22,7 @@ import cn.ms.neural.processor.INeuralProcessor;
  * @param <REQ>
  * @param <RES>
  */
+@SPI(order=7)
 public class EchoSoundChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> {
 
 	public EchoSoundChain(Moduler<REQ, RES> moduler) {

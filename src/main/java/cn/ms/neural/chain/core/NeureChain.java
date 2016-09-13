@@ -8,6 +8,7 @@ import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.neure.NeureBreathException;
 import cn.ms.neural.common.exception.neure.NeureCallbackException;
 import cn.ms.neural.common.exception.neure.NeureFaultTolerantException;
+import cn.ms.neural.common.spi.SPI;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.ModulerType;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
@@ -23,6 +24,7 @@ import cn.ms.neural.processor.INeuralProcessor;
  * @param <REQ>
  * @param <RES>
  */
+@SPI(order=8)
 public class NeureChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> {
 
 	public NeureChain(Moduler<REQ, RES> moduler) {

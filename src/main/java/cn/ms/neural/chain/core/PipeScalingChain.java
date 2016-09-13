@@ -5,6 +5,7 @@ import java.util.Map;
 import cn.ms.neural.chain.support.AbstractNeuralChain;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
+import cn.ms.neural.common.spi.SPI;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.ModulerType;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
@@ -20,6 +21,7 @@ import cn.ms.neural.processor.INeuralProcessor;
  * @param <REQ>
  * @param <RES>
  */
+@SPI(order=3)
 public class PipeScalingChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> {
 
 	public PipeScalingChain(Moduler<REQ, RES> moduler) {

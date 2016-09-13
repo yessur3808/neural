@@ -1,0 +1,8 @@
+blackwhite=cn.ms.neural.chain.core.BlackWhiteChain
+degrade=cn.ms.neural.chain.core.DegradeChain
+echosound=cn.ms.neural.chain.core.EchoSoundChain
+flowrate=cn.ms.neural.chain.core.FlowRateChain
+gracestop=cn.ms.neural.chain.core.GraceStopChain
+idempotent=cn.ms.neural.chain.core.IdempotentChain
+neure=cn.ms.neural.chain.core.NeureChain
+pipescaling=cn.ms.neural.chain.core.PipeScalingChain

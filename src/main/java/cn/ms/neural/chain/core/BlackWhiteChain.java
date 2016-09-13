@@ -5,6 +5,7 @@ import java.util.Map;
 import cn.ms.neural.chain.support.AbstractNeuralChain;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
+import cn.ms.neural.common.spi.SPI;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.ModulerType;
 import cn.ms.neural.moduler.extension.blackwhite.processor.IBlackWhiteProcessor;
@@ -20,6 +21,7 @@ import cn.ms.neural.processor.INeuralProcessor;
  * @param <REQ>
  * @param <RES>
  */
+@SPI(order=2)
 public class BlackWhiteChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> {
 
 	public BlackWhiteChain(Moduler<REQ, RES> moduler) {

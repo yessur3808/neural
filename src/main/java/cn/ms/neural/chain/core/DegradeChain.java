@@ -6,6 +6,7 @@ import cn.ms.neural.chain.support.AbstractNeuralChain;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.exception.degrade.DegradeException;
+import cn.ms.neural.common.spi.SPI;
 import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.ModulerType;
 import cn.ms.neural.moduler.extension.degrade.processor.IDegradeProcessor;
@@ -21,6 +22,7 @@ import cn.ms.neural.processor.INeuralProcessor;
  * @param <REQ>
  * @param <RES>
  */
+@SPI(order=5)
 public class DegradeChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> {
 
 	public DegradeChain(Moduler<REQ, RES> moduler) {
