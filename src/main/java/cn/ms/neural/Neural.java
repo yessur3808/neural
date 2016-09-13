@@ -47,6 +47,9 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
+		
+//		@SuppressWarnings("unchecked")
+//		INeuralChain<REQ, RES> neuralChain=ExtensionLoader.getExtensionLoader(INeuralChain.class).getAdaptiveExtension();
 
 		// $NON-NLS-建造模块功能$
 		graceStopChain = new GraceStopChain<REQ, RES>(moduler);

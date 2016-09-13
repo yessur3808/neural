@@ -16,6 +16,18 @@ import java.lang.annotation.Target;
 @Target({ ElementType.TYPE })
 public @interface SPI {
 
-	String value() default "";
+	/**
+	 * SPI value
+	 * 
+	 * @return
+	 */
+	String value() default "default";
+	
+	/**
+	 * 排序顺序
+	 * 
+	 * @return
+	 */
+	int order() default 0;
 
 }

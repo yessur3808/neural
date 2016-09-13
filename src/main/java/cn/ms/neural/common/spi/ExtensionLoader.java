@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.ServiceConfigurationError;
+import java.util.Set;
 
 /**
  * Transformation of ServiceLoader based on JDK
@@ -336,6 +337,15 @@ public final class ExtensionLoader<S> {
 
 	public S getAdaptiveExtension(String name) {
 		return load(name);
+	}
+	
+	public Set<S> getAdaptiveExtensions() {
+		List<String> extensions= getSupportedExtensions();
+		if(extensions==null || extensions.isEmpty()){
+			
+		}
+		load(DEFAULT_KEY);
+		return null;
 	}
 	
 	
