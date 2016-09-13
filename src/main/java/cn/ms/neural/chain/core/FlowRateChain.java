@@ -6,7 +6,6 @@ import cn.ms.neural.chain.support.AbstractNeuralChain;
 import cn.ms.neural.common.exception.AlarmException;
 import cn.ms.neural.common.exception.ProcessorException;
 import cn.ms.neural.common.spi.SPI;
-import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.ModulerType;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 import cn.ms.neural.moduler.extension.flowrate.processor.IFlowRateProcessor;
@@ -23,10 +22,6 @@ import cn.ms.neural.processor.INeuralProcessor;
  */
 @SPI(order=4)
 public class FlowRateChain<REQ, RES> extends AbstractNeuralChain<REQ, RES> {
-
-	public FlowRateChain(Moduler<REQ, RES> moduler) {
-		super(moduler);
-	}
 
 	@Override
 	public RES chain(REQ req, final String neuralId, final EchoSoundType echoSoundType,

@@ -2,6 +2,7 @@ package cn.ms.neural.chain;
 
 import java.util.Map;
 
+import cn.ms.neural.moduler.Moduler;
 import cn.ms.neural.moduler.extension.echosound.type.EchoSoundType;
 import cn.ms.neural.processor.INeuralProcessor;
 
@@ -17,10 +18,10 @@ public interface INeuralChain<REQ, RES> {
 
 	/**
 	 * 设置调用链
-	 * 
+	 * @param moduler
 	 * @param neuralChain
 	 */
-	void setNeuralChain(INeuralChain<REQ, RES> neuralChain);
+	void initChain(Moduler<REQ, RES> moduler, INeuralChain<REQ, RES> neuralChain);
 
 	/**
 	 * 调用链

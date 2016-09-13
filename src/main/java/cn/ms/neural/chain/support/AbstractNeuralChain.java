@@ -16,12 +16,9 @@ public abstract class AbstractNeuralChain<REQ, RES> implements INeuralChain<REQ,
 	public Moduler<REQ, RES> moduler;
 	public INeuralChain<REQ, RES> neuralChain;
 
-	public AbstractNeuralChain(Moduler<REQ, RES> moduler) {
-		this.moduler = moduler;
-	}
-
 	@Override
-	public void setNeuralChain(INeuralChain<REQ, RES> neuralChain) {
+	public void initChain(Moduler<REQ, RES> moduler, INeuralChain<REQ, RES> neuralChain) {
+		this.moduler = moduler;
 		this.neuralChain = neuralChain;
 	}
 

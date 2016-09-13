@@ -2,7 +2,6 @@ package cn.ms.neural;
 
 import java.util.Map;
 
-import cn.ms.neural.chain.INeuralChain;
 import cn.ms.neural.chain.core.BlackWhiteChain;
 import cn.ms.neural.chain.core.DegradeChain;
 import cn.ms.neural.chain.core.EchoSoundChain;
@@ -38,7 +37,7 @@ import cn.ms.neural.support.AbstractNeuralFactory;
  */
 public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 
-	INeuralChain<REQ, RES> graceStopChain = null;
+	GraceStopChain<REQ, RES> graceStopChain = null;
 
 	public Neural(Moduler<REQ, RES> moduler) {
 		try {
@@ -48,34 +47,33 @@ public class Neural<REQ, RES> extends AbstractNeuralFactory<REQ, RES> {
 			t.printStackTrace();
 		}
 		
-//		@SuppressWarnings("unchecked")
-//		INeuralChain<REQ, RES> neuralChain=ExtensionLoader.getExtensionLoader(INeuralChain.class).getAdaptiveExtension();
-
 		// $NON-NLS-建造模块功能$
-		graceStopChain = new GraceStopChain<REQ, RES>(moduler);
-		INeuralChain<REQ, RES> blackWhiteChain = new BlackWhiteChain<REQ, RES>(moduler);
-		INeuralChain<REQ, RES> pipeScalingChain = new PipeScalingChain<REQ, RES>(moduler);
-		INeuralChain<REQ, RES> flowRateChain = new FlowRateChain<REQ, RES>(moduler);
-		INeuralChain<REQ, RES> degradeChain = new DegradeChain<REQ, RES>(moduler);
-		INeuralChain<REQ, RES> idempotentChain = new IdempotentChain<REQ, RES>(moduler);
-		INeuralChain<REQ, RES> echoSoundChain = new EchoSoundChain<REQ, RES>(moduler);
-		INeuralChain<REQ, RES> neureChain = new NeureChain<REQ, RES>(moduler);
+		graceStopChain = new GraceStopChain<REQ, RES>();
+		BlackWhiteChain<REQ, RES> blackWhiteChain = new BlackWhiteChain<REQ, RES>();
+		PipeScalingChain<REQ, RES> pipeScalingChain = new PipeScalingChain<REQ, RES>();
+		FlowRateChain<REQ, RES> flowRateChain = new FlowRateChain<REQ, RES>();
+		DegradeChain<REQ, RES> degradeChain = new DegradeChain<REQ, RES>();
+		IdempotentChain<REQ, RES> idempotentChain = new IdempotentChain<REQ, RES>();
+		EchoSoundChain<REQ, RES> echoSoundChain = new EchoSoundChain<REQ, RES>();
+		NeureChain<REQ, RES> neureChain = new NeureChain<REQ, RES>();
 
 		// $NON-NLS-责任链链接$
 		// 优雅停机 --> 黑白名单
-		graceStopChain.setNeuralChain(blackWhiteChain);
+		graceStopChain.initChain(moduler, blackWhiteChain);
 		// 黑白名单 --> 管道缩放
-		blackWhiteChain.setNeuralChain(pipeScalingChain);
+		blackWhiteChain.initChain(moduler, pipeScalingChain);
 		// 管道缩放 --> 流量控制
-		pipeScalingChain.setNeuralChain(flowRateChain);
+		pipeScalingChain.initChain(moduler, flowRateChain);
 		// 流量控制 --> 服务降级
-		flowRateChain.setNeuralChain(degradeChain);
+		flowRateChain.initChain(moduler, degradeChain);
 		// 服务降级 --> 幂等机制
-		degradeChain.setNeuralChain(idempotentChain);
+		degradeChain.initChain(moduler, idempotentChain);
 		// 幂等机制 --> 回声探测
-		idempotentChain.setNeuralChain(echoSoundChain);
+		idempotentChain.initChain(moduler, echoSoundChain);
 		// 回声探测 --> 服务容错(熔断拒绝→超时控制→舱壁隔离→服务容错→慢性尝试)
-		echoSoundChain.setNeuralChain(neureChain);
+		echoSoundChain.initChain(moduler, neureChain);
+		
+		neureChain.initChain(moduler, null);
 
 	}
 
