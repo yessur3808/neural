@@ -40,7 +40,7 @@ public class FlowRateFactory<REQ, RES> implements IFlowRate<REQ, RES> {
 	@Override
 	public void notify(Moduler<REQ, RES> moduler) {
 		this.moduler=moduler;
-		
+
 		//流控总开关
 		boolean flowrateSwitch = this.moduler.getUrl().getModulerParameter(Conf.FLOWRATE, FlowRateConf.FLOWRATE_SWITCH_KEY, FlowRateConf.FLOWRATE_SWITCH_DEF_VAL);
 		

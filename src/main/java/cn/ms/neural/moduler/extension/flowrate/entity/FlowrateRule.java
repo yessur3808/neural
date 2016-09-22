@@ -74,5 +74,11 @@ public class FlowrateRule {
 	public void setPermitsPerSecond(double permitsPerSecond) {
 		this.permitsPerSecond = permitsPerSecond;
 	}
+
+	@Override
+	public String toString() {
+		return "FlowrateRule [flowrateSwitch=" + flowrateSwitch + ", cctSwitch=" + cctSwitch + ", permits=" + permits
+				+ ", qpsSwitch=" + qpsSwitch + ", permitsPerSecond=" + permitsPerSecond + "]";
+	}
 	
 }
