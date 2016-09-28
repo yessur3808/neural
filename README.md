@@ -88,7 +88,7 @@
 + 个性化配置
 
 ###四、使用案例
-案例DEMO地址:http://git.oschina.net/yu120/neural-demo
+案例DEMO地址:src/test/java/cn.ms.neural.example.APIGatewayNeural.java
 
 ###五、贡献与规划
 ####5.1 作者
