@@ -2,7 +2,7 @@ package cn.ms.neural.sequence;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import cn.ms.neural.extension.SpiMeta;
+import cn.ms.micro.extension.SpiMeta;
 
 /**
  * This class is used for generating unique id in a distributed environment. It

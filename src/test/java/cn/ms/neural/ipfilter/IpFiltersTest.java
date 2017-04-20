@@ -1,13 +1,8 @@
 package cn.ms.neural.ipfilter;
 
-import org.junit.Test;
-
-import cn.ms.neural.ipfilter.CachedIpFilter;
-import cn.ms.neural.ipfilter.ConfIpFilter;
-import cn.ms.neural.ipfilter.IpFilter;
-import cn.ms.neural.ipfilter.IpFilterConf;
-import cn.ms.neural.ipfilter.IpFilters;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 public class IpFiltersTest {
     @Test

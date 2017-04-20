@@ -18,11 +18,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.Test;
 
-import cn.ms.neural.retryer.Attempt;
-import cn.ms.neural.retryer.RetryException;
-import cn.ms.neural.retryer.RetryListener;
-import cn.ms.neural.retryer.Retryer;
-import cn.ms.neural.retryer.RetryerBuilder;
 import cn.ms.neural.retryer.Retryer.RetryerCallable;
 import cn.ms.neural.retryer.strategy.BlockStrategy;
 import cn.ms.neural.retryer.strategy.StopStrategies;

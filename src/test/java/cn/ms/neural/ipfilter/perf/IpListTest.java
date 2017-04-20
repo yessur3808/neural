@@ -1,14 +1,14 @@
 package cn.ms.neural.ipfilter.perf;
 
-import org.junit.Ignore;
-import org.junit.Test;
-
-import cn.ms.neural.ipfilter.ConfIpFilter;
+import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import cn.ms.neural.ipfilter.ConfIpFilter;
 
 public class IpListTest {
 

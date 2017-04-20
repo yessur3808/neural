@@ -6,7 +6,7 @@ import java.lang.management.MemoryUsage;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import cn.ms.neural.extension.SpiMeta;
+import cn.ms.micro.extension.SpiMeta;
 
 /**
  * MemoryStatus

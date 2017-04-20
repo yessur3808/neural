@@ -15,8 +15,6 @@ import java.util.concurrent.TimeUnit;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import cn.ms.neural.throttle.TimedSemaphore;
-
 /**
  * Test class for TimedSemaphore.
  *

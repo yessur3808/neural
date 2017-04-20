@@ -5,8 +5,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
-import cn.ms.neural.timelimiter.AttemptTimeLimiters;
-
 public class AttemptTimeLimitersTest {
 
 	@Test

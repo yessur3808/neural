@@ -15,8 +15,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
-import cn.ms.neural.circuitbreaker.EventCountCircuitBreaker;
-
 /**
  * Test class for {@code EventCountCircuitBreaker}.
  */

@@ -2,8 +2,6 @@ package cn.ms.neural.circuitbreaker;
 
 import java.util.concurrent.TimeUnit;
 
-import cn.ms.neural.circuitbreaker.EventCountCircuitBreaker;
-
 public class CircuitBreakerTest {
 
 	public static void main(String[] args) {

@@ -1,14 +1,14 @@
 package cn.ms.neural.ipfilter.perf;
 
-import cn.ms.neural.ipfilter.ConfIpFilter;
-import cn.ms.neural.ipfilter.IpFilterConf;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import cn.ms.neural.ipfilter.ConfIpFilter;
+import cn.ms.neural.ipfilter.IpFilterConf;
 
 public class IpListUtil {
 

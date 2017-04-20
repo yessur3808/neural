@@ -1,10 +1,10 @@
 package cn.ms.neural.ipfilter.perf;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 import cn.ms.neural.ipfilter.ConfIpFilter;
-
-import java.io.IOException;
 
 public class PerfMeasureConfIpFilterMultiThreadTest {
 

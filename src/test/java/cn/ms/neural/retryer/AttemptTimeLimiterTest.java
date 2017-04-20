@@ -7,9 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.retryer.RetryException;
-import cn.ms.neural.retryer.Retryer;
-import cn.ms.neural.retryer.RetryerBuilder;
 import cn.ms.neural.timelimiter.AttemptTimeLimiters;
 
 import com.google.common.util.concurrent.UncheckedTimeoutException;

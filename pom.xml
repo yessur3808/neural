@@ -10,28 +10,22 @@
 	<description>分布式服务框架中的神经组织，主要为分布式架构提供:流量控制、服务降级、幂等机制、泛化容错、流量熔断、隔离舱壁、超时控制、慢性重试。 </description>
 
 	<properties>
-		<guava.version>20.0</guava.version>
-		<disruptor.version>3.3.6</disruptor.version>
+		<micro.version>1.0.0-SNAPSHOT</micro.version>
 
-		<slf4j-api.version>1.7.25</slf4j-api.version>
 		<log4j2.version>2.6.2</log4j2.version>
+
 		<junit.version>4.12</junit.version>
 		<easymock.version>3.4</easymock.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
+			<groupId>cn.ms</groupId>
+			<artifactId>micro</artifactId>
+			<version>${micro.version}</version>
 		</dependency>
 
 		<!-- SLF4J + Log4J + disruptor -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j-api.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
@@ -41,11 +35,6 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>${log4j2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.lmax</groupId>
-			<artifactId>disruptor</artifactId>
-			<version>${disruptor.version}</version>
 		</dependency>
 
 		<!-- Test -->

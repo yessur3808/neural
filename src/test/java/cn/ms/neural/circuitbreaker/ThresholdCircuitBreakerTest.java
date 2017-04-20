@@ -7,8 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import cn.ms.neural.circuitbreaker.ThresholdCircuitBreaker;
-
 /**
  * Test class for {@code ThresholdCircuitBreaker}.
  */

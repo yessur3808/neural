@@ -1,10 +1,10 @@
 package cn.ms.neural.ipfilter.perf;
 
-import cn.ms.neural.ipfilter.IpFilter;
-import cn.ms.neural.ipfilter.IpFilterConf;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.ms.neural.ipfilter.IpFilter;
+import cn.ms.neural.ipfilter.IpFilterConf;
 
 public class ListIpFilter implements IpFilter {
     private boolean defaultAllow;

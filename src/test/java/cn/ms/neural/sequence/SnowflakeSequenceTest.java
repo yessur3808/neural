@@ -3,9 +3,7 @@ package cn.ms.neural.sequence;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.extension.ExtensionLoader;
-import cn.ms.neural.sequence.Sequence;
-import cn.ms.neural.sequence.SnowflakeSequence;
+import cn.ms.micro.extension.ExtensionLoader;
 
 public class SnowflakeSequenceTest {
 

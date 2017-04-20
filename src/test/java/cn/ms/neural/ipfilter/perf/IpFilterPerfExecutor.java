@@ -1,10 +1,16 @@
 package cn.ms.neural.ipfilter.perf;
 
-import cn.ms.neural.ipfilter.IpFilter;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+import cn.ms.neural.ipfilter.IpFilter;
 
 class IpFilterPerfExecutor {
     private IpFilter filter;

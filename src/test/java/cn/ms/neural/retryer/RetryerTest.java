@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
-import cn.ms.neural.retryer.RetryException;
-import cn.ms.neural.retryer.Retryer;
-import cn.ms.neural.retryer.RetryerBuilder;
 import cn.ms.neural.retryer.strategy.StopStrategies;
 
 import com.google.common.base.Predicates;

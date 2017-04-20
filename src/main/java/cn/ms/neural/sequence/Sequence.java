@@ -1,7 +1,7 @@
 package cn.ms.neural.sequence;
 
-import cn.ms.neural.extension.Scope;
-import cn.ms.neural.extension.Spi;
+import cn.ms.micro.extension.Scope;
+import cn.ms.micro.extension.Spi;
 
 /**
  * 分布式序列/ID

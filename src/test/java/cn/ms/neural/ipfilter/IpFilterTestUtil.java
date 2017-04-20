@@ -1,8 +1,6 @@
 package cn.ms.neural.ipfilter;
 
 import static org.junit.Assert.assertEquals;
-import cn.ms.neural.ipfilter.IpFilter;
-import cn.ms.neural.ipfilter.IpFilterConf;
 
 public class IpFilterTestUtil {
     private static String[] ipPatterns = {

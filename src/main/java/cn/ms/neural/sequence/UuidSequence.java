@@ -2,7 +2,7 @@ package cn.ms.neural.sequence;
 
 import java.util.UUID;
 
-import cn.ms.neural.extension.SpiMeta;
+import cn.ms.micro.extension.SpiMeta;
 
 /**
  * 基于JDK的UUID实现分布式ID

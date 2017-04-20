@@ -1,6 +1,6 @@
 package cn.ms.neural.sequence;
 
-import cn.ms.neural.extension.SpiMeta;
+import cn.ms.micro.extension.SpiMeta;
 
 /**
  * 基于Twitter的分布式自增ID算法Snowflake实现分布式有序

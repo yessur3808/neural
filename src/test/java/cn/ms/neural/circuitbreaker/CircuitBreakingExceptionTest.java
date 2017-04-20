@@ -1,11 +1,10 @@
 package cn.ms.neural.circuitbreaker;
 
-import org.junit.Test;
-
-import cn.ms.neural.circuitbreaker.CircuitBreakingException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+
+import org.junit.Test;
 
 /**
  * JUnit tests for {@link CircuitBreakingException}.

@@ -1,7 +1,7 @@
 package cn.ms.neural.status;
 
-import cn.ms.neural.extension.Scope;
-import cn.ms.neural.extension.Spi;
+import cn.ms.micro.extension.Scope;
+import cn.ms.micro.extension.Spi;
 
 /**
  * StatusChecker

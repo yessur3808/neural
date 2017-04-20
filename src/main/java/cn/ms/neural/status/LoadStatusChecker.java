@@ -4,7 +4,7 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 import java.lang.reflect.Method;
 
-import cn.ms.neural.extension.SpiMeta;
+import cn.ms.micro.extension.SpiMeta;
 
 /**
  * Load Status
