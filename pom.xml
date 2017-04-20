@@ -1,72 +1,57 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>cn.ms.neural</groupId>
 	<artifactId>neural</artifactId>
-	<version>4.1.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
+
 	<name>分布式服务框架中的神经组织</name>
 	<description>分布式服务框架中的神经组织，主要为分布式架构提供:流量控制、服务降级、幂等机制、泛化容错、流量熔断、隔离舱壁、超时控制、慢性重试。 </description>
 
 	<properties>
-		<hystrix>1.5.2</hystrix>
-		<guava>19.0</guava>
-		<fastjson>1.2.13</fastjson>
-		<log4j>2.6.2</log4j>
-		<junit>4.7</junit>
-		<contiperf>2.1.0</contiperf>
+		<guava.version>20.0</guava.version>
+		<disruptor.version>3.3.6</disruptor.version>
+
+		<slf4j-api.version>1.7.25</slf4j-api.version>
+		<log4j2.version>2.6.2</log4j2.version>
+		<junit.version>4.7</junit.version>
 	</properties>
 
 	<dependencies>
-		<!-- hystrix依赖 -->
-		<dependency>
-			<groupId>com.netflix.hystrix</groupId>
-			<artifactId>hystrix-core</artifactId>
-			<version>${hystrix}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.netflix.hystrix</groupId>
-			<artifactId>hystrix-metrics-event-stream</artifactId>
-			<version>${hystrix}</version>
-		</dependency>
-
-		<!-- 流量控制 -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>${guava}</version>
-		</dependency>
-		
-		<!-- zbus -->
-		<dependency>
-		    <groupId>org.zbus</groupId>
-		    <artifactId>zbus</artifactId>
-		    <version>6.3.4</version>
+			<version>${guava.version}</version>
 		</dependency>
 
-		<!-- 其他依赖 -->
+		<!-- SLF4J + Log4J + disruptor -->
 		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>${fastjson}</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-api.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>${log4j}</version>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>${disruptor.version}</version>
 		</dependency>
 
+		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit}</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- 性能测试 -->
-		<dependency>
-			<groupId>org.databene</groupId>
-			<artifactId>contiperf</artifactId>
-			<version>${contiperf}</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
