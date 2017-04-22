@@ -32,18 +32,15 @@ public class GrayRouter {
 	}
 
 	public RouterResult doGrayRouter(Map<String, Object> routers, String service) {
-		if (granularities == null || granularities.length == 0) {
+		if (granularities == null) {
 			return new RouterResult(ResultType.NONINITIALIZE);
 		}
 
 		StringBuffer routerBuffer = new StringBuffer();
-		for (int i = 0; i < granularities.length; i++) {
-			String granularity = granularities[i];
-			routerBuffer.append(routers.get(granularity));
-			if (i < granularities.length - 1) {
-				routerBuffer.append(",");
-			}
+		for (String granularity : granularities) {
+			routerBuffer.append(routers.get(granularity)).append(",");
 		}
+		routerBuffer.append(service);
 		String routeRuleRegex = routerBuffer.toString();
 
 		for (Map.Entry<String, String> entry : routerRuleMap.entrySet()) {

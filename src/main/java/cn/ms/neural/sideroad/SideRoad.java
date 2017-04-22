@@ -28,7 +28,7 @@ public class SideRoad<T> {
 
 		try {
 			T data = ringBuffer.get(sequence);
-			sideRoadBuilder.getBypassWrapper().wrapper(input, data);
+			sideRoadBuilder.getSideRoadWrapper().wrapper(input, data);
 		} finally {
 			ringBuffer.publish(sequence);// 发布事件；
 		}

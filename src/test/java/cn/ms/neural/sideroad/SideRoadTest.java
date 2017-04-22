@@ -1,5 +1,8 @@
 package cn.ms.neural.sideroad;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import cn.ms.neural.sideroad.SideRoad;
 import cn.ms.neural.sideroad.SideRoadBuilder;
 import cn.ms.neural.sideroad.SideRoadWrapper;
@@ -9,10 +12,11 @@ import com.lmax.disruptor.EventHandler;
 
 public class SideRoadTest {
 
+	@Test
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) {
+	public void testSideRoad() {
 		SideRoadBuilder<SideRoadEvent> builder = new SideRoadBuilder<SideRoadEvent>();
-		builder.setBypassWrapper(new SideRoadWrapper<SideRoadEvent>() {
+		builder.setSideRoadWrapper(new SideRoadWrapper<SideRoadEvent>() {
 			@Override
 			public void wrapper(SideRoadEvent input, SideRoadEvent data) {
 				data.set(input.getValue());
@@ -28,21 +32,25 @@ public class SideRoadTest {
 		builder.setEventHandlers(new EventHandler<SideRoadEvent>() {
 			@Override
 			public void onEvent(SideRoadEvent event, long sequence, boolean endOfBatch) throws Exception {
-				System.out.println("1-BypassEvent:"+event+", sequence:"+sequence);
+				Assert.assertNotNull(event);
 			}
 		}, new EventHandler<SideRoadEvent>() {
 			@Override
 			public void onEvent(SideRoadEvent event, long sequence, boolean endOfBatch) throws Exception {
-				System.out.println("2-BypassEvent:"+event+", sequence:"+sequence);
+				Assert.assertNotNull(event);
 			}
 		});
 		
 
-		SideRoad<SideRoadEvent> bypassService = new SideRoad<SideRoadEvent>();
-		bypassService.start(builder);
-		for (int i = 0; i < 10; i++) {
-			bypassService.publish(new SideRoadEvent());
-		}
+		SideRoad<SideRoadEvent> sideroad = new SideRoad<SideRoadEvent>();
+		sideroad.start(builder);
+		sideroad.publish(new SideRoadEvent());
+		sideroad.shutdown();
+		
+		Assert.assertNotNull(sideroad.getDisruptor());
+		sideroad.setDisruptor(null);
+		Assert.assertNull(sideroad.getDisruptor());
+		Assert.assertTrue(true);
 	}
 
 }

@@ -40,15 +40,15 @@ public class SideRoadBuilder<T> {
 		return this;
 	}
 
-	public SideRoadWrapper<T> getBypassWrapper() {
+	public SideRoadWrapper<T> getSideRoadWrapper() {
 		return sideRoadWrapper;
 	}
 
-	public SideRoadBuilder<T> setBypassWrapper(SideRoadWrapper<T> bypassWrapper) {
-		this.sideRoadWrapper = bypassWrapper;
+	public SideRoadBuilder<T> setSideRoadWrapper(SideRoadWrapper<T> sideRoadWrapper) {
+		this.sideRoadWrapper = sideRoadWrapper;
 		return this;
 	}
-
+	
 	public EventHandler<T>[] getEventHandlers() {
 		return eventHandlers;
 	}
