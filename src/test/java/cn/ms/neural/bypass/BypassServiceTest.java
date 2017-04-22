@@ -34,7 +34,7 @@ public class BypassServiceTest {
 		});
 		
 
-		BypassService<BypassEvent> bypassService = new BypassService<BypassEvent>();
+		Bypass<BypassEvent> bypassService = new Bypass<BypassEvent>();
 		bypassService.start(builder);
 		for (int i = 0; i < 10; i++) {
 			bypassService.publish(new BypassEvent());

@@ -6,7 +6,7 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.TimeoutException;
 import com.lmax.disruptor.dsl.Disruptor;
 
-public class BypassService<T> {
+public class Bypass<T> {
 
 	private Disruptor<T> disruptor;
 	private BypassBuilder<T> bypassBuilder;
