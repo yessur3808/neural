@@ -1,15 +1,10 @@
 package cn.ms.neural.bypass;
 
+/**
+ * 流量分流
+ * 
+ * @author lry
+ */
 public class Bypass {
 	
-	private long value;
-
-	public void set(long value) {
-		this.value = value;
-	}
-
-	public long getValue() {
-		return value;
-	}
-
 }
