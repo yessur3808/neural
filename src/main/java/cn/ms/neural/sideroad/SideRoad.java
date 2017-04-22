@@ -6,6 +6,13 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.TimeoutException;
 import com.lmax.disruptor.dsl.Disruptor;
 
+/**
+ * 数据旁路
+ * 
+ * @author lry
+ *
+ * @param <T>
+ */
 public class SideRoad<T> {
 
 	private Disruptor<T> disruptor;
@@ -45,7 +52,8 @@ public class SideRoad<T> {
 	public void shutdown() {
 		if (disruptor != null) {
 			try {
-				disruptor.shutdown(sideRoadBuilder.getShutdownTimeout(), TimeUnit.MILLISECONDS);
+				disruptor.shutdown(sideRoadBuilder.getShutdownTimeout(),
+						TimeUnit.MILLISECONDS);
 			} catch (TimeoutException e) {
 				e.printStackTrace();
 			}

@@ -10,6 +10,13 @@ import com.lmax.disruptor.WaitStrategy;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.ProducerType;
 
+/**
+ * 数据旁路模型
+ * 
+ * @author lry
+ *
+ * @param <T>
+ */
 public class SideRoadBuilder<T> {
 
 	private EventFactory<T> eventFactory;
@@ -44,11 +51,12 @@ public class SideRoadBuilder<T> {
 		return sideRoadWrapper;
 	}
 
-	public SideRoadBuilder<T> setSideRoadWrapper(SideRoadWrapper<T> sideRoadWrapper) {
+	public SideRoadBuilder<T> setSideRoadWrapper(
+			SideRoadWrapper<T> sideRoadWrapper) {
 		this.sideRoadWrapper = sideRoadWrapper;
 		return this;
 	}
-	
+
 	public EventHandler<T>[] getEventHandlers() {
 		return eventHandlers;
 	}
