@@ -1,4 +1,4 @@
-package cn.ms.neural.bypass;
+package cn.ms.neural.sideroad;
 
 import java.util.concurrent.TimeUnit;
 
@@ -6,19 +6,19 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.TimeoutException;
 import com.lmax.disruptor.dsl.Disruptor;
 
-public class Bypass<T> {
+public class SideRoad<T> {
 
 	private Disruptor<T> disruptor;
-	private BypassBuilder<T> bypassBuilder;
+	private SideRoadBuilder<T> sideRoadBuilder;
 
-	public void start(BypassBuilder<T> bypassBuilder) {
-		this.bypassBuilder = bypassBuilder;
-		disruptor = new Disruptor<T>(this.bypassBuilder.getEventFactory(),
-				this.bypassBuilder.getRingBufferSize(),
-				this.bypassBuilder.getThreadFactory(),
-				this.bypassBuilder.getProducerType(),
-				this.bypassBuilder.getWaitStrategy());
-		disruptor.handleEventsWith(this.bypassBuilder.getEventHandlers());
+	public void start(SideRoadBuilder<T> bypassBuilder) {
+		this.sideRoadBuilder = bypassBuilder;
+		disruptor = new Disruptor<T>(this.sideRoadBuilder.getEventFactory(),
+				this.sideRoadBuilder.getRingBufferSize(),
+				this.sideRoadBuilder.getThreadFactory(),
+				this.sideRoadBuilder.getProducerType(),
+				this.sideRoadBuilder.getWaitStrategy());
+		disruptor.handleEventsWith(this.sideRoadBuilder.getEventHandlers());
 		disruptor.start();
 	}
 
@@ -28,7 +28,7 @@ public class Bypass<T> {
 
 		try {
 			T data = ringBuffer.get(sequence);
-			bypassBuilder.getBypassWrapper().wrapper(input, data);
+			sideRoadBuilder.getBypassWrapper().wrapper(input, data);
 		} finally {
 			ringBuffer.publish(sequence);// 发布事件；
 		}
@@ -45,7 +45,7 @@ public class Bypass<T> {
 	public void shutdown() {
 		if (disruptor != null) {
 			try {
-				disruptor.shutdown(bypassBuilder.getShutdownTimeout(), TimeUnit.MILLISECONDS);
+				disruptor.shutdown(sideRoadBuilder.getShutdownTimeout(), TimeUnit.MILLISECONDS);
 			} catch (TimeoutException e) {
 				e.printStackTrace();
 			}

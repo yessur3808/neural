@@ -1,6 +1,6 @@
-package cn.ms.neural.bypass;
+package cn.ms.neural.sideroad;
 
-public class BypassEvent {
+public class SideRoadEvent {
 	
 	private long value;
 

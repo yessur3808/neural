@@ -1,4 +1,4 @@
-package cn.ms.neural.bypass;
+package cn.ms.neural.sideroad;
 
 import java.util.concurrent.ThreadFactory;
 
@@ -10,11 +10,11 @@ import com.lmax.disruptor.WaitStrategy;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.ProducerType;
 
-public class BypassBuilder<T> {
+public class SideRoadBuilder<T> {
 
 	private EventFactory<T> eventFactory;
 	private int ringBufferSize = 1 * 1024;
-	private BypassWrapper<T> bypassWrapper;
+	private SideRoadWrapper<T> sideRoadWrapper;
 	private EventHandler<T>[] eventHandlers;
 	private ProducerType producerType = ProducerType.SINGLE;
 	private WaitStrategy waitStrategy = new YieldingWaitStrategy();
@@ -26,7 +26,7 @@ public class BypassBuilder<T> {
 		return eventFactory;
 	}
 
-	public BypassBuilder<T> setEventFactory(EventFactory<T> eventFactory) {
+	public SideRoadBuilder<T> setEventFactory(EventFactory<T> eventFactory) {
 		this.eventFactory = eventFactory;
 		return this;
 	}
@@ -35,17 +35,17 @@ public class BypassBuilder<T> {
 		return ringBufferSize;
 	}
 
-	public BypassBuilder<T> setRingBufferSize(int ringBufferSize) {
+	public SideRoadBuilder<T> setRingBufferSize(int ringBufferSize) {
 		this.ringBufferSize = ringBufferSize;
 		return this;
 	}
 
-	public BypassWrapper<T> getBypassWrapper() {
-		return bypassWrapper;
+	public SideRoadWrapper<T> getBypassWrapper() {
+		return sideRoadWrapper;
 	}
 
-	public BypassBuilder<T> setBypassWrapper(BypassWrapper<T> bypassWrapper) {
-		this.bypassWrapper = bypassWrapper;
+	public SideRoadBuilder<T> setBypassWrapper(SideRoadWrapper<T> bypassWrapper) {
+		this.sideRoadWrapper = bypassWrapper;
 		return this;
 	}
 
@@ -53,7 +53,7 @@ public class BypassBuilder<T> {
 		return eventHandlers;
 	}
 
-	public BypassBuilder<T> setEventHandlers(
+	public SideRoadBuilder<T> setEventHandlers(
 			@SuppressWarnings("unchecked") EventHandler<T>... eventHandlers) {
 		this.eventHandlers = eventHandlers;
 		return this;
@@ -63,7 +63,7 @@ public class BypassBuilder<T> {
 		return producerType;
 	}
 
-	public BypassBuilder<T> setProducerType(ProducerType producerType) {
+	public SideRoadBuilder<T> setProducerType(ProducerType producerType) {
 		this.producerType = producerType;
 		return this;
 	}
@@ -72,7 +72,7 @@ public class BypassBuilder<T> {
 		return waitStrategy;
 	}
 
-	public BypassBuilder<T> setWaitStrategy(WaitStrategy waitStrategy) {
+	public SideRoadBuilder<T> setWaitStrategy(WaitStrategy waitStrategy) {
 		this.waitStrategy = waitStrategy;
 		return this;
 	}
@@ -81,7 +81,7 @@ public class BypassBuilder<T> {
 		return threadFactory;
 	}
 
-	public BypassBuilder<T> setThreadFactory(ThreadFactory threadFactory) {
+	public SideRoadBuilder<T> setThreadFactory(ThreadFactory threadFactory) {
 		this.threadFactory = threadFactory;
 		return this;
 	}
@@ -90,7 +90,7 @@ public class BypassBuilder<T> {
 		return shutdownTimeout;
 	}
 
-	public BypassBuilder<T> setShutdownTimeout(long shutdownTimeout) {
+	public SideRoadBuilder<T> setShutdownTimeout(long shutdownTimeout) {
 		this.shutdownTimeout = shutdownTimeout;
 		return this;
 	}
