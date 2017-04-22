@@ -13,14 +13,14 @@ import com.lmax.disruptor.dsl.ProducerType;
 public class BypassBuilder<T> {
 
 	private EventFactory<T> eventFactory;
-	private int ringBufferSize = 1024 * 1;
+	private int ringBufferSize = 1 * 1024;
 	private BypassWrapper<T> bypassWrapper;
 	private EventHandler<T>[] eventHandlers;
 	private ProducerType producerType = ProducerType.SINGLE;
 	private WaitStrategy waitStrategy = new YieldingWaitStrategy();
 	private ThreadFactory threadFactory = new NamedThreadFactory();
 
-	private long shutdownTimeout = 6 * 1000;
+	private long shutdownTimeout = 60 * 1000;
 
 	public EventFactory<T> getEventFactory() {
 		return eventFactory;
