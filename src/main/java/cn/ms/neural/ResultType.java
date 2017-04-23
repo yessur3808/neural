@@ -1,4 +1,4 @@
-package cn.ms.neural.grayrouter;
+package cn.ms.neural;
 
 public enum ResultType {
 

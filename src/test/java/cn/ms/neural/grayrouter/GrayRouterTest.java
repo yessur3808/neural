@@ -6,6 +6,9 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cn.ms.neural.ResultType;
+import cn.ms.neural.RouterResult;
+
 public class GrayRouterTest {
 
 	private GrayRouter newGrayRouter() {
@@ -38,7 +41,7 @@ public class GrayRouterTest {
 		routers.put("channelId", "weixin01");
 		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
 		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("1.0.0", routerResult.getVersion());
+		Assert.assertEquals("1.0.0", routerResult.getValue());
 	}
 	
 	@Test
@@ -50,7 +53,7 @@ public class GrayRouterTest {
 		routers.put("channelId", "weixin01");
 		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
 		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("2.0.0", routerResult.getVersion());
+		Assert.assertEquals("2.0.0", routerResult.getValue());
 	}
 	
 	@Test
@@ -62,7 +65,7 @@ public class GrayRouterTest {
 		routers.put("channelId", "weixin02");
 		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
 		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("3.0.0", routerResult.getVersion());
+		Assert.assertEquals("3.0.0", routerResult.getValue());
 	}
 	
 	@Test
@@ -74,7 +77,7 @@ public class GrayRouterTest {
 		routers.put("channelId", "weixin01");
 		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService02");
 		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("1.0.0", routerResult.getVersion());
+		Assert.assertEquals("1.0.0", routerResult.getValue());
 	}
 	
 	@Test
@@ -123,7 +126,7 @@ public class GrayRouterTest {
 		Map<String, Object> routers = new HashMap<String, Object>();
 		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
 		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("1.0.0", routerResult.getVersion());
+		Assert.assertEquals("1.0.0", routerResult.getValue());
 	}
 	
 }

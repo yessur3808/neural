@@ -3,20 +3,21 @@ package cn.ms.neural.bypass;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreeNode<T> {
+public class TreeNode<K, V> {
 
-	public T t;
-	private TreeNode<T> parent;
+	public K key;
+	public V value;
+	private TreeNode<K, V> parent;
+	public List<TreeNode<K, V>> nodes;
 
-	public List<TreeNode<T>> nodes;
-
-	public TreeNode(T stype) {
-		t = stype;
+	public TreeNode(K key, V value) {
+		this.key = key;
+		this.value = value;
 		parent = null;
-		nodes = new ArrayList<TreeNode<T>>();
+		nodes = new ArrayList<TreeNode<K, V>>();
 	}
 
-	public TreeNode<T> getParent() {
+	public TreeNode<K, V> getParent() {
 		return parent;
 	}
 

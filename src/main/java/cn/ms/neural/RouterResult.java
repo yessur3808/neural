@@ -1,9 +1,9 @@
-package cn.ms.neural.grayrouter;
+package cn.ms.neural;
 
 public class RouterResult {
 
 	private ResultType resultType;
-	private String version;
+	private String value;
 
 	public RouterResult() {
 	}
@@ -12,9 +12,9 @@ public class RouterResult {
 		this.resultType = resultType;
 	}
 
-	public RouterResult(ResultType resultType, String version) {
+	public RouterResult(ResultType resultType, String value) {
 		this.resultType = resultType;
-		this.version = version;
+		this.value = value;
 	}
 
 	public ResultType getResultType() {
@@ -25,18 +25,18 @@ public class RouterResult {
 		this.resultType = resultType;
 	}
 
-	public String getVersion() {
-		return version;
+	public String getValue() {
+		return value;
 	}
 
-	public void setVersion(String version) {
-		this.version = version;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	@Override
 	public String toString() {
-		return "RouterResult [resultType=" + resultType + ", version="
-				+ version + "]";
+		return "RouterResult [resultType=" + resultType + ", value=" + value
+				+ "]";
 	}
 
 }
