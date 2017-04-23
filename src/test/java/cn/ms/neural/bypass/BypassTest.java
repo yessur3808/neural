@@ -1,15 +1,12 @@
 package cn.ms.neural.bypass;
 
+import org.junit.Test;
+
 public class BypassTest {
-	
-	private long value;
 
-	public void set(long value) {
-		this.value = value;
-	}
-
-	public long getValue() {
-		return value;
+	@Test
+	public void testName() throws Exception {
+		
 	}
 
 }

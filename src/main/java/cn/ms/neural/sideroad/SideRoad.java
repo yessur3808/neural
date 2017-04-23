@@ -29,15 +29,20 @@ public class SideRoad<T> {
 		disruptor.start();
 	}
 
+	/**
+	 * 发布数据
+	 * 
+	 * @param input
+	 */
 	public void publish(T input) {
 		RingBuffer<T> ringBuffer = disruptor.getRingBuffer();
 		long sequence = ringBuffer.next();
 
 		try {
 			T data = ringBuffer.get(sequence);
-			sideRoadBuilder.getSideRoadWrapper().wrapper(input, data);
+			sideRoadBuilder.getSideRoadWrapper().wrapper(input, data);// 数据复制
 		} finally {
-			ringBuffer.publish(sequence);// 发布事件；
+			ringBuffer.publish(sequence);
 		}
 	}
 
