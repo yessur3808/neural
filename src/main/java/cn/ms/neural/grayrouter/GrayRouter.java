@@ -17,11 +17,11 @@ public class GrayRouter {
 	/**
 	 * 灰度路由粒度
 	 */
-	String[] granularities;
+	volatile String[] granularities;
 	/**
 	 * 灰度路由规则,数据结构:Map<rule, version>
 	 */
-	Map<String, String> routerRuleMap = new ConcurrentHashMap<String, String>();
+	volatile Map<String, String> routerRuleMap = new ConcurrentHashMap<String, String>();
 
 	public void initialize(String[] granularities) {
 		this.granularities = granularities;
