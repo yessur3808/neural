@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 import cn.ms.neural.ResultType;
-import cn.ms.neural.RouterResult;
+import cn.ms.neural.Result;
 
 /**
  * The Gray Router.<br>
@@ -34,9 +34,9 @@ public class GrayRouter {
 		this.routerRuleMap = routerRuleMap;
 	}
 
-	public RouterResult doGrayRouter(Map<String, Object> routers, String service) {
+	public Result doGrayRouter(Map<String, Object> routers, String service) {
 		if (granularities == null) {
-			return new RouterResult(ResultType.NONINITIALIZE);
+			return new Result(ResultType.NONINITIALIZE);
 		}
 
 		StringBuffer routerBuffer = new StringBuffer();
@@ -48,11 +48,11 @@ public class GrayRouter {
 
 		for (Map.Entry<String, String> entry : routerRuleMap.entrySet()) {
 			if (matches(entry.getKey(), routeRuleRegex)) {// 进行路由KEY的匹配
-				return new RouterResult(ResultType.SUCCESS, entry.getValue());
+				return new Result(ResultType.SUCCESS, entry.getValue());
 			}
 		}
 
-		return new RouterResult(ResultType.NOTFOUND);
+		return new Result(ResultType.NOTFOUND);
 	}
 
 	/**

@@ -1,18 +1,18 @@
 package cn.ms.neural;
 
-public class RouterResult {
+public class Result {
 
 	private ResultType resultType;
 	private String value;
 
-	public RouterResult() {
+	public Result() {
 	}
 
-	public RouterResult(ResultType resultType) {
+	public Result(ResultType resultType) {
 		this.resultType = resultType;
 	}
 
-	public RouterResult(ResultType resultType, String value) {
+	public Result(ResultType resultType, String value) {
 		this.resultType = resultType;
 		this.value = value;
 	}
@@ -35,7 +35,7 @@ public class RouterResult {
 
 	@Override
 	public String toString() {
-		return "RouterResult [resultType=" + resultType + ", value=" + value
+		return "Result [resultType=" + resultType + ", value=" + value
 				+ "]";
 	}
 

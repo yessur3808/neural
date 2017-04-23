@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import cn.ms.neural.ResultType;
-import cn.ms.neural.RouterResult;
+import cn.ms.neural.Result;
 
 public class GrayRouterTest {
 
@@ -28,8 +28,8 @@ public class GrayRouterTest {
 	@Test
 	public void testNonInitialize() throws Exception {
 		GrayRouter grayRouter = new GrayRouter();
-		RouterResult routerResult =  grayRouter.doGrayRouter(new HashMap<String, Object>(), "testService01");
-		Assert.assertEquals(ResultType.NONINITIALIZE, routerResult.getResultType());
+		Result result =  grayRouter.doGrayRouter(new HashMap<String, Object>(), "testService01");
+		Assert.assertEquals(ResultType.NONINITIALIZE, result.getResultType());
 	}
 	
 	@Test
@@ -39,9 +39,9 @@ public class GrayRouterTest {
 		Map<String, Object> routers = new HashMap<String, Object>();
 		routers.put("areaId", "shenzheng");
 		routers.put("channelId", "weixin01");
-		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
-		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("1.0.0", routerResult.getValue());
+		Result result =  grayRouter.doGrayRouter(routers, "testService01");
+		Assert.assertEquals(ResultType.SUCCESS, result.getResultType());
+		Assert.assertEquals("1.0.0", result.getValue());
 	}
 	
 	@Test
@@ -51,9 +51,9 @@ public class GrayRouterTest {
 		Map<String, Object> routers = new HashMap<String, Object>();
 		routers.put("areaId", "beijing");
 		routers.put("channelId", "weixin01");
-		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
-		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("2.0.0", routerResult.getValue());
+		Result result =  grayRouter.doGrayRouter(routers, "testService01");
+		Assert.assertEquals(ResultType.SUCCESS, result.getResultType());
+		Assert.assertEquals("2.0.0", result.getValue());
 	}
 	
 	@Test
@@ -63,9 +63,9 @@ public class GrayRouterTest {
 		Map<String, Object> routers = new HashMap<String, Object>();
 		routers.put("areaId", "shenzheng");
 		routers.put("channelId", "weixin02");
-		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
-		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("3.0.0", routerResult.getValue());
+		Result result =  grayRouter.doGrayRouter(routers, "testService01");
+		Assert.assertEquals(ResultType.SUCCESS, result.getResultType());
+		Assert.assertEquals("3.0.0", result.getValue());
 	}
 	
 	@Test
@@ -75,9 +75,9 @@ public class GrayRouterTest {
 		Map<String, Object> routers = new HashMap<String, Object>();
 		routers.put("areaId", "shenzheng");
 		routers.put("channelId", "weixin01");
-		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService02");
-		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("1.0.0", routerResult.getValue());
+		Result result =  grayRouter.doGrayRouter(routers, "testService02");
+		Assert.assertEquals(ResultType.SUCCESS, result.getResultType());
+		Assert.assertEquals("1.0.0", result.getValue());
 	}
 	
 	@Test
@@ -87,8 +87,8 @@ public class GrayRouterTest {
 		Map<String, Object> routers = new HashMap<String, Object>();
 		routers.put("areaId", "guangzhou");
 		routers.put("channelId", "weixin01");
-		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
-		Assert.assertEquals(ResultType.NOTFOUND, routerResult.getResultType());
+		Result result =  grayRouter.doGrayRouter(routers, "testService01");
+		Assert.assertEquals(ResultType.NOTFOUND, result.getResultType());
 	}
 	
 	@Test
@@ -98,8 +98,8 @@ public class GrayRouterTest {
 		Map<String, Object> routers = new HashMap<String, Object>();
 		routers.put("areaId", "shenzheng");
 		routers.put("channelId", "app01");
-		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
-		Assert.assertEquals(ResultType.NOTFOUND, routerResult.getResultType());
+		Result result =  grayRouter.doGrayRouter(routers, "testService01");
+		Assert.assertEquals(ResultType.NOTFOUND, result.getResultType());
 	}
 	
 	@Test
@@ -109,8 +109,8 @@ public class GrayRouterTest {
 		Map<String, Object> routers = new HashMap<String, Object>();
 		routers.put("areaId", "shenzheng");
 		routers.put("channelId", "weixin01");
-		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService03");
-		Assert.assertEquals(ResultType.NOTFOUND, routerResult.getResultType());
+		Result result =  grayRouter.doGrayRouter(routers, "testService03");
+		Assert.assertEquals(ResultType.NOTFOUND, result.getResultType());
 	}
 
 	@Test
@@ -124,9 +124,9 @@ public class GrayRouterTest {
 		grayRouter.notifys(routerRuleMap);
 		
 		Map<String, Object> routers = new HashMap<String, Object>();
-		RouterResult routerResult =  grayRouter.doGrayRouter(routers, "testService01");
-		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
-		Assert.assertEquals("1.0.0", routerResult.getValue());
+		Result result =  grayRouter.doGrayRouter(routers, "testService01");
+		Assert.assertEquals(ResultType.SUCCESS, result.getResultType());
+		Assert.assertEquals("1.0.0", result.getValue());
 	}
 	
 }

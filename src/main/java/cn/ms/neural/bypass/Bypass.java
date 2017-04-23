@@ -1,7 +1,7 @@
 package cn.ms.neural.bypass;
 
 import cn.ms.neural.ResultType;
-import cn.ms.neural.RouterResult;
+import cn.ms.neural.Result;
 
 /**
  * 流量分流
@@ -16,17 +16,17 @@ public class Bypass {
 		this.tree = tree;
 	}
 
-	public RouterResult doBypass(String node) {
+	public Result doBypass(String node) {
 		if (tree == null) {
-			return new RouterResult(ResultType.NONINITIALIZE);
+			return new Result(ResultType.NONINITIALIZE);
 		}
 
 		TreeNode<String, String> treeNode = tree.getNode(node);
 		if (treeNode == null) {
-			return new RouterResult(ResultType.NOTFOUND);
+			return new Result(ResultType.NOTFOUND);
 		}
 
-		return new RouterResult(ResultType.SUCCESS, treeNode.value);
+		return new Result(ResultType.SUCCESS, treeNode.value);
 	}
 
 }

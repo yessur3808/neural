@@ -4,28 +4,28 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import cn.ms.neural.ResultType;
-import cn.ms.neural.RouterResult;
+import cn.ms.neural.Result;
 
 public class RouterResultTest {
 
 	@Test
 	public void testRouterResult() throws Exception {
-		RouterResult routerResult = new RouterResult();
-		Assert.assertNotNull(routerResult);
-		Assert.assertNull(routerResult.getValue());
-		Assert.assertNull(routerResult.getResultType());
+		Result result = new Result();
+		Assert.assertNotNull(result);
+		Assert.assertNull(result.getValue());
+		Assert.assertNull(result.getResultType());
 	}
 
 	@Test
 	public void testName() throws Exception {
-		RouterResult routerResult = new RouterResult();
-		routerResult.setResultType(ResultType.SUCCESS);
-		Assert.assertEquals(ResultType.SUCCESS, routerResult.getResultType());
+		Result result = new Result();
+		result.setResultType(ResultType.SUCCESS);
+		Assert.assertEquals(ResultType.SUCCESS, result.getResultType());
 
-		routerResult.setValue("1.0.0");
-		Assert.assertEquals("1.0.0", routerResult.getValue());
+		result.setValue("1.0.0");
+		Assert.assertEquals("1.0.0", result.getValue());
 		
-		String toString = routerResult.toString();
+		String toString = result.toString();
 		Assert.assertNotNull(toString);
 	}
 
