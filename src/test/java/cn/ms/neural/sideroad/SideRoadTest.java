@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import cn.ms.neural.sideroad.SideRoad;
 import cn.ms.neural.sideroad.SideRoadBuilder;
-import cn.ms.neural.sideroad.SideRoadWrapper;
+import cn.ms.neural.sideroad.DataCopyWrapper;
 
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.EventHandler;
@@ -16,7 +16,7 @@ public class SideRoadTest {
 	@SuppressWarnings("unchecked")
 	public void testSideRoad() {
 		SideRoadBuilder<SideRoadEvent> builder = new SideRoadBuilder<SideRoadEvent>();
-		builder.setSideRoadWrapper(new SideRoadWrapper<SideRoadEvent>() {
+		builder.setSideRoadWrapper(new DataCopyWrapper<SideRoadEvent>() {
 			@Override
 			public void wrapper(SideRoadEvent input, SideRoadEvent data) {
 				data.set(input.getValue());
