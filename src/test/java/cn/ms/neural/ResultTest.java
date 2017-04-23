@@ -1,4 +1,4 @@
-package cn.ms.neural.grayrouter;
+package cn.ms.neural;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.Test;
 import cn.ms.neural.ResultType;
 import cn.ms.neural.Result;
 
-public class RouterResultTest {
+public class ResultTest {
 
 	@Test
 	public void testRouterResult() throws Exception {

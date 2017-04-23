@@ -15,7 +15,7 @@ import cn.ms.neural.Result;
  * 
  * @author lry
  */
-public class GrayRouter {
+public class GrayRouterEngine {
 
 	/**
 	 * 灰度路由粒度

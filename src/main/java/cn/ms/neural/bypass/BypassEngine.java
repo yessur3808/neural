@@ -8,7 +8,7 @@ import cn.ms.neural.Result;
  * 
  * @author lry
  */
-public class Bypass {
+public class BypassEngine {
 
 	volatile Tree<String, String> tree;
 
