@@ -1,23 +1,16 @@
 package cn.ms.neural.throttle.support;
 
-import java.util.concurrent.TimeUnit;
-
+import org.junit.Assert;
 import org.junit.Test;
-
-import cn.ms.neural.throttle.support.FlowUnit;
 
 public class FlowUnitTest {
 
-    @Test
-    public void unitTest() {
-
-        System.out.println(FlowUnit.BYTE);
-
-        System.out.println(TimeUnit.NANOSECONDS);
-
-        System.out.println(FlowUnit.PB.toByte(1));
-
-        System.out.println(FlowUnit.TB.toByte(1));
-        System.out.println("测试TPS流量统计能够支持最大流量T为：" + Long.MAX_VALUE/FlowUnit.TB.toByte(1));
-    }
+	@Test
+	public void unitTest() {
+		Assert.assertEquals(1125899906842624l, FlowUnit.PB.toByte(1));
+		Assert.assertEquals(1099511627776l, FlowUnit.TB.toByte(1));
+		// 测试TPS流量统计能够支持最大流量T为
+		Assert.assertEquals(8388607l, Long.MAX_VALUE / FlowUnit.TB.toByte(1));
+	}
+	
 }

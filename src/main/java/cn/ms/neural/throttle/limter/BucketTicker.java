@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
-public abstract class CloudTicker {
+public abstract class BucketTicker {
   
     /**
      * Returns the number of nanoseconds elapsed since this ticker's fixed
@@ -17,11 +17,11 @@ public abstract class CloudTicker {
      * 
      * @return
      */
-    public static CloudTicker systemTicker() {
+    public static BucketTicker systemTicker() {
         return SYSTEM_TICKER;
     }
 
-    private static final CloudTicker SYSTEM_TICKER = new CloudTicker() {
+    private static final BucketTicker SYSTEM_TICKER = new BucketTicker() {
         @Override
         public long read() {
             return System.nanoTime();
@@ -80,7 +80,7 @@ public abstract class CloudTicker {
      * 
      * @author lry
      */
-    static abstract class SleepingTicker extends CloudTicker {
+    static abstract class SleepingTicker extends BucketTicker {
         final static SleepingTicker SYSTEM_TICKER = new SleepingTicker() {
             @Override
             public long read() {

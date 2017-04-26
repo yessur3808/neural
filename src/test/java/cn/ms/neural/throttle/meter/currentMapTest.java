@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.junit.Test;
 
-import cn.ms.neural.throttle.limter.CloudTicker;
+import cn.ms.neural.throttle.limter.BucketTicker;
 
 public class currentMapTest {
     private final static ConcurrentHashMap<Integer, LinkedList<Long>> integerLinkedListConcurrentHashMap = new ConcurrentHashMap<Integer, LinkedList<Long>>();
@@ -64,6 +64,6 @@ public class currentMapTest {
             }
         }, 1000, 1000);
 
-        CloudTicker.sleepSeconds(10000);
+        BucketTicker.sleepSeconds(10000);
     }
 }

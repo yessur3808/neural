@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import cn.ms.neural.throttle.limter.CloudTicker;
+import cn.ms.neural.throttle.limter.BucketTicker;
 
 public class ExecutorsTest {
     private final static ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
@@ -23,7 +23,7 @@ public class ExecutorsTest {
                 printTime("test1: ");
                 num1++;
                 if (num1 % 3 == 0) {
-                    CloudTicker.sleepMillis(3800);
+                    BucketTicker.sleepMillis(3800);
                 }
             }
         }, 0, 1, TimeUnit.SECONDS);
@@ -36,7 +36,7 @@ public class ExecutorsTest {
                 num2++;
                 printTime("------------ test2: ");
                 if (num2 % 5 == 0) {
-                    CloudTicker.sleepMillis(500);
+                    BucketTicker.sleepMillis(500);
                 }
             }
         }, 0, 1000, TimeUnit.MILLISECONDS);

@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import cn.ms.neural.throttle.MeterListenerIpml;
-import cn.ms.neural.throttle.limter.CloudTicker;
+import cn.ms.neural.throttle.limter.BucketTicker;
 import cn.ms.neural.throttle.limter.RealTimeLimiter;
 import cn.ms.neural.throttle.support.IntervalModel;
 
@@ -25,7 +25,7 @@ public class MultiThreadTpsTest {
                     acquireAll1(cloudMeter);
                     while (true) {
                         //                        limiter.acquire();
-                        CloudTicker.sleepMillis(100);
+                        BucketTicker.sleepMillis(100);
                         cloudMeter.registerListener(new MeterListenerIpml());
                         cloudMeter.request("topicTag", "producer");
                         cloudMeter.request("topicTag", "consumer");

@@ -14,7 +14,7 @@ public class FlowLimiter extends CloudLimiter {
     final double maxBurstSeconds;
 
     public FlowLimiter(long size, FlowUnit flowUnit, double maxBurstSeconds) {
-        super(CloudTicker.SleepingTicker.SYSTEM_TICKER);
+        super(BucketTicker.SleepingTicker.SYSTEM_TICKER);
         this.maxBurstSeconds = maxBurstSeconds;
         this.setRate(size, flowUnit);
     }

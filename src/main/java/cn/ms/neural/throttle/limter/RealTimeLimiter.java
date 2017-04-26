@@ -26,7 +26,7 @@ public class RealTimeLimiter extends CloudLimiter {
     final double maxBurstSeconds;
 
     public RealTimeLimiter(double permitsPerSecond) {
-        super(CloudTicker.SleepingTicker.SYSTEM_TICKER);
+        super(BucketTicker.SleepingTicker.SYSTEM_TICKER);
         this.maxBurstSeconds = 1;
         super.setRate(permitsPerSecond);
     }

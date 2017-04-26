@@ -3,7 +3,7 @@ package cn.ms.neural.throttle.meter;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import cn.ms.neural.throttle.limter.CloudTicker;
+import cn.ms.neural.throttle.limter.BucketTicker;
 import cn.ms.neural.throttle.support.AcquireStatus;
 import cn.ms.neural.throttle.support.IntervalModel;
 import cn.ms.neural.throttle.support.MeterListener;
@@ -24,7 +24,7 @@ public class CloudFactoryTest {
         });
 
         for (int i = 0; i < 10000; i++) {
-            CloudTicker.sleepMicros(1);
+            BucketTicker.sleepMicros(1);
             cloudMeter.request();
         }
     }
@@ -56,7 +56,7 @@ public class CloudFactoryTest {
             }
         });
         for (int i = 0; i < 10000; i++) {
-            CloudTicker.sleepSeconds(1);
+            BucketTicker.sleepSeconds(1);
             cloudMeter.request();
         }
     }

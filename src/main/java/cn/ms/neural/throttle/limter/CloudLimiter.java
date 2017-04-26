@@ -3,7 +3,7 @@ package cn.ms.neural.throttle.limter;
 import java.util.concurrent.TimeUnit;
 
 /**
- * CloudLimiter 令牌桶（线程安全的）
+ * 令牌桶（线程安全的）
  * 
  * @author lry
  */
@@ -14,7 +14,7 @@ public abstract class CloudLimiter {
      * The underlying timer; used both to measure elapsed time and sleep as necessary. A separate
      * object to facilitate testing.
      */
-    private final CloudTicker.SleepingTicker ticker;
+    private final BucketTicker.SleepingTicker ticker;
 
     /**
      * CloudRateLimiter创建开始到当前的时间戳
@@ -55,7 +55,7 @@ public abstract class CloudLimiter {
     /**
      * 私有构造函数，只允许当前静态子类调用
      */
-    protected CloudLimiter(CloudTicker.SleepingTicker ticker) {
+    protected CloudLimiter(BucketTicker.SleepingTicker ticker) {
         this.ticker = ticker;
         // 获取当前时间戳
         this.offsetNanos = ticker.read();
@@ -147,7 +147,7 @@ public abstract class CloudLimiter {
         // 计算需要等待的微秒数
         long microsToWait = reserve(permits);
         // 阻塞等待microsToWait微秒
-        CloudTicker.SleepingTicker.sleepMicros(microsToWait);
+        BucketTicker.SleepingTicker.sleepMicros(microsToWait);
         // 返回本次等待的时间（单位秒）
         return 1.0 * microsToWait / TimeUnit.SECONDS.toMicros(1L);
     }
