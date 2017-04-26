@@ -1,4 +1,4 @@
-package cn.ms.neural.throttle.limter;
+package cn.ms.neural.throttle.support;
 
 import java.util.concurrent.TimeUnit;
 
