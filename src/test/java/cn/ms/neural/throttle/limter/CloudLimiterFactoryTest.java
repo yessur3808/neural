@@ -13,11 +13,6 @@ public class CloudLimiterFactoryTest {
     final AtomicLong sumSize = new AtomicLong(0);
 
     @Test
-    public void createRealTimeLimiter() throws Exception {
-
-    }
-
-//    @Test
     public void createFlowLimiter() throws Exception {
         final FlowLimiter flowLimiter = new FlowLimiter(200, FlowUnit.BYTE, TimeUnit.DAYS.toSeconds(1));
 

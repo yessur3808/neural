@@ -1,5 +1,7 @@
 package cn.ms.neural.throttle.meter;
 
+import org.junit.Test;
+
 import cn.ms.neural.throttle.MeterListenerIpml;
 import cn.ms.neural.throttle.limter.RealTimeLimiter;
 import cn.ms.neural.throttle.support.IntervalModel;
@@ -8,7 +10,7 @@ public class CloudMeterTest {
     final static private RealTimeLimiter realTimeLimiter = new RealTimeLimiter(100);
     CloudMeter cloudMeter = CloudMeter.getSingleInstance();
 
-//    @Test
+    @Test
     public void printStats() throws Exception {
 
         cloudMeter.registerListener(new MeterListenerIpml());

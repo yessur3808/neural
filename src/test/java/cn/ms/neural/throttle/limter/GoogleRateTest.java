@@ -74,7 +74,7 @@ public class GoogleRateTest {
         System.out.println(num + ":" + new Date());
     }
 
-//    @Test
+    @Test
     public void test2() {
         RateLimiter rateLimiter = RateLimiter.create(0.000001);
 

@@ -2,6 +2,8 @@ package cn.ms.neural.throttle.limter;
 
 import java.util.Date;
 
+import org.junit.Test;
+
 import cn.ms.neural.throttle.MeterListenerIpml;
 import cn.ms.neural.throttle.meter.CloudMeter;
 
@@ -16,7 +18,7 @@ public class LimiterDelayExecutorTest {
         }
     }
 
-//    @Test
+    @Test
     public void test1() {
         final RealTimeLimiter realTimeLimiter = new RealTimeLimiter(LimiterDelayConstants.ONCE_PER_SECOND);
         int i = 0;
@@ -34,7 +36,7 @@ public class LimiterDelayExecutorTest {
         }
     }
 
-//    @Test
+    @Test
     public void test3() {
         final RealTimeLimiter realTimeLimiter = new RealTimeLimiter(LimiterDelayConstants.ONCE_PER_MINUTE);
         CloudMeter cloudMeter = CloudMeter.getSingleInstance();
@@ -60,7 +62,5 @@ public class LimiterDelayExecutorTest {
             realTimeLimiter.acquire();
             cloudMeter.request();
         }
-
-
     }
 }
