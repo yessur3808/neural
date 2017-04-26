@@ -2,8 +2,10 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/yu120/neural/pulls)
-[![GitHub stars](https://img.shields.io/github/stars/yu120/neural.svg?style=social&label=Stars)](https://github.com/yu120/neural)
-[![GitHub forks](https://img.shields.io/github/forks/yu120/neural.svg?style=social&label=Fork)](https://github.com/yu120/neural)
+[![GitHub Watch](https://img.shields.io/github/forks/yu120/neural.svg?style=social&label=Watch)](https://github.com/yu120/neural)
+[![GitHub Star](https://img.shields.io/github/stars/yu120/neural.svg?style=social&label=Star)](https://github.com/yu120/neural)
+[![GitHub Fork](https://img.shields.io/github/forks/yu120/neural.svg?style=social&label=Fork)](https://github.com/yu120/neural)
+
 
 分布式服务框架中的神经组织，主要为分布式架构提供:放通率控制、流量控制、服务降级、幂等机制、泛化容错、SLA熔断、隔离舱壁、超时控制和慢性尝试功能。 
 
