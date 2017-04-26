@@ -3,10 +3,6 @@ package cn.ms.neural.sideroad;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.sideroad.SideRoad;
-import cn.ms.neural.sideroad.SideRoadBuilder;
-import cn.ms.neural.sideroad.DataCopyWrapper;
-
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.EventHandler;
 

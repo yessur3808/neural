@@ -6,8 +6,8 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.ResultType;
 import cn.ms.neural.Result;
+import cn.ms.neural.ResultType;
 
 public class GrayRouterEngineTest {
 

@@ -3,9 +3,6 @@ package cn.ms.neural;
 import org.junit.Assert;
 import org.junit.Test;
 
-import cn.ms.neural.ResultType;
-import cn.ms.neural.Result;
-
 public class ResultTest {
 
 	@Test
