@@ -4,7 +4,7 @@ package cn.ms.neural.throttle.limter;
 import cn.ms.neural.throttle.support.FlowUnit;
 
 /**
- * 创建FlowLimiter流量控制类型的CloudRateLimiter
+ * 创建FlowLimiter流量控制类型的
  * 
  * @author lry
  */
