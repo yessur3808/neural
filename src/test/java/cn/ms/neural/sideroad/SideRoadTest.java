@@ -12,7 +12,7 @@ public class SideRoadTest {
 	@SuppressWarnings("unchecked")
 	public void testSideRoad() {
 		SideRoadBuilder<SideRoadEvent> builder = new SideRoadBuilder<SideRoadEvent>();
-		builder.setSideRoadWrapper(new DataCopyWrapper<SideRoadEvent>() {
+		builder.setSideRoadWrapper(new SideRoadWrapper<SideRoadEvent>() {
 			@Override
 			public void wrapper(SideRoadEvent input, SideRoadEvent data) {
 				data.set(input.getValue());

@@ -21,7 +21,7 @@ public class SideRoadBuilder<T> {
 
 	private EventFactory<T> eventFactory;
 	private int ringBufferSize = 1 * 1024;
-	private DataCopyWrapper<T> dataCopyWrapper;
+	private SideRoadWrapper<T> sideRoadWrapper;
 	private EventHandler<T>[] eventHandlers;
 	private ProducerType producerType = ProducerType.SINGLE;
 	private WaitStrategy waitStrategy = new YieldingWaitStrategy();
@@ -47,13 +47,13 @@ public class SideRoadBuilder<T> {
 		return this;
 	}
 
-	public DataCopyWrapper<T> getSideRoadWrapper() {
-		return dataCopyWrapper;
+	public SideRoadWrapper<T> getSideRoadWrapper() {
+		return sideRoadWrapper;
 	}
 
 	public SideRoadBuilder<T> setSideRoadWrapper(
-			DataCopyWrapper<T> sideRoadWrapper) {
-		this.dataCopyWrapper = sideRoadWrapper;
+			SideRoadWrapper<T> sideRoadWrapper) {
+		this.sideRoadWrapper = sideRoadWrapper;
 		return this;
 	}
 

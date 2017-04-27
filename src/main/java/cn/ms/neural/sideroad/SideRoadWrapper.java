@@ -1,6 +1,6 @@
 package cn.ms.neural.sideroad;
 
-public interface DataCopyWrapper<T> {
+public interface SideRoadWrapper<T> {
 
 	void wrapper(T input, T data);
 

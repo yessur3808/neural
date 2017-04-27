@@ -3,10 +3,10 @@ package cn.ms.neural.bypass;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TreeTest {
+public class BypassTreeTest {
 
-	private Tree<String, String> newTree() {
-		Tree<String, String> tree = new Tree<String, String>();
+	private BypassTree<String, String> newTree() {
+		BypassTree<String, String> tree = new BypassTree<String, String>();
 		tree.addNode("bypass");
 		tree.addNode(tree.getNode("bypass"), "weixin");
 		tree.addNode(tree.getNode("bypass"), "app");
@@ -22,8 +22,8 @@ public class TreeTest {
 
 	@Test
 	public void testSearchTree() throws Exception {
-		Tree<String, String> tree = newTree();
-		TreeNode<String, String> treeNode = tree.search(tree.root, "appQuery");
+		BypassTree<String, String> tree = newTree();
+		BypassTreeNode<String, String> treeNode = tree.search(tree.root, "appQuery");
 		Assert.assertNotNull(treeNode);
 		Assert.assertEquals("appQuery", treeNode.key);
 		Assert.assertEquals("S02", treeNode.value);
@@ -31,8 +31,8 @@ public class TreeTest {
 
 	@Test
 	public void testGetTree() throws Exception {
-		Tree<String, String> tree = newTree();
-		TreeNode<String, String> treeNode = tree.getNode("weixinQuery");
+		BypassTree<String, String> tree = newTree();
+		BypassTreeNode<String, String> treeNode = tree.getNode("weixinQuery");
 		Assert.assertNotNull(treeNode);
 		Assert.assertEquals("weixinQuery", treeNode.key);
 		Assert.assertEquals("S01", treeNode.value);

@@ -1,34 +1,34 @@
 package cn.ms.neural.bypass;
 
-public class Tree<K, V> {
+public class BypassTree<K, V> {
 
-	public TreeNode<K, V> root;
+	public BypassTreeNode<K, V> root;
 
 	public void addNode(K newTreeNode) {
 		this.addNode(null, newTreeNode);
 	}
 
-	public void addNode(TreeNode<K, V> treeNode, K newTreeNode) {
+	public void addNode(BypassTreeNode<K, V> treeNode, K newTreeNode) {
 		this.addNode(treeNode, newTreeNode, null);
 	}
 
-	public void addNode(TreeNode<K, V> treeNode, K newTreeNode, V value) {
+	public void addNode(BypassTreeNode<K, V> treeNode, K newTreeNode, V value) {
 		if (null == treeNode) {
 			if (null == root) {
-				root = new TreeNode<K, V>(newTreeNode, value);
+				root = new BypassTreeNode<K, V>(newTreeNode, value);
 			}
 		} else {
-			TreeNode<K, V> tempTreeNode = this.search(root, newTreeNode);
+			BypassTreeNode<K, V> tempTreeNode = this.search(root, newTreeNode);
 			if (tempTreeNode != null) {
 				throw new IllegalArgumentException(newTreeNode + "重复");
 			}
-			TreeNode<K, V> temp = new TreeNode<K, V>(newTreeNode, value);
+			BypassTreeNode<K, V> temp = new BypassTreeNode<K, V>(newTreeNode, value);
 			treeNode.nodes.add(temp);
 		}
 	}
 
-	public TreeNode<K, V> search(TreeNode<K, V> treeNode, K newTreeNode) {
-		TreeNode<K, V> temp = null;
+	public BypassTreeNode<K, V> search(BypassTreeNode<K, V> treeNode, K newTreeNode) {
+		BypassTreeNode<K, V> temp = null;
 		if (treeNode.key.equals(newTreeNode)) {
 			return treeNode;
 		}
@@ -43,7 +43,7 @@ public class Tree<K, V> {
 		return temp;
 	}
 
-	public TreeNode<K, V> getNode(K newTreeNode) {
+	public BypassTreeNode<K, V> getNode(K newTreeNode) {
 		return search(root, newTreeNode);
 	}
 

@@ -10,18 +10,18 @@ import cn.ms.neural.Result;
  */
 public class BypassEngine {
 
-	volatile Tree<String, String> tree;
+	volatile BypassTree<String, String> bypassTree;
 
-	public void notifys(Tree<String, String> tree) {
-		this.tree = tree;
+	public void notifys(BypassTree<String, String> tree) {
+		this.bypassTree = tree;
 	}
 
 	public Result doBypass(String node) {
-		if (tree == null) {
+		if (bypassTree == null) {
 			return new Result(ResultType.NONINITIALIZE);
 		}
 
-		TreeNode<String, String> treeNode = tree.getNode(node);
+		BypassTreeNode<String, String> treeNode = bypassTree.getNode(node);
 		if (treeNode == null) {
 			return new Result(ResultType.NOTFOUND);
 		}

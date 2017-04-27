@@ -11,7 +11,7 @@ public class BypassEngineTest {
 	BypassEngine bypassEngine = new BypassEngine();
 
 	public BypassEngineTest() {
-		Tree<String, String> tree = new Tree<String, String>();
+		BypassTree<String, String> tree = new BypassTree<String, String>();
 		tree.addNode("bypass");
 		tree.addNode(tree.getNode("bypass"), "weixin");
 		tree.addNode(tree.getNode("bypass"), "app");
